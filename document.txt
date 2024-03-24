@@ -1,0 +1,31 @@
+Biro:
+    a. Sekretaris Daerah
+        PPTK: Ir. S.A Supriono
+        Jabatan: Pengguna Anggaran
+    b. Biro Pemerintahan dan Otonomi Daerah Setda Provinsi Sumsel
+        PPTK: Dr. Sri Sulastri, SH, M.Si
+        Jabatan: Kuasa Pengguna Anggaran
+    c. Biro Hukum Setda Provinsi Sumsel
+        PPTK: Windri Marlenny, SH, MM
+        Jabatan: Kuasa Pengguna Anggaran
+    d. Biro Perekonomian Setda Provinsi Sumsel
+        PPTK: Hengki Putrawan, S.Pt, M.Si
+        Jabatan: Kuasa Pengguna Anggaran
+    e. Biro Administrasi Pemerintahan Setda Provinsi Sumsel
+        PPTK: Ir. H. Iskandar Zulkarnain, M.Si
+        Jabatan: Kuasa Pengguna Anggaran
+    f. Biro Kesejahteraan Rakyat Setda Provinsi Sumsel
+        PPTK: Dr. Drs. H. Sunarto, M.Si 
+        Jabatan: Kuasa Pengguna Anggaran
+    g. Biro Organisasi Setda Provinsi Sumsel
+        PPTK: Muhammad Zaki Aslam, S.IP, M.Si
+        Jabatan: Kuasa Pengguna Anggaran
+    h. Biro Umum dan Perlengkapan Setda Provinsi Sumsel
+        PPTK: Sandi Fahlepi, SP, M.Si
+        Jabatan: Kuasa Pengguna Anggaran
+    i. Biro Humas dan Protokol Setda Provinsi Sumsel
+        PPTK: Toni Kurniawan, S.S, MM
+        Jabatan: Kuasa Pengguna Anggaran
+    j. Biro Pengadaan Barang/Jasa Setda Provinsi Sumsel
+        PPTK: Muzzakir, ST, MT
+        Jabatan: Kuasa Pengguna Anggaran
