@@ -11,7 +11,7 @@ class CreateLaporan extends Component
 
     public function mount()
     {
-        // $this->tgl = '';
+        $this->tgl = '';
     }
 
     public function hydrate()
@@ -51,7 +51,6 @@ class CreateLaporan extends Component
     {
         $this->currentStep = $step;    
     }
-
     
 
     public function render()

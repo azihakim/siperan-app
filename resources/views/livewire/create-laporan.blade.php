@@ -50,8 +50,7 @@
 																												@enderror
 																												<div class="form-group">
 																																<label for="biro">Biro</label>
-																																<select class="form-control select2" style="width: 100%;" id="biro"
-																																				wire:model="biro" name="biro">
+																																<select class="form-control" style="width: 100%;" id="biro" wire:model="biro">
 																																				<option value="">Pilih Biro</option>
 																																				<option value="Biro 1">Biro 1</option>
 																																				<option value="Biro 2">Biro 2</option>
@@ -59,6 +58,7 @@
 																																</select>
 																												</div>
 																								</div>
+
 																								<div class="col-4">
 																												@error('tgl')
 																																<span class="text-danger">{{ $message }}</span>
@@ -69,7 +69,7 @@
 																																				<div class="col-4">Palembang,</div>
 																																				<div class="col-8">
 																																								<input required type="date" name="tgl" class="form-control"
-																																												id="selectedDate" wire:model="tgl" wire:change="updateNoSp4">
+																																												id="selectedDate" wire:change="updateNoSp4" wire:model="tgl">
 																																				</div>
 																																</div>
 																												</div>
@@ -104,7 +104,6 @@
 																																								@enderror
 																																								<input type="text" class="form-control" name="no_sp_4" wire:model="no_sp_4">
 																																				</div>
-
 																																</div>
 																												</div>
 																								</div>
