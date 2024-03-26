@@ -8,39 +8,47 @@
 								</div>
 								<!-- /.card-header -->
 								<div class="card-body">
-												@if ($currentStep != 0)
-																<div class="bs-stepper">
-																				<div class="bs-stepper-header" role="tablist">
-																								<!-- your steps here -->
-																								<div class="step">
-																												<button type="button" class="step-trigger">
-																																<span class="bs-stepper-circle"
-																																				style="background-color:{{ $currentStep != 1 ? '' : '#3c8dbc' }}">1</span>
-																																<span class="bs-stepper-label"
-																																				style="color:{{ $currentStep != 1 ? '' : '#3c8dbc' }}">Surat Permohonan</span>
-																												</button>
-																								</div>
-																								<div class="line"></div>
-																								<div class="step">
-																												<button type="button" class="step-trigger">
-																																<span class="bs-stepper-circle"
-																																				style="background-color:{{ $currentStep != 2 ? '' : '#3c8dbc' }}">2</span>
-																																<span class="bs-stepper-label"
-																																				style="color:{{ $currentStep != 2 ? '' : '#3c8dbc' }}">Matriks Pergeseran</span>
-																												</button>
-																								</div>
-																								<div class="line"></div>
-																								<div class="step">
-																												<button type="button" class="step-trigger">
-																																<span class="bs-stepper-circle"
-																																				style="background-color:{{ $currentStep != 3 ? '' : '#3c8dbc' }}">2</span>
-																																<span class="bs-stepper-label"
-																																				style="color:{{ $currentStep != 3 ? '' : '#3c8dbc' }}">Logins</span>
-																												</button>
-																								</div>
+												<div class="bs-stepper">
+																<div class="bs-stepper-header" role="tablist">
+																				<!-- your steps here -->
+																				<div class="step">
+																								<button type="button" class="step-trigger">
+																												<span class="bs-stepper-circle"
+																																style="background-color:{{ $currentStep != 1 ? '' : '#3c8dbc' }}">1</span>
+																												<span class="bs-stepper-label" style="color:{{ $currentStep != 1 ? '' : '#3c8dbc' }}">Surat
+																																Permohonan</span>
+																								</button>
+																				</div>
+																				<div class="line"></div>
+																				<div class="step">
+																								<button type="button" class="step-trigger">
+																												<span class="bs-stepper-circle"
+																																style="background-color:{{ $currentStep != 2 ? '' : '#3c8dbc' }}">2</span>
+																												<span class="bs-stepper-label"
+																																style="color:{{ $currentStep != 2 ? '' : '#3c8dbc' }}">Matriks Pergeseran</span>
+																								</button>
+																				</div>
+																				<div class="line"></div>
+																				<div class="step">
+																								<button type="button" class="step-trigger">
+																												<span class="bs-stepper-circle"
+																																style="background-color:{{ $currentStep != 3 ? '' : '#3c8dbc' }}">3</span>
+																												<span class="bs-stepper-label"
+																																style="color:{{ $currentStep != 3 ? '' : '#3c8dbc' }}">SPTJM</span>
+																								</button>
+																				</div>
+																				<div class="line"></div>
+																				<div class="step">
+																								<button type="button" class="step-trigger">
+																												<span class="bs-stepper-circle"
+																																style="background-color:{{ $currentStep != 4 ? '' : '#3c8dbc' }}">4</span>
+																												<span class="bs-stepper-label" style="color:{{ $currentStep != 4 ? '' : '#3c8dbc' }}">Matrik
+																																Perubahan
+																																Rekening</span>
+																								</button>
 																				</div>
 																</div>
-												@endif
+												</div>
 												<div class="bs-stepper-content">
 																@if ($currentStep == 1)
 																				<div class="row">
@@ -69,72 +77,197 @@
 																																				<div class="col-4">Palembang,</div>
 																																				<div class="col-8">
 																																								<input required type="date" name="tgl" class="form-control"
-																																												id="selectedDate" wire:change="updateNoSp4" wire:model="tgl">
+																																												wire:model="tgl">
 																																				</div>
 																																</div>
 																												</div>
 																								</div>
 
 																								<div class="col-4">
+																												@error('no_sppa')
+																																<span class="text-danger">{{ $message }}</span>
+																												@enderror
 																												<div class="form-group">
 																																<label>Nomor:</label>
 																																<div class="row">
-																																				<div class="col-3">
-																																								@error('no_sp_1')
-																																												<span class="text-danger">{{ $message }}</span>
-																																								@enderror
-																																								<input type="text" class="form-control" name="no_sp_1" wire:model="no_sp_1">
-																																				</div>
-																																				<div class="col-3">
-																																								@error('no_sp_2')
-																																												<span class="text-danger">{{ $message }}</span>
-																																								@enderror
-																																								<input type="text" class="form-control" name="no_sp_2" wire:model="no_sp_2">
-																																				</div>
-																																				<div class="col-3">
-																																								@error('no_sp_3')
-																																												<span class="text-danger">{{ $message }}</span>
-																																								@enderror
-																																								<input type="text" class="form-control" name="no_sp_3" wire:model="no_sp_3"
-																																												placeholder="VIII" value="VIII">
-																																				</div>
-																																				<div class="col-3">
-																																								@error('no_sp_4')
-																																												<span class="text-danger">{{ $message }}</span>
-																																								@enderror
-																																								<input type="text" class="form-control" name="no_sp_4" wire:model="no_sp_4">
+																																				<div class="col-12">
+																																								<input type="text" class="form-control" name="no_sppa" wire:model="no_sppa">
 																																				</div>
 																																</div>
 																												</div>
 																								</div>
 																				</div>
-																				{{-- <div class="row">
-																								<div class="col-4">
-																												<div class="form-group">
-																																<label>Perihal</label>
-																																<textarea id="textareaContent" wire:model="perihal" name="perihal" class="form-control">Permohonan Pergeseran Anggaran Tahun Anggaran</textarea>
-																												</div>
-																								</div>
-																				</div> --}}
 																@endif
 																@if ($currentStep == 2)
-																				<h1>2</h1>
+																				<!-- Tampilan Input Dinamis -->
+																				@foreach ($inputs as $key => $value)
+																								<div class="row">
+																												<div class="col-2">
+																																@error('inputs.' . $key . '.no_rekening')
+																																				<span class="text-danger">{{ $message }}</span>
+																																@enderror
+																																<div class="form-group">
+																																				<label>No.Rekening:</label>
+																																				<input class="form-control" type="text"
+																																								wire:model="inputs.{{ $key }}.no_rekening" placeholder="No. Rekening">
+																																</div>
+																												</div>
+
+																												<div class="col-3">
+																																@error('inputs.' . $key . '.uraian')
+																																				<span class="text-danger">{{ $message }}</span>
+																																@enderror
+																																<div class="form-group">
+																																				<label>Uraian</label>
+																																				<textarea class="form-control" type="text" wire:model="inputs.{{ $key }}.uraian" placeholder="Uraian"
+																																				    style="height: 40px"></textarea>
+																																</div>
+																												</div>
+
+																												<div class="col-2">
+																																@error('inputs.' . $key . '.sebelum')
+																																				<span class="text-danger">{{ $message }}</span>
+																																@enderror
+																																<div class="form-group">
+																																				<label>Sebelum</label>
+																																				<input class="form-control" type="text"
+																																								wire:model="inputs.{{ $key }}.sebelum" placeholder="Sebelum" />
+																																</div>
+																												</div>
+
+																												<div class="col-2">
+																																@error('inputs.' . $key . '.sesudah')
+																																				<span class="text-danger">{{ $message }}</span>
+																																@enderror
+																																<div class="form-group">
+																																				<label>Sesudah</label>
+																																				<input class="form-control" type="text"
+																																								wire:model="inputs.{{ $key }}.sesudah" placeholder="Sesudah" />
+																																</div>
+																												</div>
+
+																												<div class="col-2">
+																																@error('inputs.' . $key . '.bertambah_berkurang')
+																																				<span class="text-danger">{{ $message }}</span>
+																																@enderror
+																																<div class="form-group">
+																																				<label>Bertambah/Berkurang</label>
+																																				<input class="form-control" type="text"
+																																								wire:model="inputs.{{ $key }}.bertambah_berkurang"
+																																								placeholder="Bertambah/Berkurang">
+																																</div>
+																												</div>
+
+																												@if ($key > 0)
+																																<div class="col-1">
+																																				<div class="form-group">
+																																								<label>&nbsp;</label>
+																																								<div>
+																																												<button class="form-control btn btn-block btn-outline-danger"
+																																																wire:click.prevent="remove({{ $key }})"><i
+																																																				class="fa fa-times"></i></button>
+																																								</div>
+																																				</div>
+																																</div>
+																												@endif
+																												{{-- <button wire:click.prevent="remove({{ $key }})">Hapus</button> --}}
+
+																								</div>
+																				@endforeach
+																				<div class="row">
+																								<div class="col-2 mx-auto text-center">
+																												<button wire:click="addInput({{ $i }})"
+																																class="btn btn-block btn-outline-primary"><i class="fa fa-plus"></i></button>
+																								</div>
+																				</div>
+
+																@endif
+
+																@if ($currentStep == 3)
+																				<h1>3</h1>
 																@endif
 												</div>
 								</div>
 								<!-- /.card-body -->
 								<div class="card-footer">
-												<a wire:click="firstStepSubmit" class="btn btn-primary">
-																Selanjutnya
-												</a>
-												<a wire:click="back(1)" class="btn btn-danger">
-																Kembali
-												</a>
+												@if ($currentStep > 1 and $currentStep < 3)
+																<div>
+																				<a wire:click="back(1)" class="btn btn-danger">
+																								Kembali
+																				</a>
+																</div>
+												@endif
+												@if ($currentStep == 1)
+																<div class="ms-auto">
+																				<a wire:click="firstStepSubmit" class="btn btn-primary" wire:loading.remove>
+																								Selanjutnya
+																				</a>
+																				<a disabled class="btn btn-warning" wire:loading>
+																								Tunggu...
+																				</a>
+																</div>
+												@endif
+												@if ($currentStep == 2)
+																<div class="ms-auto">
+																				<a wire:click="secondStepSubmit" class="btn btn-primary" wire:loading.remove>
+																								Selanjutnya
+																				</a>
+																				<a disabled class="btn btn-warning" wire:loading>
+																								Tunggu...
+																				</a>
+																</div>
+												@endif
+												@if ($currentStep == 3)
+																<div>
+																				<a wire:click="back(2)" class="btn btn-danger">
+																								Kembali
+																				</a>
+																</div>
+												@endif
 								</div>
 				</div>
 </div>
 
 @push('scripts')
+				{{-- <script>
+								function formatNominal() {
+												var input = document.getElementById("nominalInput");
+												var nominal = input.value.replace(/[^\d-]/g, ""); // Hilangkan karakter non-digit kecuali tanda negatif (-)
+												var isNegative = false;
+
+												if (nominal.length > 0 && nominal.charAt(0) === '-') {
+																isNegative = true;
+																nominal = nominal.slice(1); // Hilangkan tanda negatif dari nominal
+												}
+
+												var formattedNominal = addCommas(nominal);
+
+												if (isNegative) {
+																formattedNominal = '-' + formattedNominal; // Tambahkan kembali tanda negatif jika ada
+												}
+
+												input.value = formattedNominal;
+								}
+
+								function addCommas(nStr) {
+												var isNegative = false;
+
+												if (nStr.charAt(0) === '-') {
+																isNegative = true;
+																nStr = nStr.slice(1); // Hilangkan tanda negatif dari nominal
+												}
+
+												nStr = parseFloat(nStr).toLocaleString("id-ID", {
+																minimumFractionDigits: 0
+												}); // Gunakan format lokal untuk menambahkan titik
+
+												if (isNegative) {
+																nStr = '-' + nStr; // Tambahkan kembali tanda negatif jika ada
+												}
+
+												return nStr;
+								}
+				</script> --}}
 				<script>
 								function updateTextarea() {
 												var selectedDate = document.getElementById('selectedDate').value;
