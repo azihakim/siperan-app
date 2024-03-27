@@ -97,6 +97,35 @@
 																												</div>
 																								</div>
 																				</div>
+																				<div class="row">
+																								<div class="col-4">
+																												@error('nama_kb')
+																																<span class="text-danger">{{ $message }}</span>
+																												@enderror
+																												<div class="form-group">
+																																<label>Nama</label>
+																																<input type="text" class="form-control" wire:model="nama_kb">
+																												</div>
+																								</div>
+																								<div class="col-4">
+																												@error('nip_kb')
+																																<span class="text-danger">{{ $message }}</span>
+																												@enderror
+																												<div class="form-group">
+																																<label>NIP</label>
+																																<input type="text" class="form-control" wire:model="nip_kb">
+																												</div>
+																								</div>
+																								<div class="col-4">
+																												@error('jabatan_kb')
+																																<span class="text-danger">{{ $message }}</span>
+																												@enderror
+																												<div class="form-group">
+																																<label>Jabatan</label>
+																																<input type="text" class="form-control" wire:model="jabatan_kb">
+																												</div>
+																								</div>
+																				</div>
 																@endif
 																@if ($currentStep == 2)
 																				<!-- Tampilan Input Dinamis -->
@@ -184,7 +213,62 @@
 																@endif
 
 																@if ($currentStep == 3)
-																				<h1>3</h1>
+																				<div class="row">
+																								<div class="col-4">
+																												@error('no_sp_3')
+																																<span class="text-danger">{{ $message }}</span>
+																												@enderror
+																												<div class="form-group">
+																																<label>No. Surat</label>
+																																<input type="text" class="form-control" wire:model="no_sptjm">
+																												</div>
+																								</div>
+																								<div class="col-4">
+																												@error('tgl')
+																																<span class="text-danger">{{ $message }}</span>
+																												@enderror
+																												<div class="form-group">
+																																<label>Tanggal:</label>
+																																<div class="row">
+																																				<div class="col-4">Palembang,</div>
+																																				<div class="col-8">
+																																								<input required type="date" name="tgl" class="form-control"
+																																												wire:model="tgl">
+																																				</div>
+																																</div>
+																												</div>
+																								</div>
+																				</div>
+
+																				<div class="row">
+																								<div class="col-4">
+																												@error('nama_kb')
+																																<span class="text-danger">{{ $message }}</span>
+																												@enderror
+																												<div class="form-group">
+																																<label>Nama</label>
+																																<input type="text" class="form-control" wire:model="nama_kb">
+																												</div>
+																								</div>
+																								<div class="col-4">
+																												@error('nip_kb')
+																																<span class="text-danger">{{ $message }}</span>
+																												@enderror
+																												<div class="form-group">
+																																<label>NIP</label>
+																																<input type="text" class="form-control" wire:model="nip_kb">
+																												</div>
+																								</div>
+																								<div class="col-4">
+																												@error('jabatan_kb')
+																																<span class="text-danger">{{ $message }}</span>
+																												@enderror
+																												<div class="form-group">
+																																<label>Jabatan</label>
+																																<input type="text" class="form-control" wire:model="jabatan_kb">
+																												</div>
+																								</div>
+																				</div>
 																@endif
 												</div>
 								</div>

@@ -6,8 +6,8 @@ use Livewire\Component;
 use App\Livewire\wire;
 class CreateLaporan extends Component
 {
-    public $currentStep = 1;
-    public $biro, $tgl, $no_sppa;
+    public $currentStep = 3;
+    public $biro, $tgl, $no_sppa, $nama_kb, $jabatan_kb, $nip_kb;
 
     // Inisialisasi input dinamis dengan satu array kosong
     public $inputs = [];
@@ -15,7 +15,10 @@ class CreateLaporan extends Component
 
     public function mount()
     {
-        $this->tgl = '';
+        $this->nama_kb = 'Nama Kepala Biro';
+        $this->jabatan_kb = 'Jabatan Kepala Biro';
+        $this->nip_kb = 'NIP Kepala Biro';
+        
         // Inisialisasi input pertama saat komponen dimuat
         $this->inputs[] = [
             'no_rekening' => '', 
