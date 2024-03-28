@@ -33,6 +33,11 @@
 				<!-- Theme style -->
 				<link rel="stylesheet" href="{{ asset('vendors/dist/css/adminlte.min.css') }}">
 
+				<!-- DataTables -->
+				<link rel="stylesheet" href="{{ asset('vendors/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css') }}">
+				<link rel="stylesheet"
+								href="{{ asset('vendors//plugins/datatables-responsive/css/responsive.bootstrap4.min.css') }}">
+				<link rel="stylesheet" href="{{ asset('vendors//plugins/datatables-buttons/css/buttons.bootstrap4.min.css') }}">
 				@yield('styles')
 				@stack('scripts')
 				@livewireStyles
@@ -160,6 +165,7 @@
 				@livewireScripts
 				<!-- jQuery -->
 				<script src="{{ asset('vendors/plugins/jquery/jquery.min.js') }}"></script>
+
 				<!-- Bootstrap 4 -->
 				<script src="{{ asset('vendors/plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
 				<!-- Select2 -->
@@ -327,6 +333,40 @@
 												myDropzone.removeAllFiles(true)
 								}
 								// DropzoneJS Demo Code End
+				</script>
+
+				<!-- DataTables  & Plugins -->
+				<script src="{{ asset('vendors/plugins/datatables/jquery.dataTables.min.js') }}"></script>
+				<script src="{{ asset('vendors/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js') }}"></script>
+				<script src="{{ asset('vendors/plugins/datatables-responsive/js/dataTables.responsive.min.js') }}"></script>
+				<script src="{{ asset('vendors/plugins/datatables-responsive/js/responsive.bootstrap4.min.js') }}"></script>
+				<script src="{{ asset('vendors/plugins/datatables-buttons/js/dataTables.buttons.min.js') }}"></script>
+				<script src="{{ asset('vendors/plugins/datatables-buttons/js/buttons.bootstrap4.min.js') }}"></script>
+				<script src="{{ asset('vendors/plugins/jszip/jszip.min.js') }}"></script>
+				<script src="{{ asset('vendors/plugins/pdfmake/pdfmake.min.js') }}"></script>
+				<script src="{{ asset('vendors/plugins/pdfmake/vfs_fonts.js') }}"></script>
+				<script src="{{ asset('vendors/plugins/datatables-buttons/js/buttons.html5.min.js') }}"></script>
+				<script src="{{ asset('vendors/plugins/datatables-buttons/js/buttons.print.min.js') }}"></script>
+				<script src="{{ asset('vendors/plugins/datatables-buttons/js/buttons.colVis.min.js') }}"></script>
+				<!-- Page specific script -->
+				<script>
+								$(function() {
+												$("#example1").DataTable({
+																"responsive": true,
+																"lengthChange": false,
+																"autoWidth": false,
+																"buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
+												}).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
+												$('#example2').DataTable({
+																"paging": true,
+																"lengthChange": false,
+																"searching": false,
+																"ordering": true,
+																"info": true,
+																"autoWidth": false,
+																"responsive": true,
+												});
+								});
 				</script>
 </body>
 

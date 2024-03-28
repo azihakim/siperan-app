@@ -42,9 +42,9 @@
 																								<button type="button" class="step-trigger">
 																												<span class="bs-stepper-circle"
 																																style="background-color:{{ $currentStep != 4 ? '' : '#3c8dbc' }}">4</span>
-																												<span class="bs-stepper-label" style="color:{{ $currentStep != 4 ? '' : '#3c8dbc' }}">Matrik
-																																Perubahan
-																																Rekening</span>
+																												<span class="bs-stepper-label"
+																																style="color:{{ $currentStep != 4 ? '' : '#3c8dbc' }}">Dokumen Pelaksanaan Perubahan
+																																Anggaran</span>
 																								</button>
 																				</div>
 																</div>

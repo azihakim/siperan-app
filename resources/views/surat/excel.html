@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <title>Export to Excel and PDF</title>
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.3/xlsx.full.min.js"></script>
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.3/html2pdf.bundle.min.js"></script>
+</head>
+
+
+<body>
+
+ <table id="dataTable" border="1">
+  <thead>
+   <tr>
+    <th>Name</th>
+    <th>Age</th>
+    <th>City</th>
+   </tr>
+  </thead>
+  <tbody>
+   <tr>
+    <td>John</td>
+    <td style="max-width: 15px;"></td>
+    <td>New York</td>
+   </tr>
+   <tr>
+    <td>Emily</td>
+    <td>25</td>
+    <td>Los Angeles</td>
+   </tr>
+   <tr>
+    <td>David</td>
+    <td>40</td>
+    <td>Chicago</td>
+   </tr>
+  </tbody>
+ </table>
+
+ <button onclick="exportToExcel()">Export to Excel</button>
+ <button onclick="exportToPDF()">Export to PDF</button>
+
+
+ <script>
+  function exportToExcel() {
+   const table = document.getElementById("dataTable");
+   const rows = Array.from(table.querySelectorAll("tr"));
+
+   const data = rows.map(row => Array.from(row.querySelectorAll("th, td")).map(cell => cell.textContent));
+   const wb = XLSX.utils.book_new();
+   const ws = XLSX.utils.aoa_to_sheet(data);
+   XLSX.utils.book_append_sheet(wb, ws, "Sheet1");
+   XLSX.writeFile(wb, "table_data.xlsx");
+  }
+ </script>
+
+ <script>
+  function exportToPDF() {
+   const element = document.getElementById("dataTable");
+   html2pdf(element, {
+    margin: 1,
+    filename: 'table_data.pdf',
+    image: { type: 'jpeg', quality: 0.98 },
+    html2canvas: { scale: 2, logging: true },
+    jsPDF: { unit: 'in', format: 'a4', orientation: 'landscape' }
+   });
+  }
+ </script>
+
+</body>
+
+</html>
