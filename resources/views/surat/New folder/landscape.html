@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Surat dalam Kertas A4</title>
+  <style>
+    /* Style for A4 layout */
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+      background-color: #e0e0e0;
+      /* Warna latar belakang keseluruhan halaman */
+    }
+
+    .page {
+      width: 297mm;
+      /* Lebar kertas A4 dalam mode landscape */
+      height: 210mm;
+      /* Tinggi kertas A4 dalam mode landscape */
+      margin: auto;
+      /* Pusatkan kertas */
+      border: 1px solid #ccc;
+      /* Border untuk tampilan */
+      padding: 20px;
+      /* Padding untuk konten */
+      box-sizing: border-box;
+      /* Sesuaikan padding dengan lebar dan tinggi kertas */
+      background-color: #f0f0f0;
+      /* Warna latar belakang kertas */
+      transform: rotate(90deg);
+      /* Putar kertas menjadi mode landscape */
+      transform-origin: left top;
+      /* Atur titik rotasi */
+    }
+
+    .address {
+      margin-bottom: 20px;
+    }
+
+    .date {
+      float: right;
+      /* Posisi tanggal ke kanan */
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="page">
+    <div class="address">
+      <p>Penerima:</p>
+      <p>Nama Perusahaan</p>
+      <p>Alamat Perusahaan</p>
+    </div>
+    <div class="date">
+      <p>Tanggal: 27 Maret 2024</p>
+    </div>
+    <h1>Surat Resmi</h1>
+    <p>Ini adalah isi surat. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam ac lacus in nisi volutpat
+      dapibus. Donec euismod, ligula nec volutpat fermentum, metus velit laoreet mauris, nec malesuada dui ex ac magna.
+      Quisque eget ex non nisl tincidunt commodo. Proin auctor velit sed lorem vestibulum, nec elementum nunc blandit.
+    </p>
+  </div>
+
+</body>
+
+</html>
