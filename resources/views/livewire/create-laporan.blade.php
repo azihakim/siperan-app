@@ -289,6 +289,12 @@
 																				<a disabled class="btn btn-warning" wire:loading>
 																								Tunggu...
 																				</a>
+																				<a wire:click="printPermohonan" class="btn btn-danger">
+																								permohonan
+																				</a>
+																				<a wire:click="exportExcel" class="btn btn-danger">
+																								excel
+																				</a>
 																</div>
 												@endif
 												@if ($currentStep == 2)

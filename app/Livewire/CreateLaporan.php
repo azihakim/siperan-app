@@ -3,16 +3,27 @@
 namespace App\Livewire;
 
 use Livewire\Component;
+use Dompdf\Dompdf;
 use App\Livewire\wire;
+use Carbon\Carbon;
+use Dompdf\Options;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Exports\TabelExport;
+
 class CreateLaporan extends Component
 {
-    public $currentStep = 3;
+    public $currentStep = 1;
     public $biro, $tgl, $no_sppa, $nama_kb, $jabatan_kb, $nip_kb;
 
     // Inisialisasi input dinamis dengan satu array kosong
     public $inputs = [];
     public $i = 1;
 
+
+    public function render()
+    {
+        return view('livewire.create-laporan');
+    }
     public function mount()
     {
         $this->nama_kb = 'Nama Kepala Biro';
@@ -113,9 +124,30 @@ class CreateLaporan extends Component
         $this->currentStep = 3;
     }
 
-    public function render()
+
+    public function printPermohonan()
     {
-        return view('livewire.create-laporan');
+        $options = new Options();
+        $options->set('chroot', public_path());
+
+        $dompdf = new Dompdf($options);
+        $html = view('surat')->render();
+        $dompdf->loadHtml($html);
+        $dompdf->setPaper('A4', 'portrait');
+        $dompdf->render();
+        
+        $pdfContent = $dompdf->output();
+        
+
+        return response()->streamDownload(function () use ($pdfContent) {
+            echo $pdfContent;
+        }, 'surat.pdf');
     }
+
+    public function exportExcel()
+    {
+        return Excel::download(new TabelExport(), 'table.xlsx');
+    }
+    
 }
 

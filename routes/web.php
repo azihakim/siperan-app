@@ -25,4 +25,10 @@ Route::get('/laporan', function () {
     return view('laporan.createLaporan');
 });
 
+Route::get('/s', function () {
+    return view('surat');
+});
+
+
+
 
