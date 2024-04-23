@@ -2,19 +2,18 @@
 <html>
 
 <head>
-				<title>SURAT</title>
+				<title>SPTJM</title>
 				<style type="text/css">
 								body {
-												font-family: arial;
+												font-family: 'Times New Roman', Times, serif;
 								}
 
-								.rangkasurat {
+								/* .rangkasurat {
 												width: 980px;
 												margin: 0 auto;
 												background-color: #fff;
 												padding: 20px;
-								}
-
+								} */
 								table {
 												border-bottom: 10px solid #0000;
 												padding: 2px
@@ -49,6 +48,12 @@
 
 								.alamat-tujuan {
 												margin-left: 65%;
+								}
+
+								.garis1 {
+												border-top: 3px solid black;
+												height: 2px;
+												border-bottom: 1px solid black;
 								}
 
 								#logo {
@@ -113,7 +118,7 @@
 
 <body>
 
-				<div>
+				<div class="rangkasurat">
 
 								<table width="100%">
 
@@ -140,61 +145,92 @@
 
 								</table>
 								<hr class="garis1" />
+								<table width="100%">
+
+												<tr>
+																<td class="tengah">
+
+																				<h3 style="font-weight: lighter;">
+																								<strong>SURAT PERNYATAAN TANGGUNG JAWAB MUTLAK</strong>
+																				</h3>
+																				<p>Nomor :</p>
+																</td>
+												</tr>
+
+								</table>
 
 								<div class="container">
-												<div id="tgl-srt" class="col-md-6">
-																<p id="tls">Bergas, 30 April 2018</p>
-
-																<p class="alamat-tujuan">Kepada Yth. :<br />
-																				Ketua TAPD Provinsi Sumatera Selatan</p>
-
-																<p class="alamat-tujuan">di-<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Palembang
-																</p>
-												</div>
 												<div id="alamat" class="row">
 																<table>
 																				<tr>
-																								<td>Nomor</td>
-																								<td>: {{ $no_sppa }}</td>
+																								Yang bertanda tangan di bawah ini:
 																				</tr>
 																				<tr>
-																								<td>Sifat</td>
-																								<td>: {{ $sifat_sppa }}</td>
+																								<td>Nama</td>
+																								<td>:</td>
 																				</tr>
 																				<tr>
-																								<td>Lampiran</td>
-																								<td>: {{ $lampiran_sppa }}</td>
+																								<td>NIP</td>
+																								<td>:</td>
 																				</tr>
 																				<tr>
-																								<td>Hal</td>
-																								<td>: {{ $hal_sppa }}</td>
+																								<td>Jabatan</td>
+																								<td>:</td>
 																				</tr>
 																</table>
 												</div>
-												<div class="row" style="margin-left: 5%;"> &nbsp; &nbsp; &nbsp; &nbsp; Sehubungan pelaksanaan
-																Anggaran
-																Kegiatan
-																Sekretariat
-																Daerah Provinsi Sumatera Selatan Tahun anggaran 2023, dengan ini kami mengajukan Pergeseran Anggaran
-																pada Biro
-																Umum
-																dan Perlengkapan Sekretariat Daerah Provinsi Sumatera Selatan Tahun Anggaran 2023 dengan rincian
-																terlampir.
+												<div class="row" style="margin-left: 5%;">Dengan ini menyatakan dan bertanggung jawab secara
+																penuh atas hal - hal sebagai berikut :
 												</div>
 
-												<div id="penutup" style="margin-left: 5%; margin-top: 10px;">&nbsp; &nbsp; &nbsp; &nbsp;
-																&nbsp; Demikian disampaikan.
-																atas
-																perkenan
-																dan kerjasamanya
-																diucapkan
-																terima kasih.
+												<div class="row" style="margin-left: 5%;">
+																<ol style="text-align: justify;">
+																				<li>
+																								Usulan Pergeseran anggaran telah disusun sesuai ketentuan sebagaimana diatur dalam Peraturan
+																								Menteri Dalam
+																								Negeri
+																								Nomor 13 Tahun 2006 dan perubahannya.
+																				</li>
+																				<li>
+																								Dokumen - dokumen yang dipersyaratkan dalam rangka pergeseran anggaran telah disusun dengan
+																								lengkap dan
+																								benar,
+																								disimpan oleh Organisasi Perangkat Daerah (OPD) dan siap diaudit sewaktu-waktu.
+																				</li>
+																				<li>
+																								Perhitungan kebutuhan anggaran yang dituangkan dalam DPPA OPD telah disusun mengikuti ketentuan
+																								dan
+																								merupakan harga
+																								yang paling ekonomis.
+																				</li>
+																				<li>
+																								Kepala OPD bertanggung jawab secara formal dan material atas kebenaran usulan pergeseran
+																								anggaran yang
+																								diajukan.
+																				</li>
+																				<li>
+																								Apabila dikemudian hari terbukti pernyataan ini tidak benar dan menimbulkan kerugian negara,
+																								saya bersedia
+																								menyetorkan kerugian negara tersebut ke kas daerah.
+																				</li>
+																				<li>
+																								Dalam hal pergeseran anggaran mengakibatkan permasalahan hukum, menjadi tanggung jawab Kepala
+																								OPD.
+																				</li>
+																</ol>
+
+												</div>
+
+												<div id="penutup" style="margin-left: 5%; margin-top: 10px;">Demikian Surat Pernyataan ini
+																dibuat dengan sebenarnya, dalam keadaan sadar dan tidak dibawah tekanan.
 												</div>
 
 												<div class="row2" style="margin-left: 60%;">
-																<div>
-																				<p id="camat">Plh. Kepala {{ $biro }}</p>
-																				<div id="nama-camat"><strong>DARMAYANTI, SE, MM</strong><br>
+																<div style="text-align: left;">
+																				<p>KUASA PENGGUNA ANGGARAN</p>
+																				<p>Plh. KEPALA BIRO UMUM DAN PERLENGKAPAN</p>
+																				<br><br><br><br><br><br>
+																				<div><strong>DARMAYANTI, SE, MM</strong><br>
 																								PEMBINA (IV/a)<br>
 																								NIP 19221981265165</div>
 																</div>

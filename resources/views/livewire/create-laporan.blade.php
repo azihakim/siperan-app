@@ -49,84 +49,130 @@
 																				</div>
 																</div>
 												</div>
+												<hr>
+
 												<div class="bs-stepper-content">
 																@if ($currentStep == 1)
 																				<div class="row">
-																								<div class="col-4">
+																								<div class="col-3">
 																												@error('biro')
 																																<span class="text-danger">{{ $message }}</span>
 																												@enderror
 																												<div class="form-group">
 																																<label for="biro">Biro</label>
-																																<select class="form-control" style="width: 100%;" id="biro" wire:model="biro">
+																																<select class="form-control" style="width: 100%;" id="biro" wire:model="biro"
+																																				wire:change="fillEmployeeData">
 																																				<option value="">Pilih Biro</option>
-																																				<option value="Biro 1">Biro 1</option>
-																																				<option value="Biro 2">Biro 2</option>
-																																				<option value="Biro 3">Biro 3</option>
+																																				@foreach ($options as $option)
+																																								<option value="{{ $option }}">{{ $option }}</option>
+																																				@endforeach
 																																</select>
 																												</div>
 																								</div>
 
-																								<div class="col-4">
-																												@error('tgl')
-																																<span class="text-danger">{{ $message }}</span>
-																												@enderror
-																												<div class="form-group">
-																																<label>Tanggal:</label>
-																																<div class="row">
-																																				<div class="col-4">Palembang,</div>
-																																				<div class="col-8">
-																																								<input required type="date" name="tgl" class="form-control"
-																																												wire:model="tgl">
-																																				</div>
-																																</div>
-																												</div>
-																								</div>
-
-																								<div class="col-4">
-																												@error('no_sppa')
-																																<span class="text-danger">{{ $message }}</span>
-																												@enderror
-																												<div class="form-group">
-																																<label>Nomor:</label>
-																																<div class="row">
-																																				<div class="col-12">
-																																								<input type="text" class="form-control" name="no_sppa" wire:model="no_sppa">
-																																				</div>
-																																</div>
-																												</div>
-																								</div>
-																				</div>
-																				<div class="row">
-																								<div class="col-4">
+																								<div class="col-2">
 																												@error('nama_kb')
 																																<span class="text-danger">{{ $message }}</span>
 																												@enderror
 																												<div class="form-group">
 																																<label>Nama</label>
-																																<input type="text" class="form-control" wire:model="nama_kb">
+																																<input type="text" class="form-control" placeholder="Masukkan Nama"
+																																				wire:model="nama_kb">
 																												</div>
 																								</div>
-																								<div class="col-4">
+
+																								<div class="col-2">
 																												@error('nip_kb')
 																																<span class="text-danger">{{ $message }}</span>
 																												@enderror
 																												<div class="form-group">
 																																<label>NIP</label>
-																																<input type="text" class="form-control" wire:model="nip_kb">
+																																<input type="text" class="form-control" wire:model="nip_kb"
+																																				placeholder="Masukkan Nama">
 																												</div>
 																								</div>
-																								<div class="col-4">
+
+																								<div class="col-2">
 																												@error('jabatan_kb')
 																																<span class="text-danger">{{ $message }}</span>
 																												@enderror
 																												<div class="form-group">
 																																<label>Jabatan</label>
-																																<input type="text" class="form-control" wire:model="jabatan_kb">
+																																<input type="text" class="form-control" wire:model="jabatan_kb"
+																																				placeholder="Masukkan Jabatan">
+																												</div>
+																								</div>
+
+																				</div>
+
+																				<div class="row">
+																								<div class="col-2">
+																												@error('tgl')
+																																<span class="text-danger">{{ $message }}</span>
+																												@enderror
+																												<div class="form-group">
+																																<label>Tanggal</label>
+																																<input required type="date" name="tgl" class="form-control" wire:model="tgl">
+																												</div>
+																								</div>
+
+																								<div class="col-2">
+																												@error('no_sppa')
+																																<span class="text-danger">{{ $message }}</span>
+																												@enderror
+																												<div class="form-group">
+																																<label>Nomor Surat</label>
+																																<div class="row">
+																																				<div class="col-12">
+																																								<input type="text" class="form-control" name="no_sppa" wire:model="no_sppa"
+																																												placeholder="Masukkan Nomor Surat">
+																																				</div>
+																																</div>
+																												</div>
+																								</div>
+																								<div class="col-4">
+																												@error('sifat_sppa')
+																																<span class="text-danger">{{ $message }}</span>
+																												@enderror
+																												<div class="form-group">
+																																<label>Sifat Surat</label>
+																																<div class="row">
+																																				<div class="col-12">
+																																								<input type="text" class="form-control" name="sifat_surat"
+																																												wire:model="sifat_sppa" placeholder="Masukkan Sifat Surat">
+																																				</div>
+																																</div>
+																												</div>
+																								</div>
+
+																								<div class="col-4">
+																												@error('lampiran_sppa')
+																																<span class="text-danger">{{ $message }}</span>
+																												@enderror
+																												<div class="form-group">
+																																<label>Lampiran Surat</label>
+																																<div class="row">
+																																				<div class="col-12">
+																																								<input type="text" class="form-control" name="lampiran"
+																																												wire:model="lampiran_sppa" placeholder="Masukkan Jumlah Lampiran">
+																																				</div>
+																																</div>
+																												</div>
+																								</div>
+
+																								<div class="col-4">
+																												@error('hal_sppa')
+																																<span class="text-danger">{{ $message }}</span>
+																												@enderror
+																												<div class="form-group">
+																																<label>Hal Surat</label>
+																																<textarea type="text" class="form-control" name="hal" wire:model="hal_sppa" placeholder="Masukkan Hal Surat"
+																																    style="height: 40px"></textarea>
 																												</div>
 																								</div>
 																				</div>
 																@endif
+
 																@if ($currentStep == 2)
 																				<!-- Tampilan Input Dinamis -->
 																				@foreach ($inputs as $key => $value)
@@ -136,9 +182,10 @@
 																																				<span class="text-danger">{{ $message }}</span>
 																																@enderror
 																																<div class="form-group">
-																																				<label>No.Rekening:</label>
+																																				<label>No.Rekening</label>
 																																				<input class="form-control" type="text"
-																																								wire:model="inputs.{{ $key }}.no_rekening" placeholder="No. Rekening">
+																																								wire:model="inputs.{{ $key }}.no_rekening"
+																																								placeholder="No. Rekening">
 																																</div>
 																												</div>
 
@@ -228,14 +275,8 @@
 																																<span class="text-danger">{{ $message }}</span>
 																												@enderror
 																												<div class="form-group">
-																																<label>Tanggal:</label>
-																																<div class="row">
-																																				<div class="col-4">Palembang,</div>
-																																				<div class="col-8">
-																																								<input required type="date" name="tgl" class="form-control"
-																																												wire:model="tgl">
-																																				</div>
-																																</div>
+																																<label>Tanggal</label>
+																																<input required type="date" name="tgl" class="form-control" wire:model="tgl">
 																												</div>
 																								</div>
 																				</div>
@@ -246,7 +287,7 @@
 																																<span class="text-danger">{{ $message }}</span>
 																												@enderror
 																												<div class="form-group">
-																																<label>Nama</label>
+																																<label>Nama Kepala Biro</label>
 																																<input type="text" class="form-control" wire:model="nama_kb">
 																												</div>
 																								</div>
@@ -268,6 +309,357 @@
 																																<input type="text" class="form-control" wire:model="jabatan_kb">
 																												</div>
 																								</div>
+																				</div>
+																@endif
+
+																@if ($currentStep == 4)
+																				<div class="row">
+																								<div class="col-4">
+																												@error('dokPel_tahun')
+																																<span class="text-danger">{{ $message }}</span>
+																												@enderror
+																												<div class="form-group">
+																																<label>Tahun Anggaran</label>
+																																<input type="text" class="form-control" wire:model="dokPel_tahun">
+																												</div>
+																								</div>
+																								<div class="col-4">
+																												@error('dokPel_noDppa')
+																																<span class="text-danger">{{ $message }}</span>
+																												@enderror
+																												<div class="form-group">
+																																<label>Nomor DPPA</label>
+																																<input required type="text" class="form-control" wire:model="dokPel_noDppa">
+																												</div>
+																								</div>
+																				</div>
+
+																				<div class="row">
+																								<div class="col-4">
+																												@error('dokPel_UrusanPemerintah')
+																																<span class="text-danger">{{ $message }}</span>
+																												@enderror
+																												<div class="form-group">
+																																<label>Urusan Pemerintahan</label>
+																																<input type="text" class="form-control" wire:model="dokPel_UrusanPemerintahan">
+																												</div>
+																								</div>
+																								<div class="col-4">
+																												@error('dokPel_bidangUrusan')
+																																<span class="text-danger">{{ $message }}</span>
+																												@enderror
+																												<div class="form-group">
+																																<label>Bidang Urusan</label>
+																																<input type="text" class="form-control" wire:model="dokPel_bidangUrusan">
+																												</div>
+																								</div>
+																								<div class="col-4">
+																												@error('dokPel_program')
+																																<span class="text-danger">{{ $message }}</span>
+																												@enderror
+																												<div class="form-group">
+																																<label>Program</label>
+																																<input type="text" class="form-control" wire:model="dokPel_program">
+																												</div>
+																								</div>
+																								<div class="col-4">
+																												@error('dokPel_kegiatan')
+																																<span class="text-danger">{{ $message }}</span>
+																												@enderror
+																												<div class="form-group">
+																																<label>Kegiatan</label>
+																																<input type="text" class="form-control" wire:model="dokPel_kegiatan">
+																												</div>
+																								</div>
+																								<div class="col-4">
+																												@error('dokPel_organisasi')
+																																<span class="text-danger">{{ $message }}</span>
+																												@enderror
+																												<div class="form-group">
+																																<label>Organisasi</label>
+																																<input type="text" class="form-control" wire:model="dokPel_organisasi">
+																												</div>
+																								</div>
+																								<div class="col-4">
+																												@error('dokPel_unit')
+																																<span class="text-danger">{{ $message }}</span>
+																												@enderror
+																												<div class="form-group">
+																																<label>Unit</label>
+																																<input type="text" class="form-control" wire:model="dokPel_unit">
+																												</div>
+																								</div>
+																								<div class="col-4">
+																												@error('dokPel_alokasiM1')
+																																<span class="text-danger">{{ $message }}</span>
+																												@enderror
+																												<div class="form-group">
+																																<label>Alokasi Tahun -1</label>
+																																<input type="text" class="form-control" wire:model="dokPel_alokasiM1">
+																												</div>
+																								</div>
+																								<div class="col-4">
+																												@error('dokPel_alokasiTahun')
+																																<span class="text-danger">{{ $message }}</span>
+																												@enderror
+																												<div class="form-group">
+																																<label>Alokasi Tahun</label>
+																																<input type="text" class="form-control" wire:model="dokPel_alokasiTahun">
+																												</div>
+																								</div>
+																								<div class="col-4">
+																												@error('dokPel_alokasiP1')
+																																<span class="text-danger">{{ $message }}</span>
+																												@enderror
+																												<div class="form-group">
+																																<label>Alokasi Tahun +1</label>
+																																<input type="text" class="form-control" wire:model="dokPel_alokasiP1')">
+																												</div>
+																								</div>
+																				</div>
+
+																				<div class="row">
+																								{{-- <table class="table-bordered table">
+																												<thead style="text-align: center">
+																																<tr>
+																																				<th colspan="5">Indikator dan Tolak Ukur Kinerja Kegiatan</th>
+																																</tr>
+																																<tr>
+																																				<th rowspan="2" style="width: 10px; vertical-align: middle;">Indikator</th>
+																																				<th colspan="2">Sebelum</th>
+																																				<th colspan="2">Sesudah</th>
+																																</tr>
+																																<tr>
+																																				<th>Tolak Ukur Kerja</th>
+																																				<th>Target Kinerja</th>
+																																				<th>Tolak Ukur Kerja</th>
+																																				<th>Target Kinerja</th>
+																																</tr>
+																												</thead>
+																												<tbody>
+																																<tr>
+																																				<td>
+																																								Capaian Kegiatan
+																																				</td>
+																																				<td>
+																																								<input type="text" class="form-control" wire:model="dokPel_ck_tuk_sbm"
+																																												placeholder="tuk">
+																																				</td>
+																																				<td>
+																																								<input type="text" class="form-control" wire:model="dokPel_ck_tk_sbm"
+																																												placeholder="tk">
+																																				</td>
+																																				<td>
+																																								<input type="text" class="form-control" wire:model="dokPel_ck_tuk_sth"
+																																												placeholder="tuk">
+																																				</td>
+																																				<td>
+																																								<input type="text" class="form-control" wire:model="dokPel_ck_tk_sth"
+																																												placeholder="tk">
+																																				</td>
+																																</tr>
+																																<tr>
+																																				<td>
+																																								Masukan
+																																				</td>
+																																				<td>
+																																								<input type="text" class="form-control" wire:model="dokPel_m_tuk_sbm"
+																																												placeholder="tuk m">
+																																				</td>
+																																				<td>
+																																								<input type="text" class="form-control" wire:model="dokPel_m_tk_sbm"
+																																												placeholder="tk m">
+																																				</td>
+																																				<td>
+																																								<input type="text" class="form-control" wire:model="dokPel_m_tuk_sth"
+																																												placeholder="tuk m">
+																																				</td>
+																																				<td>
+																																								<input type="text" class="form-control" wire:model="dokPel_m_tk_sth"
+																																												placeholder="tk m">
+																																				</td>
+																																</tr>
+																																<tr>
+																																				<td>
+																																								Keluaran
+																																				</td>
+																																				<td>
+																																								<input type="text" class="form-control" wire:model="dokPel_k_tuk_sbm"
+																																												placeholder="tuk k">
+																																				</td>
+																																				<td>
+																																								<input type="text" class="form-control" wire:model="dokPel_k_tk_sbm"
+																																												placeholder="tk k">
+																																				</td>
+																																				<td>
+																																								<input type="text" class="form-control" wire:model="dokPel_k_tuk_sth"
+																																												placeholder="tuk k">
+																																				</td>
+																																				<td>
+																																								<input type="text" class="form-control" wire:model="dokPel_k_tk_sth"
+																																												placeholder="tk k">
+																																				</td>
+																																</tr>
+																																<tr>
+																																				<td>
+																																								Hasil
+																																				</td>
+																																				<td>
+																																								<input type="text" class="form-control" wire:model="dokPel_h_tuk_sbm"
+																																												placeholder="tuk h">
+																																				</td>
+																																				<td>
+																																								<input type="text" class="form-control" wire:model="dokPel_h_tk_sbm"
+																																												placeholder="tk h">
+																																				</td>
+																																				<td>
+																																								<input type="text" class="form-control" wire:model="dokPel_h_tuk_sth"
+																																												placeholder="tuk h">
+																																				</td>
+																																				<td>
+																																								<input type="text" class="form-control" wire:model="dokPel_h_tk_sth"
+																																												placeholder="tk h">
+																																				</td>
+																																</tr>
+
+																																<tr>
+																																				<td colspan="5"></td>
+																																</tr>
+
+																																<tr>
+																																				<td colspan="2">Sub Kegiatan</td>
+																																				<td colspan="3">
+																																								<input type="text" class="form-control" wire:model="dokPel_sk"
+																																												placeholder="Sub Kegiatan">
+																																				</td>
+																																</tr>
+																																<tr>
+																																				<td colspan="2">Sumber Pendanaan</td>
+																																				<td colspan="3">
+																																								<input type="text" class="form-control" wire:model="dokPel_sp"
+																																												placeholder="Sumber Pendanaan">
+																																				</td>
+																																</tr>
+																																<tr>
+																																				<td colspan="2">Lokasi</td>
+																																				<td colspan="3">
+																																								<input type="text" class="form-control" wire:model="dokPel_lokasi"
+																																												placeholder="Lokasi">
+																																				</td>
+																																</tr>
+																																<tr>
+																																				<td colspan="2">Keluaran Sub Kegiatan</td>
+																																				<td colspan="3">
+																																								<input type="text" class="form-control" wire:model="dokPel_ksk"
+																																												placeholder="Keluaran Sub Kegiatan">
+																																				</td>
+																																</tr>
+																																<tr>
+																																				<td colspan="2">Waktu Pelaksanaan</td>
+																																				<td colspan="3">
+																																								<input type="text" class="form-control" wire:model="dokPel_waktu"
+																																												placeholder="Waktu Pelaksanaan">
+																																				</td>
+																																</tr>
+																																<tr>
+																																				<td colspan="2">Keterangan</td>
+																																				<td colspan="3">
+																																								<input type="text" class="form-control" wire:model="dokPel_keterangan"
+																																												placeholder="Keterangan">
+																																				</td>
+																																</tr>
+																												</tbody>
+																								</table> --}}
+																								<table class="table-bordered table">
+																												<thead style="text-align: center">
+																																<tr>
+																																				<th rowspan="3" style="max-width: 150px; vertical-align: middle;">Kode Rekening
+																																				</th>
+																																				<th rowspan="3" style="min-width: 150px; vertical-align: middle;">Uraian</th>
+																																				<th colspan="10">Rincian Perhitungan</th>
+																																				<th rowspan="3" style="max-width: 150px; vertical-align: middle;">
+																																								Bertambah / Berkurang</th>
+
+																																</tr>
+																																<tr>
+																																				<th colspan="5">Sebelum</th>
+																																				<th colspan="5">Sesudah</th>
+																																</tr>
+																																<tr>
+																																				<th>Koefisien / Volume</th>
+																																				<th>Satuan</th>
+																																				<th>Harga</th>
+																																				<th style="width: 5%">PPN</th>
+																																				<th>Jumlah</th>
+
+																																				<th>Koefisien / Volume</th>
+																																				<th>Satuan</th>
+																																				<th>Harga</th>
+																																				<th style="width: 5%">PPN</th>
+																																				<th>Jumlah</th>
+																																</tr>
+																												</thead>
+																												<tbody>
+																																<tr>
+																																				<td>
+																																								<input type="text" class="form-control" wire:model="dokPel_kr[]"
+																																												placeholder="Rekening">
+																																				</td>
+																																				<td>
+																																								<input type="text" class="form-control" wire:model="dokPel_uraian[]"
+																																												placeholder="Uraian">
+																																				</td>
+
+																																				<td>
+																																								<input type="text" class="form-control" wire:model="dokPel_volume_sbm[]"
+																																												placeholder="Volume Sebelum">
+																																				</td>
+																																				<td>
+																																								<input type="text" class="form-control" wire:model="dokPel_satuan_sbm[]"
+																																												placeholder="Satuan Sebelum">
+																																				</td>
+																																				<td>
+																																								<input type="text" class="form-control" wire:model="dokPel_harga_sbm[]"
+																																												placeholder="Harga Sebelum">
+																																				</td>
+																																				<td>
+																																								<input type="text" class="form-control" wire:model="dokPel_ppn_sbm[]"
+																																												placeholder="PPN Sebelum">
+																																				</td>
+																																				<td>
+																																								<input type="text" class="form-control" wire:model="dokPel_jumlah_sbm[]"
+																																												placeholder="Jumlah Sebelum">
+																																				</td>
+
+																																				<td>
+																																								<input type="text" class="form-control" wire:model="dokPel_volume_sth[]"
+																																												placeholder="Volume Setelah">
+																																				</td>
+																																				<td>
+																																								<input type="text" class="form-control" wire:model="dokPel_satuan_sth[]"
+																																												placeholder="Satuan Setelah">
+																																				</td>
+																																				<td>
+																																								<input type="text" class="form-control" wire:model="dokPel_harga_sth[]"
+																																												placeholder="Harga Setelah">
+																																				</td>
+																																				<td>
+																																								<input type="text" class="form-control" wire:model="dokPel_ppn_sth[]"
+																																												placeholder="PPN Setelah">
+																																				</td>
+																																				<td>
+																																								<input type="text" class="form-control" wire:model="dokPel_jumlah_sth[]"
+																																												placeholder="Jumlah Setelah">
+																																				</td>
+
+																																				<td>
+																																								<input type="text" class="form-control"
+																																												wire:model="dokPel_bertambah_berkurang[]"
+																																												placeholder="Bertambah/Berkurang">
+																																				</td>
+																																</tr>
+																												</tbody>
+																								</table>
 																				</div>
 																@endif
 												</div>
@@ -294,6 +686,9 @@
 																				</a>
 																				<a wire:click="exportExcel" class="btn btn-danger">
 																								excel
+																				</a>
+																				<a wire:click="printSptjm" class="btn btn-danger">
+																								sptjm
 																				</a>
 																</div>
 												@endif

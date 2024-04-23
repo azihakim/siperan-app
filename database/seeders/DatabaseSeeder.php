@@ -3,6 +3,8 @@
 namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+
+use App\Models\Pegawai;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -12,11 +14,27 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // \App\Models\User::factory(10)->create();
+        // Daftar nama-nama biro
+        $biros = [
+            'Sekrekaris Daerah',
+            'Biro Pemerintahan dan Otonomi Daerah',
+            'Biro Hukum Setda Provinsi Sumsel',
+            'Biro Perekonomian Setda Provinsi Sumsel',
+            'Biro Administrasi Pembangunan Setda Provinsi Sumsel',
+            'Biro Kesehjahteraan Rakyat Setda Provinsi Sumsel',
+            'Biro Umum dan Perlengkapan Setda Provinsi Sumsel',
+            'Biro Humas dan Protokol Setda Provinsi Sumsel',
+            // Tambahkan nama biro lainnya sesuai kebutuhan
+        ];
 
-        // \App\Models\User::factory()->create([
-        //     'name' => 'Test User',
-        //     'email' => 'test@example.com',
-        // ]);
+        // Memasukkan data biro ke dalam tabel
+        foreach ($biros as $biro) {
+            Pegawai::create([
+                'biro' => $biro,
+                'nama' => 'Nama ' . $biro,
+                'nip' => 'NIP ' . $biro,
+                'jabatan' => 'Jabatan ' . $biro,
+            ]);
+        }
     }
 }
