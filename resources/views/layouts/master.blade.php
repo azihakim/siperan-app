@@ -43,7 +43,7 @@
 				@livewireStyles
 </head>
 
-<body class="hold-transition sidebar-mini layout-fixed">
+<body class="hold-transition sidebar-mini sidebar-collapse">
 				<div class="wrapper">
 								<!-- Preloader -->
 								<!-- <div

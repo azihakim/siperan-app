@@ -10,11 +10,13 @@ use Dompdf\Options;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Exports\TabelExport;
 use App\Models\Pegawai;
+use Illuminate\Http\Request;
 
 class CreateLaporan extends Component
 {
     public $currentStep = 4;
     public $biro, $tgl, $no_sppa, $sifat_sppa, $lampiran_sppa, $hal_sppa, $nama_kb, $jabatan_kb, $nip_kb;
+    public $dokPel_tahun, $dokPel_noDppa, $dokPel_UrusanPemerintah, $dokPel_bidangUrusan, $dokPel_program, $dokPel_kegiatan, $dokPel_organisasi, $dokPel_unit, $dokPel_alokasiM1, $dokPel_alokasiTahun, $dokPel_alokasiP1, $ppp;
     public $inputs = [];
     public $inputs_dokPel = [];
     public $i = 1;
@@ -178,34 +180,43 @@ class CreateLaporan extends Component
     protected $messages_dokPel = [
         'inputs_dokPel.*.kodeRekening.required' => 'Kolom Kode Rekening harus diisi.',
         'inputs_dokPel.*.uraian.required' => 'Kolom Uraian harus diisi.',
-        'inputs_dokPel.*.volume_sbm.required' => 'Kolom Volume harus diisi.',
         'inputs_dokPel.*.satuan_sbm.required' => 'Kolom Satuan harus diisi.',
+        'inputs_dokPel.*.ppn_sbm.required' => 'Kolom PPN harus diisi.',
+        'inputs_dokPel.*.volume_sbm.required' => 'Kolom Volume harus diisi.',
         'inputs_dokPel.*.harga_sbm.required' => 'Kolom Harga harus diisi.',
         'inputs_dokPel.*.jumlah_sbm.required' => 'Kolom Jumlah harus diisi.',
 
         'inputs_dokPel.*.volume_sth.required' => 'Kolom Volume harus diisi.',
         'inputs_dokPel.*.satuan_sth.required' => 'Kolom Satuan harus diisi.',
         'inputs_dokPel.*.harga_sth.required' => 'Kolom Harga harus diisi.',
+        'inputs_dokPel.*.ppn_sth.required' => 'Kolom PPN harus diisi.',
         'inputs_dokPel.*.jumlah_sth.required' => 'Kolom Jumlah harus diisi.',
 
+        'inputs_dokPel.*.bertambah_berkurang.required' => 'Kolom Bertambah/Berkurang harus diisi.',
+
     ];
-    public function fourthStepSubmit()
+    public function fourthStepSubmit(Request $request)
     {
         // Validasi setiap elemen array secara manual
-        foreach ($this->inputs_dokPel as $i => $value) {
-            $this->validate([
-                'inputs_dokPel.'.$i.'.kodeRekening' => 'required',
-                'inputs_dokPel.'.$i.'.uraian' => 'required',
-                'inputs_dokPel.'.$i.'.volume_sbm' => 'required',
-                'inputs_dokPel.'.$i.'.satuan_sbm' => 'required',
-                'inputs_dokPel.'.$i.'.harga_sbm' => 'required',
-                'inputs_dokPel.'.$i.'.jumlah_sbm' => 'required',
-                'inputs_dokPel.'.$i.'.volume_sth' => 'required',
-                'inputs_dokPel.'.$i.'.satuan_sth' => 'required',
-                'inputs_dokPel.'.$i.'.harga_sth' => 'required',
-                'inputs_dokPel.'.$i.'.jumlah_sth' => 'required',
-            ], $this->messages_dokPel); // Gunakan variable messages_dokPel untuk menampilkan pesan error
-        }
+        // foreach ($this->inputs_dokPel as $i => $value) {
+        //     $this->validate([
+        //         'inputs_dokPel.'.$i.'.kodeRekening' => 'required',
+        //         'inputs_dokPel.'.$i.'.uraian' => 'required',
+        //         'inputs_dokPel.'.$i.'.volume_sbm' => 'required',
+        //         'inputs_dokPel.'.$i.'.satuan_sbm' => 'required',
+        //         'inputs_dokPel.'.$i.'.ppn_sbm' => 'required',
+        //         'inputs_dokPel.'.$i.'.harga_sbm' => 'required',
+        //         'inputs_dokPel.'.$i.'.jumlah_sbm' => 'required',
+        //         'inputs_dokPel.'.$i.'.ppn_sth' => 'required',
+        //         'inputs_dokPel.'.$i.'.volume_sth' => 'required',
+        //         'inputs_dokPel.'.$i.'.satuan_sth' => 'required',
+        //         'inputs_dokPel.'.$i.'.harga_sth' => 'required',
+        //         'inputs_dokPel.'.$i.'.jumlah_sth' => 'required',
+        //         'inputs_dokPel.'.$i.'.bertambah_berkurang' => 'required'
+        //     ], $this->messages_dokPel); // Gunakan variable messages_dokPel untuk menampilkan pesan error
+        // }
+        dd($this->dokPel_alokasiP1);
+        dd($this->inputs_dokPel);
     }
 
     public function thirdStepSubmit()
