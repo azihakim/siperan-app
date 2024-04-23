@@ -51,7 +51,7 @@
 												</div>
 												<hr>
 
-												<div class="bs-stepper-content">
+												< class="bs-stepper-content">
 																@if ($currentStep == 1)
 																				<div class="row">
 																								<div class="col-3">
@@ -419,157 +419,6 @@
 																				</div>
 
 																				<div class="row">
-																								{{-- <table class="table-bordered table">
-																												<thead style="text-align: center">
-																																<tr>
-																																				<th colspan="5">Indikator dan Tolak Ukur Kinerja Kegiatan</th>
-																																</tr>
-																																<tr>
-																																				<th rowspan="2" style="width: 10px; vertical-align: middle;">Indikator</th>
-																																				<th colspan="2">Sebelum</th>
-																																				<th colspan="2">Sesudah</th>
-																																</tr>
-																																<tr>
-																																				<th>Tolak Ukur Kerja</th>
-																																				<th>Target Kinerja</th>
-																																				<th>Tolak Ukur Kerja</th>
-																																				<th>Target Kinerja</th>
-																																</tr>
-																												</thead>
-																												<tbody>
-																																<tr>
-																																				<td>
-																																								Capaian Kegiatan
-																																				</td>
-																																				<td>
-																																								<input type="text" class="form-control" wire:model="dokPel_ck_tuk_sbm"
-																																												placeholder="tuk">
-																																				</td>
-																																				<td>
-																																								<input type="text" class="form-control" wire:model="dokPel_ck_tk_sbm"
-																																												placeholder="tk">
-																																				</td>
-																																				<td>
-																																								<input type="text" class="form-control" wire:model="dokPel_ck_tuk_sth"
-																																												placeholder="tuk">
-																																				</td>
-																																				<td>
-																																								<input type="text" class="form-control" wire:model="dokPel_ck_tk_sth"
-																																												placeholder="tk">
-																																				</td>
-																																</tr>
-																																<tr>
-																																				<td>
-																																								Masukan
-																																				</td>
-																																				<td>
-																																								<input type="text" class="form-control" wire:model="dokPel_m_tuk_sbm"
-																																												placeholder="tuk m">
-																																				</td>
-																																				<td>
-																																								<input type="text" class="form-control" wire:model="dokPel_m_tk_sbm"
-																																												placeholder="tk m">
-																																				</td>
-																																				<td>
-																																								<input type="text" class="form-control" wire:model="dokPel_m_tuk_sth"
-																																												placeholder="tuk m">
-																																				</td>
-																																				<td>
-																																								<input type="text" class="form-control" wire:model="dokPel_m_tk_sth"
-																																												placeholder="tk m">
-																																				</td>
-																																</tr>
-																																<tr>
-																																				<td>
-																																								Keluaran
-																																				</td>
-																																				<td>
-																																								<input type="text" class="form-control" wire:model="dokPel_k_tuk_sbm"
-																																												placeholder="tuk k">
-																																				</td>
-																																				<td>
-																																								<input type="text" class="form-control" wire:model="dokPel_k_tk_sbm"
-																																												placeholder="tk k">
-																																				</td>
-																																				<td>
-																																								<input type="text" class="form-control" wire:model="dokPel_k_tuk_sth"
-																																												placeholder="tuk k">
-																																				</td>
-																																				<td>
-																																								<input type="text" class="form-control" wire:model="dokPel_k_tk_sth"
-																																												placeholder="tk k">
-																																				</td>
-																																</tr>
-																																<tr>
-																																				<td>
-																																								Hasil
-																																				</td>
-																																				<td>
-																																								<input type="text" class="form-control" wire:model="dokPel_h_tuk_sbm"
-																																												placeholder="tuk h">
-																																				</td>
-																																				<td>
-																																								<input type="text" class="form-control" wire:model="dokPel_h_tk_sbm"
-																																												placeholder="tk h">
-																																				</td>
-																																				<td>
-																																								<input type="text" class="form-control" wire:model="dokPel_h_tuk_sth"
-																																												placeholder="tuk h">
-																																				</td>
-																																				<td>
-																																								<input type="text" class="form-control" wire:model="dokPel_h_tk_sth"
-																																												placeholder="tk h">
-																																				</td>
-																																</tr>
-
-																																<tr>
-																																				<td colspan="5"></td>
-																																</tr>
-
-																																<tr>
-																																				<td colspan="2">Sub Kegiatan</td>
-																																				<td colspan="3">
-																																								<input type="text" class="form-control" wire:model="dokPel_sk"
-																																												placeholder="Sub Kegiatan">
-																																				</td>
-																																</tr>
-																																<tr>
-																																				<td colspan="2">Sumber Pendanaan</td>
-																																				<td colspan="3">
-																																								<input type="text" class="form-control" wire:model="dokPel_sp"
-																																												placeholder="Sumber Pendanaan">
-																																				</td>
-																																</tr>
-																																<tr>
-																																				<td colspan="2">Lokasi</td>
-																																				<td colspan="3">
-																																								<input type="text" class="form-control" wire:model="dokPel_lokasi"
-																																												placeholder="Lokasi">
-																																				</td>
-																																</tr>
-																																<tr>
-																																				<td colspan="2">Keluaran Sub Kegiatan</td>
-																																				<td colspan="3">
-																																								<input type="text" class="form-control" wire:model="dokPel_ksk"
-																																												placeholder="Keluaran Sub Kegiatan">
-																																				</td>
-																																</tr>
-																																<tr>
-																																				<td colspan="2">Waktu Pelaksanaan</td>
-																																				<td colspan="3">
-																																								<input type="text" class="form-control" wire:model="dokPel_waktu"
-																																												placeholder="Waktu Pelaksanaan">
-																																				</td>
-																																</tr>
-																																<tr>
-																																				<td colspan="2">Keterangan</td>
-																																				<td colspan="3">
-																																								<input type="text" class="form-control" wire:model="dokPel_keterangan"
-																																												placeholder="Keterangan">
-																																				</td>
-																																</tr>
-																												</tbody>
-																								</table> --}}
 																								<table class="table-bordered table">
 																												<thead style="text-align: center">
 																																<tr>
@@ -600,117 +449,187 @@
 																																</tr>
 																												</thead>
 																												<tbody>
-																																<tr>
-																																				<td>
-																																								<input type="text" class="form-control" wire:model="dokPel_kr[]"
-																																												placeholder="Rekening">
-																																				</td>
-																																				<td>
-																																								<input type="text" class="form-control" wire:model="dokPel_uraian[]"
-																																												placeholder="Uraian">
-																																				</td>
 
-																																				<td>
-																																								<input type="text" class="form-control" wire:model="dokPel_volume_sbm[]"
-																																												placeholder="Volume Sebelum">
-																																				</td>
-																																				<td>
-																																								<input type="text" class="form-control" wire:model="dokPel_satuan_sbm[]"
-																																												placeholder="Satuan Sebelum">
-																																				</td>
-																																				<td>
-																																								<input type="text" class="form-control" wire:model="dokPel_harga_sbm[]"
-																																												placeholder="Harga Sebelum">
-																																				</td>
-																																				<td>
-																																								<input type="text" class="form-control" wire:model="dokPel_ppn_sbm[]"
-																																												placeholder="PPN Sebelum">
-																																				</td>
-																																				<td>
-																																								<input type="text" class="form-control" wire:model="dokPel_jumlah_sbm[]"
-																																												placeholder="Jumlah Sebelum">
-																																				</td>
+																																@foreach ($inputs_dokPel as $i => $value)
+																																				<tr>
+																																								<td>
+																																												@error('inputs_dokPel.' . $i . '.kodeRekening')
+																																																<span class="text-danger">{{ $message_dokPel }}</span>
+																																												@enderror
+																																												<input type="text" class="form-control"
+																																																wire:model="inputs_dokPel.{{ $i }}.kodeRekening"
+																																																placeholder="Rekening">
+																																								</td>
+																																								<td>
+																																												@error('inputs_dokPel.' . $i . '.uraian')
+																																																<span class="text-danger">{{ $messages_dokPel }}</span>
+																																												@enderror
+																																												<input type="text" class="form-control"
+																																																wire:model="inputs_dokPel.{{ $i }}.uraian"
+																																																placeholder="Uraian">
+																																								</td>
+																																								<td>
+																																												@error('inputs_dokPel.' . $i . '.volume_sbm.' . $i)
+																																																<span class="text-danger">{{ $messages_dokPel }}</span>
+																																												@enderror
+																																												<input type="text" class="form-control"
+																																																wire:model="inputs_dokPel.{{ $i }}.volume_sbm"
+																																																placeholder="Volume Sebelum">
+																																								</td>
+																																								<td>
+																																												@error('inputs_dokPel.' . $i . '.satuan_sbm.' . $i)
+																																																<span class="text-danger">{{ $messages_dokPel }}</span>
+																																												@enderror
+																																												<input type="text" class="form-control"
+																																																wire:model="inputs_dokPel.{{ $i }}.satuan_sbm"
+																																																placeholder="Satuan Sebelum">
+																																								</td>
+																																								<td>
+																																												@error('inputs_dokPel.' . $i . '.harga_sbm.' . $i)
+																																																<span class="text-danger">{{ $messages_dokPel }}</span>
+																																												@enderror
+																																												<input type="text" class="form-control"
+																																																wire:model="inputs_dokPel.{{ $i }}.harga_sbm"
+																																																placeholder="Harga Sebelum">
+																																								</td>
+																																								<td>
+																																												@error('inputs_dokPel.' . $i . '.ppn_sbm.' . $i)
+																																																<span class="text-danger">{{ $messages_dokPel }}</span>
+																																												@enderror
+																																												<input type="text" class="form-control"
+																																																wire:model="inputs_dokPel.{{ $i }}.ppn_sbm"
+																																																placeholder="PPN Sebelum">
+																																								</td>
+																																								<td>
+																																												@error('inputs_dokPel.' . $i . '.jumlah_sbm.' . $i)
+																																																<span class="text-danger">{{ $messages_dokPel }}</span>
+																																												@enderror
+																																												<input type="text" class="form-control"
+																																																wire:model="inputs_dokPel.{{ $i }}.jumlah_sbm"
+																																																placeholder="Jumlah Sebelum">
+																																								</td>
 
-																																				<td>
-																																								<input type="text" class="form-control" wire:model="dokPel_volume_sth[]"
-																																												placeholder="Volume Setelah">
-																																				</td>
-																																				<td>
-																																								<input type="text" class="form-control" wire:model="dokPel_satuan_sth[]"
-																																												placeholder="Satuan Setelah">
-																																				</td>
-																																				<td>
-																																								<input type="text" class="form-control" wire:model="dokPel_harga_sth[]"
-																																												placeholder="Harga Setelah">
-																																				</td>
-																																				<td>
-																																								<input type="text" class="form-control" wire:model="dokPel_ppn_sth[]"
-																																												placeholder="PPN Setelah">
-																																				</td>
-																																				<td>
-																																								<input type="text" class="form-control" wire:model="dokPel_jumlah_sth[]"
-																																												placeholder="Jumlah Setelah">
-																																				</td>
+																																								<td>
+																																												@error('inputs_dokPel.' . $i . '.volume_sth.' . $i)
+																																																<span class="text-danger">{{ $messages_dokPel }}</span>
+																																												@enderror
+																																												<input type="text" class="form-control"
+																																																wire:model="inputs_dokPel.{{ $i }}.volume_sth"
+																																																placeholder="Volume Setelah">
+																																								</td>
+																																								<td>
+																																												@error('inputs_dokPel.' . $i . '.satuan_sth.' . $i)
+																																																<span class="text-danger">{{ $messages_dokPel }}</span>
+																																												@enderror
+																																												<input type="text" class="form-control"
+																																																wire:model="inputs_dokPel.{{ $i }}.satuan_sth"
+																																																placeholder="Satuan Setelah">
+																																								</td>
+																																								<td>
+																																												@error('inputs_dokPel.' . $i . '.harga_sth.' . $i)
+																																																<span class="text-danger">{{ $messages_dokPel }}</span>
+																																												@enderror
+																																												<input type="text" class="form-control"
+																																																wire:model="inputs_dokPel.{{ $i }}.harga_sth"
+																																																placeholder="Harga Setelah">
+																																								</td>
+																																								<td>
+																																												@error('inputs_dokPel.' . $i . '.ppn_sth.' . $i)
+																																																<span class="text-danger">{{ $messages_dokPel }}</span>
+																																												@enderror
+																																												<input type="text" class="form-control"
+																																																wire:model="inputs_dokPel.{{ $i }}.ppn_sth"
+																																																placeholder="PPN Setelah">
+																																								</td>
+																																								<td>
+																																												@error('inputs_dokPel.' . $i . '.jumlah_sth.' . $i)
+																																																<span class="text-danger">{{ $messages_dokPel }}</span>
+																																												@enderror
+																																												<input type="text" class="form-control"
+																																																wire:model="inputs_dokPel.{{ $i }}.jumlah_sth"
+																																																placeholder="Jumlah Setelah">
+																																								</td>
 
-																																				<td>
-																																								<input type="text" class="form-control"
-																																												wire:model="dokPel_bertambah_berkurang[]"
-																																												placeholder="Bertambah/Berkurang">
-																																				</td>
-																																</tr>
+																																								<td>
+																																												@error('inputs_dokPel.' . $i . '.bertambah_berkurang.' . $i)
+																																																<span class="text-danger">{{ $messages_dokPel }}</span>
+																																												@enderror
+																																												<input type="text" class="form-control"
+																																																wire:model="inputs_dokPel.{{ $i }}.bertambah_berkurang"
+																																																placeholder="Bertambah/Berkurang">
+																																								</td>
+
+																																				</tr>
+																																@endforeach
 																												</tbody>
 																								</table>
+
+																				</div>
+																				<div class="row">
+																								@if ($i > 0)
+																												<div class="col-2">
+																																<button class="form-control btn-block btn-outline-danger"
+																																				wire:click.prevent="remove_dokPel({{ $i }})"><i
+																																								class="fa fa-times"></i></button>
+																												</div>
+																								@endif
+
+																								<div class="col-2">
+																												<button wire:click="addInputDokPel({{ $i }})"
+																																class="btn btn-block btn-outline-primary"><i class="fa fa-plus"></i></button>
+																								</div>
+
 																				</div>
 																@endif
-												</div>
-								</div>
-								<!-- /.card-body -->
-								<div class="card-footer">
-												@if ($currentStep > 1 and $currentStep < 3)
-																<div>
-																				<a wire:click="back(1)" class="btn btn-danger">
-																								Kembali
-																				</a>
-																</div>
-												@endif
-												@if ($currentStep == 1)
-																<div class="ms-auto">
-																				<a wire:click="firstStepSubmit" class="btn btn-primary" wire:loading.remove>
-																								Selanjutnya
-																				</a>
-																				<a disabled class="btn btn-warning" wire:loading>
-																								Tunggu...
-																				</a>
-																				<a wire:click="printPermohonan" class="btn btn-danger">
-																								permohonan
-																				</a>
-																				<a wire:click="exportExcel" class="btn btn-danger">
-																								excel
-																				</a>
-																				<a wire:click="printSptjm" class="btn btn-danger">
-																								sptjm
-																				</a>
-																</div>
-												@endif
-												@if ($currentStep == 2)
-																<div class="ms-auto">
-																				<a wire:click="secondStepSubmit" class="btn btn-primary" wire:loading.remove>
-																								Selanjutnya
-																				</a>
-																				<a disabled class="btn btn-warning" wire:loading>
-																								Tunggu...
-																				</a>
-																</div>
-												@endif
-												@if ($currentStep == 3)
-																<div>
-																				<a wire:click="back(2)" class="btn btn-danger">
-																								Kembali
-																				</a>
-																</div>
-												@endif
 								</div>
 				</div>
+				<!-- /.card-body -->
+				<div class="card-footer">
+								@if ($currentStep > 1 and $currentStep < 3)
+												<div>
+																<a wire:click="back(1)" class="btn btn-danger">
+																				Kembali
+																</a>
+												</div>
+								@endif
+								@if ($currentStep == 1)
+												<div class="ms-auto">
+																<a wire:click="firstStepSubmit" class="btn btn-primary" wire:loading.remove>
+																				Selanjutnya
+																</a>
+																<a disabled class="btn btn-warning" wire:loading>
+																				Tunggu...
+																</a>
+																<a wire:click="printPermohonan" class="btn btn-danger">
+																				permohonan
+																</a>
+																<a wire:click="exportExcel" class="btn btn-danger">
+																				excel
+																</a>
+																<a wire:click="printSptjm" class="btn btn-danger">
+																				sptjm
+																</a>
+												</div>
+								@endif
+								@if ($currentStep == 2)
+												<div class="ms-auto">
+																<a wire:click="secondStepSubmit" class="btn btn-primary" wire:loading.remove>
+																				Selanjutnya
+																</a>
+																<a disabled class="btn btn-warning" wire:loading>
+																				Tunggu...
+																</a>
+												</div>
+								@endif
+								@if ($currentStep == 3)
+												<div>
+																<a wire:click="back(2)" class="btn btn-danger">
+																				Kembali
+																</a>
+												</div>
+								@endif
+				</div>
+</div>
 </div>
 
 @push('scripts')

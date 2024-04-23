@@ -13,9 +13,10 @@ use App\Models\Pegawai;
 
 class CreateLaporan extends Component
 {
-    public $currentStep = 2;
+    public $currentStep = 4;
     public $biro, $tgl, $no_sppa, $sifat_sppa, $lampiran_sppa, $hal_sppa, $nama_kb, $jabatan_kb, $nip_kb;
     public $inputs = [];
+    public $inputs_dokPel = [];
     public $i = 1;
     public $options = [];
 
@@ -35,6 +36,20 @@ class CreateLaporan extends Component
             'sebelum' => '', 
             'sesudah' => '', 
             'bertambah_berkurang' => ''
+        ];
+
+        $this->inputs_dokPel[] = [
+            'kodeRekening' => '', 
+            'uraian' => '', 
+            'volume_sbm' => '', 
+            'satuan_sbm' => '', 
+            'harga_sbm' => '', 
+            'jumlah_sbm' => '',
+
+            'volume_sth' => '', 
+            'satuan_sth' => '', 
+            'harga_sth' => '', 
+            'jumlah_sth' => ''
         ];
     }
 
@@ -104,19 +119,35 @@ class CreateLaporan extends Component
         ];
     }
 
+    public function addInputDokPel()
+    {
+        $this->i++;
+        $this->inputs_dokPel[] = [
+            'kodeRekening' => '', 
+            'uraian' => '', 
+            'volume_sbm' => '', 
+            'satuan_sbm' => '', 
+            'harga_sbm' => '', 
+            'jumlah_sbm' => '',
+
+            'volume_sth' => '', 
+            'satuan_sth' => '', 
+            'harga_sth' => '', 
+            'jumlah_sth' => ''
+        ];
+    }
+
     public function remove($key)
     {
         unset($this->inputs[$key]);
         $this->inputs = array_values($this->inputs); // Reset array keys
     }
 
-    protected $rules = [
-        'inputs.*.no_rekening' => 'required',
-        'inputs.*.uraian' => 'required',
-        'inputs.*.sebelum' => 'required',
-        'inputs.*.sesudah' => 'required',
-        'inputs.*.bertambah_berkurang' => 'required'
-    ];
+    public function remove_dokPel($i)
+    {
+        unset($this->inputs_dokPel[$i]);
+        $this->inputs_dokPel = array_values($this->inputs_dokPel); // Reset array keys
+    }
 
     protected $messages = [
         'inputs.*.no_rekening.required' => 'Kolom No. Rekening harus diisi.',
@@ -142,8 +173,47 @@ class CreateLaporan extends Component
 
         // Lanjutkan dengan langkah berikutnya
         $this->currentStep = 3;
-
     }
+
+    protected $messages_dokPel = [
+        'inputs_dokPel.*.kodeRekening.required' => 'Kolom Kode Rekening harus diisi.',
+        'inputs_dokPel.*.uraian.required' => 'Kolom Uraian harus diisi.',
+        'inputs_dokPel.*.volume_sbm.required' => 'Kolom Volume harus diisi.',
+        'inputs_dokPel.*.satuan_sbm.required' => 'Kolom Satuan harus diisi.',
+        'inputs_dokPel.*.harga_sbm.required' => 'Kolom Harga harus diisi.',
+        'inputs_dokPel.*.jumlah_sbm.required' => 'Kolom Jumlah harus diisi.',
+
+        'inputs_dokPel.*.volume_sth.required' => 'Kolom Volume harus diisi.',
+        'inputs_dokPel.*.satuan_sth.required' => 'Kolom Satuan harus diisi.',
+        'inputs_dokPel.*.harga_sth.required' => 'Kolom Harga harus diisi.',
+        'inputs_dokPel.*.jumlah_sth.required' => 'Kolom Jumlah harus diisi.',
+
+    ];
+    public function fourthStepSubmit()
+    {
+        // Validasi setiap elemen array secara manual
+        foreach ($this->inputs_dokPel as $i => $value) {
+            $this->validate([
+                'inputs_dokPel.'.$i.'.kodeRekening' => 'required',
+                'inputs_dokPel.'.$i.'.uraian' => 'required',
+                'inputs_dokPel.'.$i.'.volume_sbm' => 'required',
+                'inputs_dokPel.'.$i.'.satuan_sbm' => 'required',
+                'inputs_dokPel.'.$i.'.harga_sbm' => 'required',
+                'inputs_dokPel.'.$i.'.jumlah_sbm' => 'required',
+                'inputs_dokPel.'.$i.'.volume_sth' => 'required',
+                'inputs_dokPel.'.$i.'.satuan_sth' => 'required',
+                'inputs_dokPel.'.$i.'.harga_sth' => 'required',
+                'inputs_dokPel.'.$i.'.jumlah_sth' => 'required',
+            ], $this->messages_dokPel); // Gunakan variable messages_dokPel untuk menampilkan pesan error
+        }
+    }
+
+    public function thirdStepSubmit()
+    {
+        // Simpan data
+        $this->currentStep = 4;
+    }
+
 
 
     public function printPermohonan()
