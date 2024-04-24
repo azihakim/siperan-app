@@ -102,6 +102,16 @@
 																																				placeholder="Masukkan Jabatan">
 																												</div>
 																								</div>
+																								<div class="col-2">
+																												@error('pangkat_kb')
+																																<span class="text-danger">{{ $message }}</span>
+																												@enderror
+																												<div class="form-group">
+																																<label>Pangkat</label>
+																																<input type="text" class="form-control" wire:model="pangkat_kb"
+																																				placeholder="Masukkan Pangkat">
+																												</div>
+																								</div>
 
 																				</div>
 
@@ -602,114 +612,101 @@
 																																</tr>
 																												</thead>
 																												<tbody>
-
 																																@foreach ($inputs_dokPel as $i => $value)
 																																				<tr>
 																																								<td>
 																																												@error('inputs_dokPel.' . $i . '.kodeRekening')
 																																																<span class="text-danger">{{ $message }}</span>
 																																												@enderror
-																																												<input type="text" class="form-control"
-																																																wire:model="inputs_dokPel.{{ $i }}.kodeRekening"
-																																																placeholder="Rekening">
+																																												<textarea type="text" class="form-control" wire:model="inputs_dokPel.{{ $i }}.kodeRekening"
+																																												    placeholder="Rekening"></textarea>
+
 																																								</td>
 																																								<td>
 																																												@error('inputs_dokPel.' . $i . '.uraian')
 																																																<span class="text-danger">{{ $message }}</span>
 																																												@enderror
-																																												<input type="text" class="form-control"
-																																																wire:model="inputs_dokPel.{{ $i }}.uraian"
-																																																placeholder="Uraian">
+																																												<textarea type="text" class="form-control" wire:model="inputs_dokPel.{{ $i }}.uraian"
+																																												    placeholder="Uraian"></textarea>
 																																								</td>
 																																								<td>
 																																												@error('inputs_dokPel.' . $i . '.volume_sbm')
 																																																<span class="text-danger">{{ $message }}</span>
 																																												@enderror
-																																												<input type="text" class="form-control"
-																																																wire:model="inputs_dokPel.{{ $i }}.volume_sbm"
-																																																placeholder="Volume Sebelum">
+																																												<textarea type="text" class="form-control" wire:model="inputs_dokPel.{{ $i }}.volume_sbm"
+																																												    placeholder="Volume Sebelum"></textarea>
 																																								</td>
 																																								<td>
 																																												@error('inputs_dokPel.' . $i . '.satuan_sbm')
 																																																<span class="text-danger">{{ $message }}</span>
 																																												@enderror
-																																												<input type="text" class="form-control"
-																																																wire:model="inputs_dokPel.{{ $i }}.satuan_sbm"
-																																																placeholder="Satuan Sebelum">
+																																												<textarea type="text" class="form-control" wire:model="inputs_dokPel.{{ $i }}.satuan_sbm"
+																																												    placeholder="Satuan Sebelum"></textarea>
 																																								</td>
 																																								<td>
 																																												@error('inputs_dokPel.' . $i . '.harga_sbm')
 																																																<span class="text-danger">{{ $message }}</span>
 																																												@enderror
-																																												<input type="text" class="form-control"
-																																																wire:model="inputs_dokPel.{{ $i }}.harga_sbm"
-																																																placeholder="Harga Sebelum">
+																																												<textarea type="text" class="form-control" wire:model="inputs_dokPel.{{ $i }}.harga_sbm"
+																																												    placeholder="Harga Sebelum"></textarea>
 																																								</td>
 																																								<td>
 																																												@error('inputs_dokPel.' . $i . '.ppn_sbm')
 																																																<span class="text-danger">{{ $message }}</span>
 																																												@enderror
-																																												<input type="text" class="form-control"
-																																																wire:model="inputs_dokPel.{{ $i }}.ppn_sbm"
-																																																placeholder="PPN Sebelum">
+																																												<textarea type="text" class="form-control" wire:model="inputs_dokPel.{{ $i }}.ppn_sbm"
+																																												    placeholder="PPN Sebelum"></textarea>
 																																								</td>
 																																								<td>
 																																												@error('inputs_dokPel.' . $i . '.jumlah_sbm')
 																																																<span class="text-danger">{{ $message }}</span>
 																																												@enderror
-																																												<input type="text" class="form-control"
-																																																wire:model="inputs_dokPel.{{ $i }}.jumlah_sbm"
-																																																placeholder="Jumlah Sebelum">
+																																												<textarea type="text" class="form-control" wire:model="inputs_dokPel.{{ $i }}.jumlah_sbm"
+																																												    placeholder="Jumlah Sebelum"></textarea>
 																																								</td>
 
 																																								<td>
 																																												@error('inputs_dokPel.' . $i . '.volume_sth')
 																																																<span class="text-danger">{{ $message }}</span>
 																																												@enderror
-																																												<input type="text" class="form-control"
-																																																wire:model="inputs_dokPel.{{ $i }}.volume_sth"
-																																																placeholder="Volume Setelah">
+																																												<textarea type="text" class="form-control" wire:model="inputs_dokPel.{{ $i }}.volume_sth"
+																																												    placeholder="Volume Setelah"></textarea>
 																																								</td>
 																																								<td>
 																																												@error('inputs_dokPel.' . $i . '.satuan_sth')
 																																																<span class="text-danger">{{ $message }}</span>
 																																												@enderror
-																																												<input type="text" class="form-control"
-																																																wire:model="inputs_dokPel.{{ $i }}.satuan_sth"
-																																																placeholder="Satuan Setelah">
+																																												<textarea type="text" class="form-control" wire:model="inputs_dokPel.{{ $i }}.satuan_sth"
+																																												    placeholder="Satuan Setelah"></textarea>
 																																								</td>
 																																								<td>
 																																												@error('inputs_dokPel.' . $i . '.harga_sth')
 																																																<span class="text-danger">{{ $message }}</span>
 																																												@enderror
-																																												<input type="text" class="form-control"
-																																																wire:model="inputs_dokPel.{{ $i }}.harga_sth"
-																																																placeholder="Harga Setelah">
+																																												<textarea type="text" class="form-control" wire:model="inputs_dokPel.{{ $i }}.harga_sth"
+																																												    placeholder="Harga Setelah"></textarea>
 																																								</td>
 																																								<td>
 																																												@error('inputs_dokPel.' . $i . '.ppn_sth')
 																																																<span class="text-danger">{{ $message }}</span>
 																																												@enderror
-																																												<input type="text" class="form-control"
-																																																wire:model="inputs_dokPel.{{ $i }}.ppn_sth"
-																																																placeholder="PPN Setelah">
+																																												<textarea type="text" class="form-control" wire:model="inputs_dokPel.{{ $i }}.ppn_sth"
+																																												    placeholder="PPN Setelah"></textarea>
 																																								</td>
 																																								<td>
 																																												@error('inputs_dokPel.' . $i . '.jumlah_sth')
 																																																<span class="text-danger">{{ $message }}</span>
 																																												@enderror
-																																												<input type="text" class="form-control"
-																																																wire:model="inputs_dokPel.{{ $i }}.jumlah_sth"
-																																																placeholder="Jumlah Setelah">
+																																												<textarea type="text" class="form-control" wire:model="inputs_dokPel.{{ $i }}.jumlah_sth"
+																																												    placeholder="Jumlah Setelah"></textarea>
 																																								</td>
 
 																																								<td>
 																																												@error('inputs_dokPel.' . $i . '.bertambah_berkurang')
 																																																<span class="text-danger">{{ $message }}</span>
 																																												@enderror
-																																												<input type="text" class="form-control"
-																																																wire:model="inputs_dokPel.{{ $i }}.bertambah_berkurang"
-																																																placeholder="Bertambah/Berkurang">
+																																												<textarea type="text" class="form-control" wire:model="inputs_dokPel.{{ $i }}.bertambah_berkurang"
+																																												    placeholder="Bertambah/Berkurang"></textarea>
 																																								</td>
 
 																																				</tr>
