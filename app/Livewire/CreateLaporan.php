@@ -73,6 +73,8 @@ class CreateLaporan extends Component
 
 
 
+
+
         $this->options = Pegawai::select('biro')->distinct()->pluck('biro')->toArray();
 
         // Initialize first input when component is loaded
@@ -272,6 +274,33 @@ class CreateLaporan extends Component
         $this->currentStep = 4;
     }
 
+    public function printPermohonan()
+    {
+        $nama_kb = $this->nama_kb;
+        $jabatan_kb = $this->jabatan_kb;
+        $nip_kb = $this->nip_kb;
+        $biro = $this->biro;
+        $tgl = $this->tgl;
+        $no_sppa = $this->no_sppa;
+        $sifat_sppa = $this->sifat_sppa;
+        $lampiran_sppa = $this->lampiran_sppa;
+        $hal_sppa = $this->hal_sppa;
+
+        $options = new Options();
+        $options->set('chroot', public_path());
+
+        $dompdf = new Dompdf($options);
+        $html = view('surat', compact('biro', 'nama_kb', 'jabatan_kb', 'nip_kb', 'tgl', 'no_sppa', 'sifat_sppa', 'lampiran_sppa', 'hal_sppa'))->render();
+        $dompdf->loadHtml($html);
+        $dompdf->setPaper('A4', 'portrait');
+        $dompdf->render();
+        
+        $pdfContent = $dompdf->output();
+
+        return response()->streamDownload(function () use ($pdfContent) {
+            echo $pdfContent;
+        }, 'surat.pdf');
+    }
     public function fourthStepSubmit(Request $request)
     {
         // Validasi setiap elemen array secara manual
@@ -332,48 +361,19 @@ class CreateLaporan extends Component
             'rincian_perhitungan' => $this->inputs_dokPel,
         ];
         // dd($dokumen_pelaksanaan);
-        
+
         $laporan = new Laporan();
         $laporan-> surat_permohonan = json_encode($this->sppa);
         $laporan-> matriks_pergeseran = json_encode($this->matriks);
         $laporan-> sptjm = json_encode($this->sptjm);
         $laporan-> dokumen_pelaksanaan = json_encode($dokumen_pelaksanaan);
         // dd($laporan);
-        $laporan->save();
+        // $laporan->save();
 
-        return redirect('/');
+        // return redirect('/');
     }
 
-    public function printPermohonan()
-    {
-        $nama_kb = $this->nama_kb;
-        $jabatan_kb = $this->jabatan_kb;
-        $nip_kb = $this->nip_kb;
-        $biro = $this->biro;
-        $tgl = $this->tgl;
-        $no_sppa = $this->no_sppa;
-        $sifat_sppa = $this->sifat_sppa;
-        $lampiran_sppa = $this->lampiran_sppa;
-        $hal_sppa = $this->hal_sppa;
-
-
-
-        $options = new Options();
-        $options->set('chroot', public_path());
-
-        $dompdf = new Dompdf($options);
-        $html = view('surat', compact('biro', 'nama_kb', 'jabatan_kb', 'nip_kb', 'tgl', 'no_sppa', 'sifat_sppa', 'lampiran_sppa', 'hal_sppa'))->render();
-        $dompdf->loadHtml($html);
-        $dompdf->setPaper('A4', 'portrait');
-        $dompdf->render();
-        
-        $pdfContent = $dompdf->output();
-        
-
-        return response()->streamDownload(function () use ($pdfContent) {
-            echo $pdfContent;
-        }, 'surat.pdf');
-    }
+    
 
     public function printSptjm()
     {

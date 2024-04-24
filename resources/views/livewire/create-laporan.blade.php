@@ -759,7 +759,7 @@
 																				<a wire:click="firstStepSubmit" class="btn btn-primary" wire:loading.remove>
 																								Selanjutnya
 																				</a>
-																				<a disabled class="btn btn-warning" wire:loading>
+																				{{-- <a disabled class="btn btn-warning" wire:loading>
 																								Tunggu...
 																				</a>
 																				<a wire:click="printPermohonan" class="btn btn-danger">
@@ -770,7 +770,7 @@
 																				</a>
 																				<a wire:click="printSptjm" class="btn btn-danger">
 																								sptjm
-																				</a>
+																				</a> --}}
 																</div>
 												@endif
 												@if ($currentStep == 2)
