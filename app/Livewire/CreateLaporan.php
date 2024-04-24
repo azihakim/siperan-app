@@ -9,6 +9,7 @@ use Carbon\Carbon;
 use Dompdf\Options;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Exports\TabelExport;
+use App\Models\Laporan;
 use App\Models\Pegawai;
 use Illuminate\Http\Request;
 
@@ -16,6 +17,7 @@ class CreateLaporan extends Component
 {
     public $currentStep = 1;
     public $biro, $tgl, $no_sppa, $sifat_sppa, $lampiran_sppa, $hal_sppa, $nama_kb, $jabatan_kb, $nip_kb, $pangkat_kb;
+    public $tgl_sptjm, $no_sptjm;
     public $dokPel_ck_tuk_sbm, $dokPel_ck_tk_sbm, $dokPel_ck_tuk_sth, $dokPel_ck_tk_sth, $dokPel_m_tuk_sbm, $dokPel_m_tk_sbm, $dokPel_m_tuk_sth, $dokPel_m_tk_sth, $dokPel_k_tuk_sbm, $dokPel_k_tk_sbm, $dokPel_k_tuk_sth, $dokPel_k_tk_sth, $dokPel_h_tuk_sbm, $dokPel_h_tk_sbm, $dokPel_h_tuk_sth, $dokPel_h_tk_sth;
     public $dokPel_tahun, $dokPel_noDppa, $dokPel_UrusanPemerintahan, $dokPel_bidangUrusan, $dokPel_program, $dokPel_kegiatan, $dokPel_organisasi, $dokPel_unit, $dokPel_alokasiM1, $dokPel_alokasiTahun, $dokPel_alokasiP1;
     public $dokPel_sk, $dokPel_sp, $dokPel_lokasi, $dokPel_ksk, $dokPel_waktu, $dokPel_keterangan;
@@ -23,6 +25,8 @@ class CreateLaporan extends Component
     public $inputs_dokPel = [];
     public $i = 1;
     public $options = [];
+
+    public $sppa, $matriks, $sptjm, $dokPel;
 
     public function render()
     {
@@ -42,7 +46,6 @@ class CreateLaporan extends Component
         $this->dokPel_alokasiM1 = 'dokPel_alokasiM1';
         $this->dokPel_alokasiTahun = 'dokPel_alokasiTahun';
         $this->dokPel_alokasiP1 = 'dokPel_alokasiP1';
-
 
         $this->dokPel_ck_tuk_sbm = 'dokPel_ck_tuk_sbm';
         $this->dokPel_ck_tk_sbm = 'dokPel_ck_tk_sbm';
@@ -143,6 +146,18 @@ class CreateLaporan extends Component
             'pangkat_kb.required' => 'Kolom Pangkat harus diisi.'
         ]);
 
+        $this->sppa = [
+            'biro' => $this->biro,
+            'tgl' => $this->tgl,
+            'no_sppa' => $this->no_sppa,
+            'sifat_sppa' => $this->sifat_sppa,
+            'lampiran_sppa' => $this->lampiran_sppa,
+            'hal_sppa' => $this->hal_sppa,
+            'nama_kb' => $this->nama_kb,
+            'jabatan_kb' => $this->jabatan_kb,
+            'nip_kb' => $this->nip_kb,
+            'pangkat_kb' => $this->pangkat_kb
+        ];
         // dd($this->biro, $this->tgl, $this->no_sppa, $this->sifat_sppa, $this->lampiran_sppa, $this->hal_sppa, $this->nama_kb, $this->jabatan_kb, $this->nip_kb);
         // Jika validasi berhasil, lanjut ke langkah berikutnya
         $this->currentStep = 2;
@@ -202,6 +217,7 @@ class CreateLaporan extends Component
         'inputs.*.sesudah.required' => 'Kolom Sesudah harus diisi.',
         'inputs.*.bertambah_berkurang.required' => 'Kolom Bertambah/Berkurang harus diisi.'
     ];
+
     public function secondStepSubmit()
     {
         // Validasi setiap elemen array secara manual
@@ -215,8 +231,7 @@ class CreateLaporan extends Component
             ], $this->messages);
         }
 
-        dd($this->inputs);
-
+        $this->matriks = $this->inputs;
         // Lanjutkan dengan langkah berikutnya
         $this->currentStep = 3;
     }
@@ -239,37 +254,95 @@ class CreateLaporan extends Component
         'inputs_dokPel.*.bertambah_berkurang.required' => 'Kolom Bertambah/Berkurang harus diisi.',
 
     ];
-    public function fourthStepSubmit(Request $request)
-    {
-        // Validasi setiap elemen array secara manual
-        // foreach ($this->inputs_dokPel as $i => $value) {
-        //     $this->validate([
-        //         'inputs_dokPel.'.$i.'.kodeRekening' => 'required',
-        //         'inputs_dokPel.'.$i.'.uraian' => 'required',
-        //         'inputs_dokPel.'.$i.'.volume_sbm' => 'required',
-        //         'inputs_dokPel.'.$i.'.satuan_sbm' => 'required',
-        //         'inputs_dokPel.'.$i.'.ppn_sbm' => 'required',
-        //         'inputs_dokPel.'.$i.'.harga_sbm' => 'required',
-        //         'inputs_dokPel.'.$i.'.jumlah_sbm' => 'required',
-        //         'inputs_dokPel.'.$i.'.ppn_sth' => 'required',
-        //         'inputs_dokPel.'.$i.'.volume_sth' => 'required',
-        //         'inputs_dokPel.'.$i.'.satuan_sth' => 'required',
-        //         'inputs_dokPel.'.$i.'.harga_sth' => 'required',
-        //         'inputs_dokPel.'.$i.'.jumlah_sth' => 'required',
-        //         'inputs_dokPel.'.$i.'.bertambah_berkurang' => 'required'
-        //     ], $this->messages_dokPel); // Gunakan variable messages_dokPel untuk menampilkan pesan error
-        // }
-        // dd($request->all());
-        dd($this->dokPel_h_tk_sbm);
-    }
 
+    
     public function thirdStepSubmit()
     {
-        // Simpan data
+        $this->validate(
+            ['no_sptjm' => 'required',
+            'tgl_sptjm' => 'required'],
+            ['no_sptjm.required' => 'Nomor harus diisi.',
+            'tgl_sptjm.required' => 'Tanggal harus diisi.']
+        );
+
+        $this->sptjm = [
+            'no_sptjm' => $this->no_sptjm,
+            'tgl_sptjm' => $this->tgl_sptjm
+        ];
         $this->currentStep = 4;
     }
 
+    public function fourthStepSubmit(Request $request)
+    {
+        // Validasi setiap elemen array secara manual
+        foreach ($this->inputs_dokPel as $i => $value) {
+            $this->validate([
+                'inputs_dokPel.'.$i.'.kodeRekening' => 'required',
+                'inputs_dokPel.'.$i.'.uraian' => 'required',
+                'inputs_dokPel.'.$i.'.volume_sbm' => 'required',
+                'inputs_dokPel.'.$i.'.satuan_sbm' => 'required',
+                'inputs_dokPel.'.$i.'.ppn_sbm' => 'required',
+                'inputs_dokPel.'.$i.'.harga_sbm' => 'required',
+                'inputs_dokPel.'.$i.'.jumlah_sbm' => 'required',
+                'inputs_dokPel.'.$i.'.ppn_sth' => 'required',
+                'inputs_dokPel.'.$i.'.volume_sth' => 'required',
+                'inputs_dokPel.'.$i.'.satuan_sth' => 'required',
+                'inputs_dokPel.'.$i.'.harga_sth' => 'required',
+                'inputs_dokPel.'.$i.'.jumlah_sth' => 'required',
+                'inputs_dokPel.'.$i.'.bertambah_berkurang' => 'required'
+            ], $this->messages_dokPel); // Gunakan variable messages_dokPel untuk menampilkan pesan error
+        }
 
+        $detailSurat = [
+            'tahun_anggaran' => $this->dokPel_tahun,
+            'nomor_dppa' => $this->dokPel_noDppa,
+            'urusan_pemerintahan' => $this->dokPel_UrusanPemerintahan,
+            'bidang_urusan' => $this->dokPel_bidangUrusan,
+            'program' => $this->dokPel_program,
+            'kegiatan' => $this->dokPel_kegiatan,
+            'organisasi' => $this->dokPel_organisasi,
+            'unit' => $this->dokPel_unit,
+            'alokasi_m1' => $this->dokPel_alokasiM1,
+            'alokasi_tahun' => $this->dokPel_alokasiTahun,
+            'alokasi_p1' => $this->dokPel_alokasiP1,
+        ];
+
+        $indikator =[
+            'ck_tuk_sbm' => $this->dokPel_ck_tuk_sbm,
+            'ck_tk_sbm' => $this->dokPel_ck_tk_sbm,
+            'ck_tuk_sth' => $this->dokPel_ck_tuk_sth,
+            'ck_tk_sth' => $this->dokPel_ck_tk_sth,
+            'm_tuk_sbm' => $this->dokPel_m_tuk_sbm,
+            'm_tk_sbm' => $this->dokPel_m_tk_sbm,
+            'm_tuk_sth' => $this->dokPel_m_tuk_sth,
+            'm_tk_sth' => $this->dokPel_m_tk_sth,
+            'k_tuk_sbm' => $this->dokPel_k_tuk_sbm,
+            'k_tk_sbm' => $this->dokPel_k_tk_sbm,
+            'k_tuk_sth' => $this->dokPel_k_tuk_sth,
+            'k_tk_sth' => $this->dokPel_k_tk_sth,
+            'h_tuk_sbm' => $this->dokPel_h_tuk_sbm,
+            'h_tk_sbm' => $this->dokPel_h_tk_sbm,
+            'h_tuk_sth' => $this->dokPel_h_tuk_sth,
+            'h_tk_sth' => $this->dokPel_h_tk_sth,
+        ];
+    
+        $dokumen_pelaksanaan = [
+            'detail_surat' => $detailSurat,
+            'indikator' => $indikator,
+            'rincian_perhitungan' => $this->inputs_dokPel,
+        ];
+        // dd($dokumen_pelaksanaan);
+        
+        $laporan = new Laporan();
+        $laporan-> surat_permohonan = json_encode($this->sppa);
+        $laporan-> matriks_pergeseran = json_encode($this->matriks);
+        $laporan-> sptjm = json_encode($this->sptjm);
+        $laporan-> dokumen_pelaksanaan = json_encode($dokumen_pelaksanaan);
+        // dd($laporan);
+        $laporan->save();
+
+        return redirect('/');
+    }
 
     public function printPermohonan()
     {

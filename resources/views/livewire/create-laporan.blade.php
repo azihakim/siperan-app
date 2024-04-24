@@ -54,7 +54,7 @@
 												<div class="bs-stepper-content">
 																@if ($currentStep == 1)
 																				<div class="row">
-																								<div class="col-3">
+																								<div class="col-4">
 																												@error('biro')
 																																<span class="text-danger">{{ $message }}</span>
 																												@enderror
@@ -69,64 +69,65 @@
 																																</select>
 																												</div>
 																								</div>
+																				</div>
 
-																								<div class="col-2">
+																				<div class="row">
+																								<div class="col-3">
 																												@error('nama_kb')
 																																<span class="text-danger">{{ $message }}</span>
 																												@enderror
 																												<div class="form-group">
-																																<label>Nama</label>
+																																<label>Nama Kepala Biro</label>
 																																<input type="text" class="form-control" placeholder="Masukkan Nama"
 																																				wire:model="nama_kb">
 																												</div>
 																								</div>
 
-																								<div class="col-2">
+																								<div class="col-3">
 																												@error('nip_kb')
 																																<span class="text-danger">{{ $message }}</span>
 																												@enderror
 																												<div class="form-group">
-																																<label>NIP</label>
+																																<label>NIP Kepala Biro</label>
 																																<input type="text" class="form-control" wire:model="nip_kb"
 																																				placeholder="Masukkan Nama">
 																												</div>
 																								</div>
 
-																								<div class="col-2">
+																								<div class="col-3">
 																												@error('jabatan_kb')
 																																<span class="text-danger">{{ $message }}</span>
 																												@enderror
 																												<div class="form-group">
-																																<label>Jabatan</label>
+																																<label>Jabatan Kepala Biro</label>
 																																<input type="text" class="form-control" wire:model="jabatan_kb"
 																																				placeholder="Masukkan Jabatan">
 																												</div>
 																								</div>
-																								<div class="col-2">
+																								<div class="col-3">
 																												@error('pangkat_kb')
 																																<span class="text-danger">{{ $message }}</span>
 																												@enderror
 																												<div class="form-group">
-																																<label>Pangkat</label>
+																																<label>Pangkat Kepala Biro</label>
 																																<input type="text" class="form-control" wire:model="pangkat_kb"
 																																				placeholder="Masukkan Pangkat">
 																												</div>
 																								</div>
-
 																				</div>
 
 																				<div class="row">
-																								<div class="col-2">
+																								<div class="col-3">
 																												@error('tgl')
 																																<span class="text-danger">{{ $message }}</span>
 																												@enderror
 																												<div class="form-group">
-																																<label>Tanggal</label>
+																																<label>Tanggal Surat</label>
 																																<input required type="date" name="tgl" class="form-control" wire:model="tgl">
 																												</div>
 																								</div>
 
-																								<div class="col-2">
+																								<div class="col-3">
 																												@error('no_sppa')
 																																<span class="text-danger">{{ $message }}</span>
 																												@enderror
@@ -140,7 +141,7 @@
 																																</div>
 																												</div>
 																								</div>
-																								<div class="col-4">
+																								<div class="col-3">
 																												@error('sifat_sppa')
 																																<span class="text-danger">{{ $message }}</span>
 																												@enderror
@@ -155,7 +156,7 @@
 																												</div>
 																								</div>
 
-																								<div class="col-4">
+																								<div class="col-3">
 																												@error('lampiran_sppa')
 																																<span class="text-danger">{{ $message }}</span>
 																												@enderror
@@ -170,7 +171,7 @@
 																												</div>
 																								</div>
 
-																								<div class="col-4">
+																								<div class="col-3">
 																												@error('hal_sppa')
 																																<span class="text-danger">{{ $message }}</span>
 																												@enderror
@@ -271,7 +272,7 @@
 
 																@if ($currentStep == 3)
 																				<div class="row">
-																								<div class="col-4">
+																								<div class="col-3">
 																												@error('no_sp_3')
 																																<span class="text-danger">{{ $message }}</span>
 																												@enderror
@@ -280,19 +281,20 @@
 																																<input type="text" class="form-control" wire:model="no_sptjm">
 																												</div>
 																								</div>
-																								<div class="col-4">
+																								<div class="col-3">
 																												@error('tgl')
 																																<span class="text-danger">{{ $message }}</span>
 																												@enderror
 																												<div class="form-group">
 																																<label>Tanggal</label>
-																																<input required type="date" name="tgl" class="form-control" wire:model="tgl">
+																																<input required type="date" name="tgl" class="form-control"
+																																				wire:model="tgl_sptjm">
 																												</div>
 																								</div>
 																				</div>
 
 																				<div class="row">
-																								<div class="col-4">
+																								<div class="col-3">
 																												@error('nama_kb')
 																																<span class="text-danger">{{ $message }}</span>
 																												@enderror
@@ -301,7 +303,7 @@
 																																<input type="text" class="form-control" wire:model="nama_kb">
 																												</div>
 																								</div>
-																								<div class="col-4">
+																								<div class="col-3">
 																												@error('nip_kb')
 																																<span class="text-danger">{{ $message }}</span>
 																												@enderror
@@ -310,13 +312,23 @@
 																																<input type="text" class="form-control" wire:model="nip_kb">
 																												</div>
 																								</div>
-																								<div class="col-4">
+																								<div class="col-3">
 																												@error('jabatan_kb')
 																																<span class="text-danger">{{ $message }}</span>
 																												@enderror
 																												<div class="form-group">
 																																<label>Jabatan</label>
 																																<input type="text" class="form-control" wire:model="jabatan_kb">
+																												</div>
+																								</div>
+																								<div class="col-3">
+																												@error('pangkat_kb')
+																																<span class="text-danger">{{ $message }}</span>
+																												@enderror
+																												<div class="form-group">
+																																<label>Pangkat</label>
+																																<input type="text" class="form-control" wire:model="pangkat_kb"
+																																				placeholder="Masukkan Pangkat">
 																												</div>
 																								</div>
 																				</div>
@@ -775,6 +787,9 @@
 																<div>
 																				<a wire:click="back(2)" class="btn btn-danger">
 																								Kembali
+																				</a>
+																				<a wire:click="thirdStepSubmit" class="btn btn-primary" wire:loading.remove>
+																								Selanjutnya
 																				</a>
 																</div>
 												@endif

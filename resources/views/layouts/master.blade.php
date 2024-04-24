@@ -83,9 +83,9 @@
 								<!-- Main Sidebar Container -->
 								<aside class="main-sidebar sidebar-dark-primary elevation-4">
 												<!-- Brand Logo -->
-												<a href="index3.html" class="brand-link">
-																<img src="{{ asset('vendors/dist/img/AdminLTELogo.png') }}" alt="AdminLTE Logo"
-																				class="brand-image img-circle elevation-3" style="opacity: 0.8" />
+												<a href="{{ url('/') }}" class="brand-link">
+																<img src="{{ asset('vendors/dist/img/Coat_of_arms_of_South_Sumatra.png') }}" alt="AdminLTE Logo"
+																				class="brand-image" />
 																<span class="brand-text font-weight-light">SIPERAN</span>
 												</a>
 
@@ -96,14 +96,14 @@
 																				<ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
 																								data-accordion="false">
 																								<li class="nav-item">
-																												<a href="{{ url('/dashboard') }}" class="nav-link">
+																												<a href="{{ url('/') }}" class="nav-link">
 																																<i class="nav-icon fas fa-tachometer-alt"></i>
 																																<p>Dashboard</p>
 																												</a>
 																								</li>
 																								<li class="nav-item">
 																												<a href="{{ url('/laporan') }}" class="nav-link">
-																																<i class="nav-icon fas fa-tachometer-alt"></i>
+																																<i class="nav-icon fas fa-copy"></i>
 																																<p>Laporan</p>
 																												</a>
 																								</li>
@@ -121,10 +121,10 @@
 																<div class="container-fluid">
 																				<div class="row mb-2">
 																								<div class="col-sm-6">
-																												<h1 class="m-0">Dashboard</h1>
+																												<h1 class="m-0">@yield('title')</h1>
 																								</div>
 																								<!-- /.col -->
-																								<div class="col-sm-6">
+																								{{-- <div class="col-sm-6">
 																												<ol class="breadcrumb float-sm-right">
 																																<li class="breadcrumb-item">
 																																				<a href="#">Home</a>
@@ -133,7 +133,7 @@
 																																				Dashboard v1
 																																</li>
 																												</ol>
-																								</div>
+																								</div> --}}
 																								<!-- /.col -->
 																				</div>
 																				<!-- /.row -->
