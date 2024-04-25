@@ -368,9 +368,9 @@ class CreateLaporan extends Component
         $laporan-> sptjm = json_encode($this->sptjm);
         $laporan-> dokumen_pelaksanaan = json_encode($dokumen_pelaksanaan);
         // dd($laporan);
-        // $laporan->save();
+        $laporan->save();
 
-        // return redirect('/');
+        return redirect('/');
     }
 
     

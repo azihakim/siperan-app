@@ -46,7 +46,8 @@
 																																								</div>
 																																				</div>
 																																				<div class="col-md-6">
-																																								<a class="btn btn-block btn-outline-warning">Edit</a>
+																																								<a href="{{ url('/edit-laporan') }}"
+																																												class="btn btn-block btn-outline-warning">Edit</a>
 																																				</div>
 																																</div>
 

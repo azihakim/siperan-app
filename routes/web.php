@@ -1,7 +1,9 @@
 <?php
 
 use App\Http\Controllers\DashboardController;
+use App\Livewire\EditLaporan;
 use Illuminate\Support\Facades\Route;
+use Livewire\Livewire;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,6 +18,12 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::get('/', [DashboardController::class, 'index'])->name('dashboard.index');
+// web.php
+Route::get('/item/{id}/edit', 'ItemController@edit')->name('item.edit');
+
+Route::get('/edit-laporan', [EditLaporan::class, 'edit'])->name('edit-laporan');
+
+
 
 
 

@@ -273,7 +273,7 @@
 																@if ($currentStep == 3)
 																				<div class="row">
 																								<div class="col-3">
-																												@error('no_sp_3')
+																												@error('no_sptjm')
 																																<span class="text-danger">{{ $message }}</span>
 																												@enderror
 																												<div class="form-group">
@@ -282,7 +282,7 @@
 																												</div>
 																								</div>
 																								<div class="col-3">
-																												@error('tgl')
+																												@error('tgl_sptjm')
 																																<span class="text-danger">{{ $message }}</span>
 																												@enderror
 																												<div class="form-group">
@@ -747,15 +747,11 @@
 								</div>
 								<!-- /.card-body -->
 								<div class="card-footer">
-												@if ($currentStep > 1 and $currentStep < 3)
-																<div>
+												@if ($currentStep == 1)
+																<div class="ms-auto">
 																				<a wire:click="back(1)" class="btn btn-danger">
 																								Kembali
 																				</a>
-																</div>
-												@endif
-												@if ($currentStep == 1)
-																<div class="ms-auto">
 																				<a wire:click="firstStepSubmit" class="btn btn-primary" wire:loading.remove>
 																								Selanjutnya
 																				</a>
@@ -775,12 +771,15 @@
 												@endif
 												@if ($currentStep == 2)
 																<div class="ms-auto">
-																				<a wire:click="secondStepSubmit" class="btn btn-primary" wire:loading.remove>
+																				<a wire:click="back(1)" class="btn btn-danger">
+																								Kembali
+																				</a>
+																				<a wire:click="secondStepSubmit" class="btn btn-primary">
 																								Selanjutnya
 																				</a>
-																				<a disabled class="btn btn-warning" wire:loading>
+																				{{-- <a disabled class="btn btn-warning" wire:loading>
 																								Tunggu...
-																				</a>
+																				</a> --}}
 																</div>
 												@endif
 												@if ($currentStep == 3)
@@ -799,7 +798,7 @@
 																								Kembali
 																				</a>
 																				<a wire:click="fourthStepSubmit" class="btn btn-primary" wire:loading.remove>
-																								Selanjutnya
+																								Simpan
 																				</a>
 																</div>
 												@endif
