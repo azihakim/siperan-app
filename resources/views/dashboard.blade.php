@@ -11,15 +11,18 @@
 												<table id="example1" class="table-bordered table-striped table">
 																<thead>
 																				<tr>
+																								<th>Biro</th>
 																								<th>Tanggal Pembuatan</th>
 																								<th>Aksi</th>
 																				</tr>
 																</thead>
 																<tbody>
-																				@foreach ($laporan as $item)
+																				@foreach ($data as $item)
 																								<tr>
 																												<td>
-																																{{ $item->created_at->format('d-m-Y') }}
+																																{{ $item['surat_permohonan']['biro'] }}
+																												<td>
+																																{{ $item['created_at']->format('d-m-Y') }}
 																												</td>
 																												<td style="text-align: center; width:20%">
 																																<div class="row">
@@ -46,7 +49,7 @@
 																																								</div>
 																																				</div>
 																																				<div class="col-md-6">
-																																								<a href="{{ url('/edit-laporan') }}"
+																																								<a href="{{ url('edit-laporan/' . $item['id']) }}"
 																																												class="btn btn-block btn-outline-warning">Edit</a>
 																																				</div>
 																																</div>
@@ -57,6 +60,7 @@
 																</tbody>
 																<tfoot>
 																				<tr>
+																								<th>Biro</th>
 																								<th>Tanggal Pembuatan</th>
 																								<th>Aksi</th>
 																				</tr>

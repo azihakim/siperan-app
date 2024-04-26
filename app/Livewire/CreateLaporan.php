@@ -337,6 +337,12 @@ class CreateLaporan extends Component
         ];
 
         $indikator =[
+            'sk' => $this->dokPel_sk,
+            'sp' => $this->dokPel_sp,
+            'lokasi' => $this->dokPel_lokasi,
+            'ksk' => $this->dokPel_ksk,
+            'waktu' => $this->dokPel_waktu,
+            'keterangan' => $this->dokPel_keterangan,
             'ck_tuk_sbm' => $this->dokPel_ck_tuk_sbm,
             'ck_tk_sbm' => $this->dokPel_ck_tk_sbm,
             'ck_tuk_sth' => $this->dokPel_ck_tuk_sth,
@@ -367,7 +373,6 @@ class CreateLaporan extends Component
         $laporan-> matriks_pergeseran = json_encode($this->matriks);
         $laporan-> sptjm = json_encode($this->sptjm);
         $laporan-> dokumen_pelaksanaan = json_encode($dokumen_pelaksanaan);
-        // dd($laporan);
         $laporan->save();
 
         return redirect('/');
