@@ -15,7 +15,7 @@ use Illuminate\Http\Request;
 
 class EditLaporan extends Component
 {
-    public $currentStep = 4;
+    public $currentStep = 1;
     public $options = [];
     public $itemId;
     public $surat_permohonan;

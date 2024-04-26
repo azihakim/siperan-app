@@ -1,5 +1,4 @@
 <div>
-				<input type="text" name="" id="" wire:model='itemId'>
 				<div class="card">
 								<div class="card-header ui-sortable-handle">
 												<h3 class="card-title">
