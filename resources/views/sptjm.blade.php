@@ -231,7 +231,7 @@
 																				<br><br><br><br><br><br>
 																				<div><strong>{{ $data['surat_permohonan']['nama_kb'] }}</strong><br>
 																								{{ $data['surat_permohonan']['pangkat_kb'] }}<br>
-																								NIP Plh. Kepala {{ $data['surat_permohonan']['nip_kb'] }}</div>
+																								NIP {{ $data['surat_permohonan']['nip_kb'] }}</div>
 																</div>
 												</div>
 								</div>
