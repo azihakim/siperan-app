@@ -35,41 +35,41 @@ class CreateLaporan extends Component
 
     public function mount()
     {
-        $this->dokPel_tahun = 'dokPel_tahun';
-        $this->dokPel_noDppa = 'dokPel_noDppa';
-        $this->dokPel_UrusanPemerintahan = 'dokPel_UrusanPemerintahan';
-        $this->dokPel_bidangUrusan = 'dokPel_bidangUrusan';
-        $this->dokPel_program = 'dokPel_program';
-        $this->dokPel_kegiatan = 'dokPel_kegiatan';
-        $this->dokPel_organisasi = 'dokPel_organisasi';
-        $this->dokPel_unit = 'dokPel_unit';
-        $this->dokPel_alokasiM1 = 'dokPel_alokasiM1';
-        $this->dokPel_alokasiTahun = 'dokPel_alokasiTahun';
-        $this->dokPel_alokasiP1 = 'dokPel_alokasiP1';
+        // $this->dokPel_tahun = 'dokPel_tahun';
+        // $this->dokPel_noDppa = 'dokPel_noDppa';
+        // $this->dokPel_UrusanPemerintahan = 'dokPel_UrusanPemerintahan';
+        // $this->dokPel_bidangUrusan = 'dokPel_bidangUrusan';
+        // $this->dokPel_program = 'dokPel_program';
+        // $this->dokPel_kegiatan = 'dokPel_kegiatan';
+        // $this->dokPel_organisasi = 'dokPel_organisasi';
+        // $this->dokPel_unit = 'dokPel_unit';
+        // $this->dokPel_alokasiM1 = 'dokPel_alokasiM1';
+        // $this->dokPel_alokasiTahun = 'dokPel_alokasiTahun';
+        // $this->dokPel_alokasiP1 = 'dokPel_alokasiP1';
 
-        $this->dokPel_ck_tuk_sbm = 'dokPel_ck_tuk_sbm';
-        $this->dokPel_ck_tk_sbm = 'dokPel_ck_tk_sbm';
-        $this->dokPel_ck_tuk_sth = 'dokPel_ck_tuk_sth';
-        $this->dokPel_ck_tk_sth = 'dokPel_ck_tk_sth';
-        $this->dokPel_m_tuk_sbm = 'dokPel_m_tuk_sbm';
-        $this->dokPel_m_tk_sbm = 'dokPel_m_tk_sbm';
-        $this->dokPel_m_tuk_sth = 'dokPel_m_tuk_sth';
-        $this->dokPel_m_tk_sth = 'dokPel_m_tk_sth';
-        $this->dokPel_k_tuk_sbm = 'dokPel_k_tuk_sbm';
-        $this->dokPel_k_tk_sbm = 'dokPel_k_tk_sbm';
-        $this->dokPel_k_tuk_sth = 'dokPel_k_tuk_sth';
-        $this->dokPel_k_tk_sth = 'dokPel_k_tk_sth';
-        $this->dokPel_h_tuk_sbm = 'dokPel_h_tuk_sbm';
-        $this->dokPel_h_tk_sbm = 'dokPel_h_tk_sbm';
-        $this->dokPel_h_tuk_sth = 'dokPel_h_tuk_sth';
-        $this->dokPel_h_tk_sth = 'dokPel_h_tk_sth';
+        // $this->dokPel_ck_tuk_sbm = 'dokPel_ck_tuk_sbm';
+        // $this->dokPel_ck_tk_sbm = 'dokPel_ck_tk_sbm';
+        // $this->dokPel_ck_tuk_sth = 'dokPel_ck_tuk_sth';
+        // $this->dokPel_ck_tk_sth = 'dokPel_ck_tk_sth';
+        // $this->dokPel_m_tuk_sbm = 'dokPel_m_tuk_sbm';
+        // $this->dokPel_m_tk_sbm = 'dokPel_m_tk_sbm';
+        // $this->dokPel_m_tuk_sth = 'dokPel_m_tuk_sth';
+        // $this->dokPel_m_tk_sth = 'dokPel_m_tk_sth';
+        // $this->dokPel_k_tuk_sbm = 'dokPel_k_tuk_sbm';
+        // $this->dokPel_k_tk_sbm = 'dokPel_k_tk_sbm';
+        // $this->dokPel_k_tuk_sth = 'dokPel_k_tuk_sth';
+        // $this->dokPel_k_tk_sth = 'dokPel_k_tk_sth';
+        // $this->dokPel_h_tuk_sbm = 'dokPel_h_tuk_sbm';
+        // $this->dokPel_h_tk_sbm = 'dokPel_h_tk_sbm';
+        // $this->dokPel_h_tuk_sth = 'dokPel_h_tuk_sth';
+        // $this->dokPel_h_tk_sth = 'dokPel_h_tk_sth';
 
-        $this->dokPel_sk = 'dokPel_sk';
-        $this->dokPel_sp = 'dokPel_sp';
-        $this->dokPel_lokasi = 'dokPel_lokasi';
-        $this->dokPel_ksk = 'dokPel_ksk';
-        $this->dokPel_waktu = 'dokPel_waktu';
-        $this->dokPel_keterangan = 'dokPel_keterangan';
+        // $this->dokPel_sk = 'dokPel_sk';
+        // $this->dokPel_sp = 'dokPel_sp';
+        // $this->dokPel_lokasi = 'dokPel_lokasi';
+        // $this->dokPel_ksk = 'dokPel_ksk';
+        // $this->dokPel_waktu = 'dokPel_waktu';
+        // $this->dokPel_keterangan = 'dokPel_keterangan';
 
 
 
@@ -125,26 +125,26 @@ class CreateLaporan extends Component
     {
         $this->validate([
             'biro' => 'required',
-            'tgl' => 'required',
-            'no_sppa' => 'required',
-            'sifat_sppa' => 'required',
-            'lampiran_sppa' => 'required',
-            'hal_sppa' => 'required',
-            'nama_kb' => 'required',
-            'jabatan_kb' => 'required',
-            'nip_kb' => 'required',
+            // 'tgl' => 'required',
+            // 'no_sppa' => 'required',
+            // 'sifat_sppa' => 'required',
+            // 'lampiran_sppa' => 'required',
+            // 'hal_sppa' => 'required',
+            // 'nama_kb' => 'required',
+            // 'jabatan_kb' => 'required',
+            // 'nip_kb' => 'required',
             'pangkat_kb' => 'required'
 
         ], [
             'biro.required' => 'Kolom biro harus diisi.',
-            'tgl.required' => 'Kolom tanggal harus diisi.',
-            'no_sppa.required' => 'Nomor harus diisi.',
-            'sifat_sppa.required' => 'Kolom sifat harus diisi.',
-            'lampiran_sppa.required' => 'Kolom lampiran harus diisi.',
-            'hal_sppa.required' => 'Kolom hal harus diisi.',
-            'nama_kb.required' => 'Kolom nama harus diisi.',
-            'jabatan_kb.required' => 'Kolom jabatan harus diisi.',
-            'nip_kb.required' => 'Kolom NIP harus diisi.',
+            // 'tgl.required' => 'Kolom tanggal harus diisi.',
+            // 'no_sppa.required' => 'Nomor harus diisi.',
+            // 'sifat_sppa.required' => 'Kolom sifat harus diisi.',
+            // 'lampiran_sppa.required' => 'Kolom lampiran harus diisi.',
+            // 'hal_sppa.required' => 'Kolom hal harus diisi.',
+            // 'nama_kb.required' => 'Kolom nama harus diisi.',
+            // 'jabatan_kb.required' => 'Kolom jabatan harus diisi.',
+            // 'nip_kb.required' => 'Kolom NIP harus diisi.',
             'pangkat_kb.required' => 'Kolom Pangkat harus diisi.'
         ]);
 
@@ -223,15 +223,15 @@ class CreateLaporan extends Component
     public function secondStepSubmit()
     {
         // Validasi setiap elemen array secara manual
-        foreach ($this->inputs as $key => $value) {
-            $this->validate([
-                'inputs.'.$key.'.no_rekening' => 'required',
-                'inputs.'.$key.'.uraian' => 'required',
-                'inputs.'.$key.'.sebelum' => 'required',
-                'inputs.'.$key.'.sesudah' => 'required',
-                'inputs.'.$key.'.bertambah_berkurang' => 'required'
-            ], $this->messages);
-        }
+        // foreach ($this->inputs as $key => $value) {
+        //     $this->validate([
+        //         'inputs.'.$key.'.no_rekening' => 'required',
+        //         'inputs.'.$key.'.uraian' => 'required',
+        //         'inputs.'.$key.'.sebelum' => 'required',
+        //         'inputs.'.$key.'.sesudah' => 'required',
+        //         'inputs.'.$key.'.bertambah_berkurang' => 'required'
+        //     ], $this->messages);
+        // }
 
         $this->matriks = $this->inputs;
         // Lanjutkan dengan langkah berikutnya
@@ -260,12 +260,12 @@ class CreateLaporan extends Component
     
     public function thirdStepSubmit()
     {
-        $this->validate(
-            ['no_sptjm' => 'required',
-            'tgl_sptjm' => 'required'],
-            ['no_sptjm.required' => 'Nomor harus diisi.',
-            'tgl_sptjm.required' => 'Tanggal harus diisi.']
-        );
+        // $this->validate(
+        //     ['no_sptjm' => 'required',
+        //     'tgl_sptjm' => 'required'],
+        //     ['no_sptjm.required' => 'Nomor harus diisi.',
+        //     'tgl_sptjm.required' => 'Tanggal harus diisi.']
+        // );
 
         $this->sptjm = [
             'no_sptjm' => $this->no_sptjm,
@@ -304,23 +304,23 @@ class CreateLaporan extends Component
     public function fourthStepSubmit(Request $request)
     {
         // Validasi setiap elemen array secara manual
-        foreach ($this->inputs_dokPel as $i => $value) {
-            $this->validate([
-                'inputs_dokPel.'.$i.'.kodeRekening' => 'required',
-                'inputs_dokPel.'.$i.'.uraian' => 'required',
-                'inputs_dokPel.'.$i.'.volume_sbm' => 'required',
-                'inputs_dokPel.'.$i.'.satuan_sbm' => 'required',
-                'inputs_dokPel.'.$i.'.ppn_sbm' => 'required',
-                'inputs_dokPel.'.$i.'.harga_sbm' => 'required',
-                'inputs_dokPel.'.$i.'.jumlah_sbm' => 'required',
-                'inputs_dokPel.'.$i.'.ppn_sth' => 'required',
-                'inputs_dokPel.'.$i.'.volume_sth' => 'required',
-                'inputs_dokPel.'.$i.'.satuan_sth' => 'required',
-                'inputs_dokPel.'.$i.'.harga_sth' => 'required',
-                'inputs_dokPel.'.$i.'.jumlah_sth' => 'required',
-                'inputs_dokPel.'.$i.'.bertambah_berkurang' => 'required'
-            ], $this->messages_dokPel); // Gunakan variable messages_dokPel untuk menampilkan pesan error
-        }
+            // foreach ($this->inputs_dokPel as $i => $value) {
+            //     $this->validate([
+            //         'inputs_dokPel.'.$i.'.kodeRekening' => 'required',
+            //         'inputs_dokPel.'.$i.'.uraian' => 'required',
+            //         'inputs_dokPel.'.$i.'.volume_sbm' => 'required',
+            //         'inputs_dokPel.'.$i.'.satuan_sbm' => 'required',
+            //         'inputs_dokPel.'.$i.'.ppn_sbm' => 'required',
+            //         'inputs_dokPel.'.$i.'.harga_sbm' => 'required',
+            //         'inputs_dokPel.'.$i.'.jumlah_sbm' => 'required',
+            //         'inputs_dokPel.'.$i.'.ppn_sth' => 'required',
+            //         'inputs_dokPel.'.$i.'.volume_sth' => 'required',
+            //         'inputs_dokPel.'.$i.'.satuan_sth' => 'required',
+            //         'inputs_dokPel.'.$i.'.harga_sth' => 'required',
+            //         'inputs_dokPel.'.$i.'.jumlah_sth' => 'required',
+            //         'inputs_dokPel.'.$i.'.bertambah_berkurang' => 'required'
+            //     ], $this->messages_dokPel); // Gunakan variable messages_dokPel untuk menampilkan pesan error
+            // }
 
         $detailSurat = [
             'tahun_anggaran' => $this->dokPel_tahun,

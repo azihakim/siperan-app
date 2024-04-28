@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\PrintController;
 use App\Livewire\EditLaporan;
 use App\Models\Laporan;
 use Illuminate\Support\Facades\Route;
@@ -27,6 +28,8 @@ Route::get('/edit-laporan/{id}', [Laporan::class, 'edit'])->name('edit-laporan')
 // Route::get('/edit-laporan/{id}/edit', 'ItemController@edit')->name('item.edit');
 
 
+Route::get('/print-sppa/{id}', [PrintController::class, 'printPermohonan'])->name('print-sppa');
+Route::get('/print-sptjm/{id}', [PrintController::class, 'printSptjm'])->name('print-sptjm');
 
 
 

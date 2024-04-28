@@ -467,19 +467,19 @@
 																																				</td>
 																																				<td>
 																																								<input type="text" class="form-control" wire:model="dokPel_ck_tuk_sbm"
-																																												placeholder="tuk">
+																																												placeholder="">
 																																				</td>
 																																				<td>
 																																								<input type="text" class="form-control" wire:model="dokPel_ck_tk_sbm"
-																																												placeholder="tk">
+																																												placeholder="">
 																																				</td>
 																																				<td>
 																																								<input type="text" class="form-control" wire:model="dokPel_ck_tuk_sth"
-																																												placeholder="tuk">
+																																												placeholder="">
 																																				</td>
 																																				<td>
 																																								<input type="text" class="form-control" wire:model="dokPel_ck_tk_sth"
-																																												placeholder="tk">
+																																												placeholder="">
 																																				</td>
 																																</tr>
 																																<tr>
@@ -488,19 +488,19 @@
 																																				</td>
 																																				<td>
 																																								<input type="text" class="form-control" wire:model="dokPel_m_tuk_sbm"
-																																												placeholder="tuk m">
+																																												placeholder="">
 																																				</td>
 																																				<td>
 																																								<input type="text" class="form-control" wire:model="dokPel_m_tk_sbm"
-																																												placeholder="tk m">
+																																												placeholder="">
 																																				</td>
 																																				<td>
 																																								<input type="text" class="form-control" wire:model="dokPel_m_tuk_sth"
-																																												placeholder="tuk m">
+																																												placeholder="">
 																																				</td>
 																																				<td>
 																																								<input type="text" class="form-control" wire:model="dokPel_m_tk_sth"
-																																												placeholder="tk m">
+																																												placeholder="">
 																																				</td>
 																																</tr>
 																																<tr>
@@ -509,19 +509,19 @@
 																																				</td>
 																																				<td>
 																																								<input type="text" class="form-control" wire:model="dokPel_k_tuk_sbm"
-																																												placeholder="tuk k">
+																																												placeholder="">
 																																				</td>
 																																				<td>
 																																								<input type="text" class="form-control" wire:model="dokPel_k_tk_sbm"
-																																												placeholder="tk k">
+																																												placeholder="">
 																																				</td>
 																																				<td>
 																																								<input type="text" class="form-control" wire:model="dokPel_k_tuk_sth"
-																																												placeholder="tuk k">
+																																												placeholder="">
 																																				</td>
 																																				<td>
 																																								<input type="text" class="form-control" wire:model="dokPel_k_tk_sth"
-																																												placeholder="tk k">
+																																												placeholder="">
 																																				</td>
 																																</tr>
 																																<tr>
@@ -530,19 +530,19 @@
 																																				</td>
 																																				<td>
 																																								<input type="text" class="form-control" wire:model="dokPel_h_tuk_sbm"
-																																												placeholder="tuk h">
+																																												placeholder="">
 																																				</td>
 																																				<td>
 																																								<input type="text" class="form-control" wire:model="dokPel_h_tk_sbm"
-																																												placeholder="tk h">
+																																												placeholder="">
 																																				</td>
 																																				<td>
 																																								<input type="text" class="form-control" wire:model="dokPel_h_tuk_sth"
-																																												placeholder="tuk h">
+																																												placeholder="">
 																																				</td>
 																																				<td>
 																																								<input type="text" class="form-control" wire:model="dokPel_h_tk_sth"
-																																												placeholder="tk h">
+																																												placeholder="">
 																																				</td>
 																																</tr>
 

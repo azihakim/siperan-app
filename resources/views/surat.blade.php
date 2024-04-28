@@ -143,7 +143,7 @@
 
 								<div class="container">
 												<div id="tgl-srt" class="col-md-6">
-																<p id="tls">Bergas, 30 April 2018</p>
+																<p id="tls">Palembang, {{ $data['surat_permohonan']['tgl'] }}</p>
 
 																<p class="alamat-tujuan">Kepada Yth. :<br />
 																				Ketua TAPD Provinsi Sumatera Selatan</p>
@@ -155,30 +155,37 @@
 																<table>
 																				<tr>
 																								<td>Nomor</td>
-																								<td>: {{ $no_sppa }}</td>
+																								<td>: {{ $data['surat_permohonan']['no_sppa'] }}</td>
 																				</tr>
 																				<tr>
 																								<td>Sifat</td>
-																								<td>: {{ $sifat_sppa }}</td>
+																								<td>: {{ $data['surat_permohonan']['sifat_sppa'] }}</td>
 																				</tr>
 																				<tr>
 																								<td>Lampiran</td>
-																								<td>: {{ $lampiran_sppa }}</td>
+																								<td>: {{ $data['surat_permohonan']['lampiran_sppa'] }}</td>
 																				</tr>
 																				<tr>
 																								<td>Hal</td>
-																								<td>: {{ $hal_sppa }}</td>
+																								<td>: {{ $data['surat_permohonan']['hal_sppa'] }}</td>
 																				</tr>
 																</table>
 												</div>
+												@php
+																// Parse the date string into a Carbon instance
+																$date = \Carbon\Carbon::parse($data['surat_permohonan']['tgl']);
+												@endphp
 												<div class="row" style="margin-left: 5%;"> &nbsp; &nbsp; &nbsp; &nbsp; Sehubungan pelaksanaan
 																Anggaran
 																Kegiatan
 																Sekretariat
-																Daerah Provinsi Sumatera Selatan Tahun anggaran 2023, dengan ini kami mengajukan Pergeseran Anggaran
+																Daerah Provinsi Sumatera Selatan Tahun anggaran {{ $date->format('Y') }},
+																dengan ini
+																kami mengajukan Pergeseran Anggaran
 																pada Biro
 																Umum
-																dan Perlengkapan Sekretariat Daerah Provinsi Sumatera Selatan Tahun Anggaran 2023 dengan rincian
+																dan Perlengkapan Sekretariat Daerah Provinsi Sumatera Selatan Tahun Anggaran
+																{{ $date->format('Y') }} dengan rincian
 																terlampir.
 												</div>
 
@@ -193,10 +200,12 @@
 
 												<div class="row2" style="margin-left: 60%;">
 																<div>
-																				<p id="camat">Plh. Kepala {{ $biro }}</p>
-																				<div id="nama-camat"><strong>DARMAYANTI, SE, MM</strong><br>
-																								PEMBINA (IV/a)<br>
-																								NIP 19221981265165</div>
+																				<p id="camat">Plh. Kepala {{ $data['surat_permohonan']['biro'] }}</p>
+																				<div id="nama-camat">
+																								<strong>{{ $data['surat_permohonan']['nama_kb'] }}</strong><br>
+																								{{ $data['surat_permohonan']['jabatan_kb'] }}<br>
+																								NIP {{ $data['surat_permohonan']['nip_kb'] }}
+																				</div>
 																</div>
 												</div>
 								</div>

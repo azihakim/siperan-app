@@ -183,27 +183,27 @@ class EditLaporan extends Component
     {
         $this->validate([
             'biro' => 'required',
-            'tgl' => 'required',
-            'no_sppa' => 'required',
-            'sifat_sppa' => 'required',
-            'lampiran_sppa' => 'required',
-            'hal_sppa' => 'required',
-            'nama_kb' => 'required',
-            'jabatan_kb' => 'required',
-            'nip_kb' => 'required',
-            'pangkat_kb' => 'required'
+            // 'tgl' => 'required',
+            // 'no_sppa' => 'required',
+            // 'sifat_sppa' => 'required',
+            // 'lampiran_sppa' => 'required',
+            // 'hal_sppa' => 'required',
+            // 'nama_kb' => 'required',
+            // 'jabatan_kb' => 'required',
+            // 'nip_kb' => 'required',
+            // 'pangkat_kb' => 'required'
 
         ], [
             'biro.required' => 'Kolom biro harus diisi.',
-            'tgl.required' => 'Kolom tanggal harus diisi.',
-            'no_sppa.required' => 'Nomor harus diisi.',
-            'sifat_sppa.required' => 'Kolom sifat harus diisi.',
-            'lampiran_sppa.required' => 'Kolom lampiran harus diisi.',
-            'hal_sppa.required' => 'Kolom hal harus diisi.',
-            'nama_kb.required' => 'Kolom nama harus diisi.',
-            'jabatan_kb.required' => 'Kolom jabatan harus diisi.',
-            'nip_kb.required' => 'Kolom NIP harus diisi.',
-            'pangkat_kb.required' => 'Kolom Pangkat harus diisi.'
+            // 'tgl.required' => 'Kolom tanggal harus diisi.',
+            // 'no_sppa.required' => 'Nomor harus diisi.',
+            // 'sifat_sppa.required' => 'Kolom sifat harus diisi.',
+            // 'lampiran_sppa.required' => 'Kolom lampiran harus diisi.',
+            // 'hal_sppa.required' => 'Kolom hal harus diisi.',
+            // 'nama_kb.required' => 'Kolom nama harus diisi.',
+            // 'jabatan_kb.required' => 'Kolom jabatan harus diisi.',
+            // 'nip_kb.required' => 'Kolom NIP harus diisi.',
+            // 'pangkat_kb.required' => 'Kolom Pangkat harus diisi.'
         ]);
 
         $this->sppa = [
@@ -281,15 +281,15 @@ class EditLaporan extends Component
     public function secondStepSubmit()
     {
         // Validasi setiap elemen array secara manual
-        foreach ($this->inputs as $key => $value) {
-            $this->validate([
-                'inputs.'.$key.'.no_rekening' => 'required',
-                'inputs.'.$key.'.uraian' => 'required',
-                'inputs.'.$key.'.sebelum' => 'required',
-                'inputs.'.$key.'.sesudah' => 'required',
-                'inputs.'.$key.'.bertambah_berkurang' => 'required'
-            ], $this->messages);
-        }
+        // foreach ($this->inputs as $key => $value) {
+        //     $this->validate([
+        //         'inputs.'.$key.'.no_rekening' => 'required',
+        //         'inputs.'.$key.'.uraian' => 'required',
+        //         'inputs.'.$key.'.sebelum' => 'required',
+        //         'inputs.'.$key.'.sesudah' => 'required',
+        //         'inputs.'.$key.'.bertambah_berkurang' => 'required'
+        //     ], $this->messages);
+        // }
 
         $this->matriks = $this->inputs;
         // Lanjutkan dengan langkah berikutnya
@@ -318,12 +318,12 @@ class EditLaporan extends Component
     
     public function thirdStepSubmit()
     {
-        $this->validate(
-            ['no_sptjm' => 'required',
-            'tgl_sptjm' => 'required'],
-            ['no_sptjm.required' => 'Nomor harus diisi.',
-            'tgl_sptjm.required' => 'Tanggal harus diisi.']
-        );
+        // $this->validate(
+        //     ['no_sptjm' => 'required',
+        //     'tgl_sptjm' => 'required'],
+        //     ['no_sptjm.required' => 'Nomor harus diisi.',
+        //     'tgl_sptjm.required' => 'Tanggal harus diisi.']
+        // );
 
         $this->sptjm = [
             'no_sptjm' => $this->no_sptjm,
@@ -375,23 +375,23 @@ class EditLaporan extends Component
         ];
 
         // Validasi setiap elemen array secara manual
-        foreach ($this->inputs_dokPel as $i => $value) {
-            $this->validate([
-                'inputs_dokPel.'.$i.'.kodeRekening' => 'required',
-                'inputs_dokPel.'.$i.'.uraian' => 'required',
-                'inputs_dokPel.'.$i.'.volume_sbm' => 'required',
-                'inputs_dokPel.'.$i.'.satuan_sbm' => 'required',
-                'inputs_dokPel.'.$i.'.ppn_sbm' => 'required',
-                'inputs_dokPel.'.$i.'.harga_sbm' => 'required',
-                'inputs_dokPel.'.$i.'.jumlah_sbm' => 'required',
-                'inputs_dokPel.'.$i.'.ppn_sth' => 'required',
-                'inputs_dokPel.'.$i.'.volume_sth' => 'required',
-                'inputs_dokPel.'.$i.'.satuan_sth' => 'required',
-                'inputs_dokPel.'.$i.'.harga_sth' => 'required',
-                'inputs_dokPel.'.$i.'.jumlah_sth' => 'required',
-                'inputs_dokPel.'.$i.'.bertambah_berkurang' => 'required'
-            ], $this->messages_dokPel); // Gunakan variable messages_dokPel untuk menampilkan pesan error
-        }
+        // foreach ($this->inputs_dokPel as $i => $value) {
+        //     $this->validate([
+        //         'inputs_dokPel.'.$i.'.kodeRekening' => 'required',
+        //         'inputs_dokPel.'.$i.'.uraian' => 'required',
+        //         'inputs_dokPel.'.$i.'.volume_sbm' => 'required',
+        //         'inputs_dokPel.'.$i.'.satuan_sbm' => 'required',
+        //         'inputs_dokPel.'.$i.'.ppn_sbm' => 'required',
+        //         'inputs_dokPel.'.$i.'.harga_sbm' => 'required',
+        //         'inputs_dokPel.'.$i.'.jumlah_sbm' => 'required',
+        //         'inputs_dokPel.'.$i.'.ppn_sth' => 'required',
+        //         'inputs_dokPel.'.$i.'.volume_sth' => 'required',
+        //         'inputs_dokPel.'.$i.'.satuan_sth' => 'required',
+        //         'inputs_dokPel.'.$i.'.harga_sth' => 'required',
+        //         'inputs_dokPel.'.$i.'.jumlah_sth' => 'required',
+        //         'inputs_dokPel.'.$i.'.bertambah_berkurang' => 'required'
+        //     ], $this->messages_dokPel); // Gunakan variable messages_dokPel untuk menampilkan pesan error
+        // }
 
         $detailSurat = [
             'tahun_anggaran' => $this->dokPel_tahun,

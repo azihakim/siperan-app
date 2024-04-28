@@ -153,7 +153,7 @@
 																				<h3 style="font-weight: lighter;">
 																								<strong>SURAT PERNYATAAN TANGGUNG JAWAB MUTLAK</strong>
 																				</h3>
-																				<p>Nomor :</p>
+																				<p>Nomor : {{ $data['sptjm']['no_sptjm'] }}</p>
 																</td>
 												</tr>
 
@@ -167,15 +167,15 @@
 																				</tr>
 																				<tr>
 																								<td>Nama</td>
-																								<td>:</td>
+																								<td>: {{ $data['surat_permohonan']['nama_kb'] }}</td>
 																				</tr>
 																				<tr>
 																								<td>NIP</td>
-																								<td>:</td>
+																								<td>: {{ $data['surat_permohonan']['nip_kb'] }}</td>
 																				</tr>
 																				<tr>
 																								<td>Jabatan</td>
-																								<td>:</td>
+																								<td>: {{ $data['surat_permohonan']['jabatan_kb'] }}</td>
 																				</tr>
 																</table>
 												</div>
@@ -224,15 +224,14 @@
 												<div id="penutup" style="margin-left: 5%; margin-top: 10px;">Demikian Surat Pernyataan ini
 																dibuat dengan sebenarnya, dalam keadaan sadar dan tidak dibawah tekanan.
 												</div>
-
 												<div class="row2" style="margin-left: 60%;">
 																<div style="text-align: left;">
-																				<p>KUASA PENGGUNA ANGGARAN</p>
-																				<p>Plh. KEPALA BIRO UMUM DAN PERLENGKAPAN</p>
+																				<p>Palembang, {{ $data['sptjm']['tgl_sptjm'] }}</p>
+																				<p>Plh. Kepala {{ $data['surat_permohonan']['biro'] }}</p>
 																				<br><br><br><br><br><br>
-																				<div><strong>DARMAYANTI, SE, MM</strong><br>
-																								PEMBINA (IV/a)<br>
-																								NIP 19221981265165</div>
+																				<div><strong>Plh. Kepala {{ $data['surat_permohonan']['nama_kb'] }}</strong><br>
+																								Plh. Kepala {{ $data['surat_permohonan']['pangkat_kb'] }}<br>
+																								NIP Plh. Kepala {{ $data['surat_permohonan']['nip_kb'] }}</div>
 																</div>
 												</div>
 								</div>

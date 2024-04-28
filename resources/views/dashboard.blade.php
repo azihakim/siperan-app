@@ -33,8 +33,10 @@
 																																																aria-expanded="false">Unduh</button>
 																																												<div class="dropdown-menu" x-placement="bottom-start"
 																																																style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(0px, 37px, 0px);">
-																																																<a class="dropdown-item" href="#">Surat Permohonan</a>
-																																																<a class="dropdown-item" href="#">SPTJM</a>
+																																																<a class="dropdown-item" href="{{ url('print-sppa/' . $item['id']) }}">Surat
+																																																				Permohonan</a>
+																																																<a class="dropdown-item"
+																																																				href="{{ url('print-sptjm/' . $item['id']) }}">SPTJM</a>
 																																																<div class="dropdown-divider"></div>
 																																																<a class="dropdown-item"><strong>Matriks
 																																																								Pergeseran</strong></a>
