@@ -49,7 +49,8 @@
 																																																								Pelaksanaan</strong></a>
 																																																<a class="dropdown-item"
 																																																				href="{{ url('print-dpa/' . $item['id']) }}">PDF</a>
-																																																<a class="dropdown-item" href="#">EXCEL</a>
+																																																<a class="dropdown-item"
+																																																				href="{{ url('export-dpa/' . $item['id']) }}">EXCEL</a>
 																																												</div>
 																																								</div>
 																																				</div>

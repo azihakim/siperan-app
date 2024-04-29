@@ -50,22 +50,55 @@
 												/* Hapus border kanan untuk sel terakhir dalam baris */
 								}
 
-								table.table2 {
+								table.tabel2 {
 												/* Atur properti untuk memulai Tabel 2 di halaman baru saat mencetak */
-												page-break-after: always;
+												page-break-before: always;
 								}
 
-								table.table3 {
+								/* table.tabel3 {
 												page-break-after: always;
+								} */
+								table.tabel4 {
+												page-break-before: always;
+								}
+				</style>
+				<style>
+								/* Define a print style for the table */
+								/* Hide unnecessary elements when printing */
+								.tabel2,
+								.tabel2 * {
+												visibility: visible;
+								}
+
+								/* Adjust the font size for better readability on paper */
+								table.tabel2 {
+												font-size: 10pt;
+								}
+
+								/* Set the table width to fit within the paper size */
+								table.tabel2 {
+												width: 100%;
+												border-collapse: collapse;
+								}
+
+								/* Set the column widths */
+								table.tabel2 th,
+								table.tabel2 td {
+												width: auto;
+												max-width: none;
+								}
+
+								/* Specify other styles as needed for printing */
+								/* For example: */
+								table.tabel2 th,
+								table.tabel2 td {
+												padding: 5px;
+												border: 1px solid #000;
 								}
 				</style>
 </head>
 
 <body>
-
-				<h2>Cell that spans two rows</h2>
-				<p>To make a cell span more than one row, use the rowspan attribute.</p>
-
 				<!-- Tabel 1 -->
 				<table style="width: 100%;">
 								<thead style="text-align: center">
@@ -256,9 +289,9 @@
 				<table style="width: 100%;" class="tabel2">
 								<thead style="text-align: center">
 												<tr>
-																<th rowspan="3" style="width: 130px; vertical-align: middle;">Kode Rekening
+																<th rowspan="3" style="width: 50px; vertical-align: middle;">Kode Rekening
 																</th>
-																<th rowspan="3" style="width: 150px; vertical-align: middle;">Uraian</th>
+																<th rowspan="3" style="width: 80px; vertical-align: middle;">Uraian</th>
 																<th colspan="10">Rincian Perhitungan</th>
 																<th rowspan="3" style="max-width: 150px; vertical-align: middle;">
 																				Bertambah/<br>Berkurang</th>
@@ -273,13 +306,13 @@
 																<th style="width: 80px;">Satuan</th>
 																<th style="width: 150px;">Harga</th>
 																<th style="width: 20px">PPN</th>
-																<th style="width: 150px">Jumlah</th>
+																<th style="width: 100px">Jumlah</th>
 
 																<th style="width: 10px;">Koefisien/<br>Volume</th>
 																<th style="width: 80px;">Satuan</th>
 																<th style="width: 150px;">Harga</th>
 																<th style="width: 20px">PPN</th>
-																<th style="width: 150px">Jumlah</th>
+																<th style="width: 100px">Jumlah</th>
 												</tr>
 								</thead>
 								<tbody>
@@ -302,11 +335,25 @@
 												@endforeach
 								</tbody>
 								<tfoot>
+												@php
+																$total_sbm = 0;
+																$total_sth = 0;
+																$total_bertambah_berkurang = 0;
+																$rencana = $data['dokumen_pelaksanaan']['rencana'];
+												@endphp
+												@foreach ($data_rp as $item)
+																@php
+																				$total_sbm += intval($item['jumlah_sbm']);
+																				$total_sth += intval($item['jumlah_sth']);
+																				$total_bertambah_berkurang += intval($item['bertambah_berkurang']);
+																@endphp
+												@endforeach
 												<tr>
 																<td colspan="6" style="text-align: right;">Jumlah Anggaran Sub Kegiatan &nbsp;</td>
-																<td>Jumlah</td>
+																<td>{{ $total_sbm }}</td>
 																<td colspan="4" style="text-align: right;">Jumlah Anggaran Sub Kegiatan &nbsp;</td>
-																<td>Jumlah</td>
+																<td>{{ $total_sth }}</td>
+																<td>{{ $total_bertambah_berkurang }}</td>
 												</tr>
 								</tfoot>
 				</table>
@@ -447,7 +494,7 @@
 				</table>
 
 				<!-- Tabel 4 -->
-				<table style="width: 100%;" class="tabel3">
+				<table style="width: 100%;" class="tabel4">
 								<tbody>
 												<tr>
 																<th colspan="5" style="text-align: center;">Tim Anggaran Pemerintah Daerah</th>

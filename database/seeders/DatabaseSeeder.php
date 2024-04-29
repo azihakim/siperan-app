@@ -166,8 +166,8 @@ class DatabaseSeeder extends Seeder
                     "h_tk_sth" => 'h_tk_sth',
                 ],
                 "rincian_perhitungan" => [
-                    ["kodeRekening" => "rekening 1", "uraian" => "uraian 1", "volume_sbm" => "volume_sbm xxx", "satuan_sbm" => "satuan_sbm XXX", "harga_sbm" => "harga_sbm XXX", "ppn_sbm" => "10", "jumlah_sbm" => "jumlah_sbm XXX", "volume_sth" => "volume_sth XXX", "satuan_sth" => "satuan_sth XXX", "harga_sth" => "harga_sth XXX", "ppn_sth" => "20", "jumlah_sth" => "jumlah_sth XXX", "bertambah_berkurang" => "100"],
-                    ["kodeRekening" => "rekening 2", "uraian" => "uraian 2", "volume_sbm" => "volume_sbm 222", "satuan_sbm" => "satuan_sbm 222", "harga_sbm" => "harga_sbm 222", "ppn_sbm" => "10", "jumlah_sbm" => "jumlah_sbm 222", "volume_sth" => "volume_sth 222", "satuan_sth" => "satuan_sth 222", "harga_sth" => "harga_sth 222", "ppn_sth" => "20", "jumlah_sth" => "jumlah_sth 222", "bertambah_berkurang" => "200"]
+                    ["kodeRekening" => "rekening 1", "uraian" => "uraian 1", "volume_sbm" => "volume_sbm xxx", "satuan_sbm" => "satuan_sbm XXX", "harga_sbm" => "harga_sbm XXX", "ppn_sbm" => "10", "jumlah_sbm" => "100", "volume_sth" => "volume_sth XXX", "satuan_sth" => "satuan_sth XXX", "harga_sth" => "harga_sth XXX", "ppn_sth" => "20", "jumlah_sth" => "250", "bertambah_berkurang" => "100"],
+                    ["kodeRekening" => "rekening 2", "uraian" => "uraian 2", "volume_sbm" => "volume_sbm 222", "satuan_sbm" => "satuan_sbm 222", "harga_sbm" => "harga_sbm 222", "ppn_sbm" => "10", "jumlah_sbm" => "300", "volume_sth" => "volume_sth 222", "satuan_sth" => "satuan_sth 222", "harga_sth" => "harga_sth 222", "ppn_sth" => "20", "jumlah_sth" => "333", "bertambah_berkurang" => "200"]
                 ],
                 "ppkd" => ["ppkd_nama" => "nama ppkd", "ppkd_nip" => "nip ppkd"],
                 "rencana" => [
@@ -176,8 +176,8 @@ class DatabaseSeeder extends Seeder
                     "dokPel_sep" => "1", "dokPel_okt" => "1", "dokPel_nov" => "1", "dokPel_des" => "1"
                 ],
                 "tim" => [
-                    ["tim_nama" => "", "tim_nip" => "", "tim_jabatan" => ""],
-                    ["tim_nama" => "", "tim_nip" => "", "tim_jabatan" => ""]
+                    ["tim_nama" => "nama tim 1", "tim_nip" => "nip tim 1", "tim_jabatan" => "jabatan tim 1"],
+                    ["tim_nama" => "nama tim 2", "tim_nip" => "nip tim 2", "tim_jabatan" => "jabatan tim 2"]
                 ]
             ]),
             'created_at' => now(),

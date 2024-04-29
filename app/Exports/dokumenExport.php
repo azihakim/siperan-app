@@ -5,17 +5,26 @@ namespace App\Exports;
 use Maatwebsite\Excel\Concerns\FromView;
 use Illuminate\Contracts\View\View;
 
-class TabelExport implements FromView
+class dokumenExport implements FromView
 {
-    protected $data_m;
-
-    public function __construct($data_m)
+    protected $data, $data_rp, $data_tim, $date, $year;
+    
+    public function __construct($data, $data_rp, $data_tim, $date, $year)
     {
-        $this->data_m = $data_m;
+        $this->data = $data;
+        $this->data_rp = $data_rp;
+        $this->data_tim = $data_tim;
+        $this->date = $date;
+        $this->year = $year;
     }
 
     public function view(): View
     {
-        return view('excelMatriks', ['data_m' => $this->data_m]);
+        return view('dpa', [
+            'data' => $this->data,
+            'data_rp' => $this->data_rp,
+            'data_tim' => $this->data_tim,
+            'date' => $this->date,
+            'year' => $this->year]);
     }
 }

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\dokumenExport;
 use Illuminate\Http\Request;
 use Dompdf\Options;
 use Maatwebsite\Excel\Facades\Excel;
@@ -331,9 +332,9 @@ class PrintController extends Controller
 
         $dompdf = new Dompdf($options);
         $html = view('dpa', compact('data', 'data_rp', 'data_tim', 'date', 'year' ))->render();
-        return $html;
+        // return $html;
         $dompdf->loadHtml($html);
-        $dompdf->setPaper('A4', 'landscape');
+        $dompdf->setPaper('legal', 'landscape');
         $dompdf->render();
         
         $pdfContent = $dompdf->output();
@@ -343,5 +344,98 @@ class PrintController extends Controller
             echo $pdfContent;
         }, 'Matriks Pergeseran-'.$biro.'.pdf');
     }
+
+    public function exportDpa($id)
+    {
+        $laporan = Laporan::find($id);
+        // Decode the JSON string in the "surat_permohonan" field
+        $suratPermohonan = json_decode($laporan->surat_permohonan, true);
+        $dokumenPelaksanaan = json_decode($laporan->dokumen_pelaksanaan, true);
+        
+        // Parse the date string
+        $formattedDate = null;
+        if (!empty($dokumenPelaksanaan['detail_surat']['tahun_anggaran'])) {
+            $formattedDate = Carbon::parse($dokumenPelaksanaan['detail_surat']['tahun_anggaran']);
+        }
+
+        // Check if the date is valid before formatting
+        $date = $formattedDate ? $formattedDate->format('j F Y') : null;
+        $year = $formattedDate ? $formattedDate->format('Y') : null;
+
+        $inputs = [];
+
+        $data = [
+            "id" => $laporan->id,
+            "surat_permohonan" => [
+                "biro" => $suratPermohonan['biro'] ?? null,
+                "no_sppa" => $suratPermohonan['no_sppa'],
+                "sifat_sppa" => $suratPermohonan['sifat_sppa'] ?? null,
+                "lampiran_sppa" => $suratPermohonan['lampiran_sppa'] ?? null,
+                "hal_sppa" => $suratPermohonan['hal_sppa'] ?? null,
+                "nama_kb" => $suratPermohonan['nama_kb'] ?? null,
+                "jabatan_kb" => $suratPermohonan['jabatan_kb'] ?? null,
+                "nip_kb" => $suratPermohonan['nip_kb'] ?? null,
+                "pangkat_kb" => $suratPermohonan['pangkat_kb'] ?? null
+            ],
+            "dokumen_pelaksanaan" => [
+                "detail_surat" => $dokumenPelaksanaan['detail_surat'] ?? null,
+                "indikator" => $dokumenPelaksanaan['indikator'] ?? null,
+                "rincian_perhitungan" => $dokumenPelaksanaan['rincian_perhitungan'] ?? null,
+                "ppkd" => $dokumenPelaksanaan['ppkd'] ?? null,
+                "rencana" => $dokumenPelaksanaan['rencana'] ?? null,
+                "tim" => $dokumenPelaksanaan['tim'] ?? null,
+            ]
+            
+        ];
+        // dd($data['surat_permohonan']);
+        $rincian_perhitungan = $data['dokumen_pelaksanaan']['rincian_perhitungan'];
+        foreach ($rincian_perhitungan as $rp){
+            $kodeRekening = $rp['kodeRekening'] ?? null;
+            $uraian = $rp['uraian'] ?? null;
+            $volume_sbm = $rp['volume_sbm'] ?? null;
+            $satuan_sbm = $rp['satuan_sbm'] ?? null;
+            $harga_sbm = $rp['harga_sbm'] ?? null;
+            $ppn_sbm = $rp['ppn_sbm'] ?? null;
+            $jumlah_sbm = $rp['jumlah_sbm'] ?? null;
+            $volume_sth = $rp['volume_sth'] ?? null;
+            $satuan_sth = $rp['satuan_sth'] ?? null;
+            $harga_sth = $rp['harga_sth'] ?? null;
+            $ppn_sth = $rp['ppn_sth'] ?? null;
+            $jumlah_sth = $rp['jumlah_sth'] ?? null;
+            $bertambah_berkurang = $rp['bertambah_berkurang'] ?? null;
+
+            $data_rp[] = [
+                'kodeRekening' => $kodeRekening,
+                'uraian' => $uraian,
+                'volume_sbm' => $volume_sbm,
+                'satuan_sbm' => $satuan_sbm,
+                'harga_sbm' => $harga_sbm,
+                'ppn_sbm' => $ppn_sbm,
+                'jumlah_sbm' => $jumlah_sbm,
+                'volume_sth' => $volume_sth,
+                'satuan_sth' => $satuan_sth,
+                'harga_sth' => $harga_sth,
+                'ppn_sth' => $ppn_sth,
+                'jumlah_sth' => $jumlah_sth,
+                'bertambah_berkurang' => $bertambah_berkurang
+            ];
+        }
+
+        $tim = $data['dokumen_pelaksanaan']['tim'];
+        foreach ($tim as $t){
+            $tim_nama = $t['tim_nama'] ?? null;
+            $tim_nip = $t['tim_nip'] ?? null;
+            $tim_jabatan = $t['tim_jabatan'] ?? null;
+
+            $data_tim[] = [
+                'tim_nama' => $tim_nama,
+                'tim_nip' => $tim_nip,
+                'tim_jabatan' => $tim_jabatan
+            ];
+        }
+        $biro = $data['surat_permohonan']['biro'];
+        return Excel::download(new dokumenExport($data, $data_rp, $data_tim, $date, $year), 'DPA-'.$biro.'.xlsx');
+    }
+
     
 }
