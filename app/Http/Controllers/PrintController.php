@@ -236,7 +236,7 @@ class PrintController extends Controller
         return Excel::download(new TabelExport($data_m), 'Matriks Pergeseran-'.$biro.'.xlsx');
     }
 
-    public function printdokumen($id)
+    public function printDpa($id)
     {
         $laporan = Laporan::find($id);
         // Decode the JSON string in the "surat_permohonan" field
@@ -244,10 +244,15 @@ class PrintController extends Controller
         $dokumenPelaksanaan = json_decode($laporan->dokumen_pelaksanaan, true);
         
         // Parse the date string
-        $date = Carbon::parse($matrikPegeseran['tgl_matriks'] ?? null);
-        
-        // Format the date as "30 April 2018"
-        $formattedDate = $date->format('j F Y');
+        $formattedDate = null;
+        if (!empty($dokumenPelaksanaan['detail_surat']['tahun_anggaran'])) {
+            $formattedDate = Carbon::parse($dokumenPelaksanaan['detail_surat']['tahun_anggaran']);
+        }
+
+        // Check if the date is valid before formatting
+        $date = $formattedDate ? $formattedDate->format('j F Y') : null;
+        $year = $formattedDate ? $formattedDate->format('Y') : null;
+
         $inputs = [];
 
         $data = [
@@ -263,38 +268,70 @@ class PrintController extends Controller
                 "nip_kb" => $suratPermohonan['nip_kb'] ?? null,
                 "pangkat_kb" => $suratPermohonan['pangkat_kb'] ?? null
             ],
+            "dokumen_pelaksanaan" => [
+                "detail_surat" => $dokumenPelaksanaan['detail_surat'] ?? null,
+                "indikator" => $dokumenPelaksanaan['indikator'] ?? null,
+                "rincian_perhitungan" => $dokumenPelaksanaan['rincian_perhitungan'] ?? null,
+                "ppkd" => $dokumenPelaksanaan['ppkd'] ?? null,
+                "rencana" => $dokumenPelaksanaan['rencana'] ?? null,
+                "tim" => $dokumenPelaksanaan['tim'] ?? null,
+            ]
             
         ];
-        // Mengakses data matriks_pergeseran
-        $matriks_pergeseran = $data['matriks_pergeseran']['matriks_pergeseran'];
+        // dd($data['surat_permohonan']);
+        $rincian_perhitungan = $data['dokumen_pelaksanaan']['rincian_perhitungan'];
+        foreach ($rincian_perhitungan as $rp){
+            $kodeRekening = $rp['kodeRekening'] ?? null;
+            $uraian = $rp['uraian'] ?? null;
+            $volume_sbm = $rp['volume_sbm'] ?? null;
+            $satuan_sbm = $rp['satuan_sbm'] ?? null;
+            $harga_sbm = $rp['harga_sbm'] ?? null;
+            $ppn_sbm = $rp['ppn_sbm'] ?? null;
+            $jumlah_sbm = $rp['jumlah_sbm'] ?? null;
+            $volume_sth = $rp['volume_sth'] ?? null;
+            $satuan_sth = $rp['satuan_sth'] ?? null;
+            $harga_sth = $rp['harga_sth'] ?? null;
+            $ppn_sth = $rp['ppn_sth'] ?? null;
+            $jumlah_sth = $rp['jumlah_sth'] ?? null;
+            $bertambah_berkurang = $rp['bertambah_berkurang'] ?? null;
 
-        // Mengakses tgl_matriks
-        $tgl_matriks = $data['matriks_pergeseran']['tgl_matriks'];
-
-        // Melakukan foreach untuk matriks_pergeseran
-        foreach ($matriks_pergeseran as $matriks) {
-            $no_rekening = $matriks['no_rekening'];
-            $uraian = $matriks['uraian'];
-            $sebelum = $matriks['sebelum'];
-            $sesudah = $matriks['sesudah'];
-            $bertambah_berkurang = $matriks['bertambah_berkurang'];
-
-            // Lakukan sesuatu dengan data ini, misalnya tambahkan ke dalam array atau lakukan operasi lainnya
-            // Contoh:
-            $data_m[] = [
-                'tgl_matriks' => $tgl_matriks,
-                'no_rekening' => $no_rekening,
+            $data_rp[] = [
+                'kodeRekening' => $kodeRekening,
                 'uraian' => $uraian,
-                'sebelum' => $sebelum,
-                'sesudah' => $sesudah,
+                'volume_sbm' => $volume_sbm,
+                'satuan_sbm' => $satuan_sbm,
+                'harga_sbm' => $harga_sbm,
+                'ppn_sbm' => $ppn_sbm,
+                'jumlah_sbm' => $jumlah_sbm,
+                'volume_sth' => $volume_sth,
+                'satuan_sth' => $satuan_sth,
+                'harga_sth' => $harga_sth,
+                'ppn_sth' => $ppn_sth,
+                'jumlah_sth' => $jumlah_sth,
                 'bertambah_berkurang' => $bertambah_berkurang
             ];
         }
+
+        $tim = $data['dokumen_pelaksanaan']['tim'];
+        foreach ($tim as $t){
+            $tim_nama = $t['tim_nama'] ?? null;
+            $tim_nip = $t['tim_nip'] ?? null;
+            $tim_jabatan = $t['tim_jabatan'] ?? null;
+
+            $data_tim[] = [
+                'tim_nama' => $tim_nama,
+                'tim_nip' => $tim_nip,
+                'tim_jabatan' => $tim_jabatan
+            ];
+        }
+        // dd($data_tim);
+        // dd($data_rp);
         $options = new Options();
         $options->set('chroot', public_path());
 
         $dompdf = new Dompdf($options);
-        $html = view('matrik', compact('data_m', 'data', 'tgl_matriks'))->render();
+        $html = view('dpa', compact('data', 'data_rp', 'data_tim', 'date', 'year' ))->render();
+        return $html;
         $dompdf->loadHtml($html);
         $dompdf->setPaper('A4', 'landscape');
         $dompdf->render();

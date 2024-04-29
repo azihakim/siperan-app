@@ -47,7 +47,8 @@
 																																																<div class="dropdown-divider"></div>
 																																																<a class="dropdown-item"><strong>Dokumen
 																																																								Pelaksanaan</strong></a>
-																																																<a class="dropdown-item" href="#">PDF</a>
+																																																<a class="dropdown-item"
+																																																				href="{{ url('print-dpa/' . $item['id']) }}">PDF</a>
 																																																<a class="dropdown-item" href="#">EXCEL</a>
 																																												</div>
 																																								</div>

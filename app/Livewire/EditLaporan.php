@@ -75,7 +75,7 @@ class EditLaporan extends Component
         // Mengambil nilai dari matriks_pergeseran\
         $this->matriks = $this->matriks_pergeseran;
         $this->tgl_matriks = $this->matriks['tgl_matriks'] ?? null;
-        if (!is_null($this->matriks['matriks_pergeseran'])) {
+        if (!is_null($this->matriks['matriks_pergeseran'] ?? null)) {
             foreach ($this->matriks['matriks_pergeseran'] as $key => $value) {
                 $this->inputs[] = [
                     'no_rekening' => $value['no_rekening'] ?? null,

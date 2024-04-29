@@ -32,6 +32,7 @@ Route::get('/print-sppa/{id}', [PrintController::class, 'printPermohonan'])->nam
 Route::get('/print-sptjm/{id}', [PrintController::class, 'printSptjm'])->name('print-sptjm');
 Route::get('/print-matriks/{id}', [PrintController::class, 'printMatriks'])->name('print-matriks');
 Route::get('/export-matriks/{id}', [PrintController::class, 'exportMatriks'])->name('export-matriks');
+Route::get('/print-dpa/{id}', [PrintController::class, 'printDpa'])->name('print-dpa');
 
 
 

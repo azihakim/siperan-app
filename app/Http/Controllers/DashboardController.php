@@ -10,7 +10,7 @@ class DashboardController extends Controller
     public function index()
     {
         $laporan = Laporan::all();
-
+        // dd($laporan);
         $data = [];
 
         foreach ($laporan as $item) {
