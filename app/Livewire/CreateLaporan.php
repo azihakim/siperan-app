@@ -15,17 +15,23 @@ use Illuminate\Http\Request;
 
 class CreateLaporan extends Component
 {
-    public $currentStep = 2;
+    public $currentStep = 4;
     public $biro, $tgl, $no_sppa, $sifat_sppa, $lampiran_sppa, $hal_sppa, $nama_kb, $jabatan_kb, $nip_kb, $pangkat_kb;
     public $tgl_matriks;
     public $tgl_sptjm, $no_sptjm;
     public $dokPel_ck_tuk_sbm, $dokPel_ck_tk_sbm, $dokPel_ck_tuk_sth, $dokPel_ck_tk_sth, $dokPel_m_tuk_sbm, $dokPel_m_tk_sbm, $dokPel_m_tuk_sth, $dokPel_m_tk_sth, $dokPel_k_tuk_sbm, $dokPel_k_tk_sbm, $dokPel_k_tuk_sth, $dokPel_k_tk_sth, $dokPel_h_tuk_sbm, $dokPel_h_tk_sbm, $dokPel_h_tuk_sth, $dokPel_h_tk_sth;
     public $dokPel_tahun, $dokPel_noDppa, $dokPel_UrusanPemerintahan, $dokPel_bidangUrusan, $dokPel_program, $dokPel_kegiatan, $dokPel_organisasi, $dokPel_unit, $dokPel_alokasiM1, $dokPel_alokasiTahun, $dokPel_alokasiP1;
     public $dokPel_sk, $dokPel_sp, $dokPel_lokasi, $dokPel_ksk, $dokPel_waktu, $dokPel_keterangan;
+    public $dokPel_jan, $dokPel_feb, $dokPel_mar, $dokPel_apr, $dokPel_mei, $dokPel_jun, $dokPel_jul, $dokPel_agu, $dokPel_sep, $dokPel_okt, $dokPel_nov, $dokPel_des; 
+    public $dokPel_pkkd_nama, $dokPel_pkkd_nip; 
+    public $tim_nama, $tim_nip, $tim_jabatan;
     public $inputs = [];
     public $inputs_dokPel = [];
+    public $inputs_tim = [];
     public $i = 1;
+    public $index = 1;
     public $options = [];
+
 
     public $sppa, $matriks, $sptjm, $dokPel;
 
@@ -99,6 +105,12 @@ class CreateLaporan extends Component
             'satuan_sth' => '', 
             'harga_sth' => '', 
             'jumlah_sth' => ''
+        ];
+
+        $this->inputs_tim[] = [
+            'tim_nama' => '', 
+            'tim_nip' => '', 
+            'tim_jabatan' => ''
         ];
 
     }
@@ -201,6 +213,16 @@ class CreateLaporan extends Component
         ];
     }
 
+    public function addInputDokPelTim()
+    {
+        $this->index++;
+        $this->inputs_tim[] = [
+            'tim_nama' => '', 
+            'tim_nip' => '', 
+            'tim_jabatan' => ''
+        ];
+    }
+
     public function remove($key)
     {
         unset($this->inputs[$key]);
@@ -211,6 +233,12 @@ class CreateLaporan extends Component
     {
         unset($this->inputs_dokPel[$i]);
         $this->inputs_dokPel = array_values($this->inputs_dokPel); // Reset array keys
+    }
+
+    public function remove_dokPel_tim($index)
+    {
+        unset($this->inputs_tim[$index]);
+        $this->inputs_tim = array_values($this->inputs_tim); // Reset array keys
     }
 
     protected $messages = [
@@ -361,18 +389,41 @@ class CreateLaporan extends Component
             'h_tuk_sth' => $this->dokPel_h_tuk_sth,
             'h_tk_sth' => $this->dokPel_h_tk_sth,
         ];
-    
-        $dokumen_pelaksanaan = [
-            'detail_surat' => $detailSurat,
-            'indikator' => $indikator,
-            'rincian_perhitungan' => $this->inputs_dokPel,
-        ];
 
         $matrik = [
             'tgl_matriks' => $this->tgl_matriks,
             'matriks_pergeseran' => $this->matriks,
         ];
-        // dd($dokumen_pelaksanaan);
+
+        $dokPel_rencana = [
+            'dokPel_jan' => $this->dokPel_jan,
+            'dokPel_feb' => $this->dokPel_feb,
+            'dokPel_mar' => $this->dokPel_mar,
+            'dokPel_apr' => $this->dokPel_apr,
+            'dokPel_mei' => $this->dokPel_mei,
+            'dokPel_jun' => $this->dokPel_jun,
+            'dokPel_jul' => $this->dokPel_jul,
+            'dokPel_agu' => $this->dokPel_agu,
+            'dokPel_sep' => $this->dokPel_sep,
+            'dokPel_okt' => $this->dokPel_okt,
+            'dokPel_nov' => $this->dokPel_nov,
+            'dokPel_des' => $this->dokPel_des,
+        ];
+        
+        $ppkd = [
+            'ppkd_nama' => $this->dokPel_pkkd_nama,
+            'ppkd_nip' => $this->dokPel_pkkd_nip,
+        ];
+        dd($ppkd);
+
+        $dokumen_pelaksanaan = [
+            'detail_surat' => $detailSurat,
+            'indikator' => $indikator,
+            'rincian_perhitungan' => $this->inputs_dokPel,
+            'ppkd' => $ppkd,
+            'rencana' => $dokPel_rencana,
+            'tim' => $this->inputs_tim
+        ];
 
         $laporan = new Laporan();
         $laporan-> surat_permohonan = json_encode($this->sppa);

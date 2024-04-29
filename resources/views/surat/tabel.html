@@ -52,7 +52,12 @@
 
     table.table2 {
       /* Atur properti untuk memulai Tabel 2 di halaman baru saat mencetak */
-      page-break-before: always;
+      page-break-after: always;
+
+    }
+
+    table.table3 {
+      page-break-after: always;
     }
   </style>
 </head>
@@ -249,7 +254,7 @@
   </table>
 
   <!-- Tabel 2 -->
-  <table style="width: 100%;" class="table2">
+  <table style="width: 100%;" class="tabel2">
     <thead style="text-align: center">
       <tr>
         <th rowspan="3" style="width: 130px; vertical-align: middle;">Kode Rekening
@@ -265,13 +270,13 @@
         <th colspan="5">Sesudah</th>
       </tr>
       <tr>
-        <th style="width: 50px;">Koefisien/<br>Volume</th>
+        <th style="width: 10px;">Koefisien/<br>Volume</th>
         <th style="width: 80px;">Satuan</th>
         <th style="width: 150px;">Harga</th>
         <th style="width: 20px">PPN</th>
         <th style="width: 150px">Jumlah</th>
 
-        <th style="width: 50px;">Koefisien/<br>Volume</th>
+        <th style="width: 10px;">Koefisien/<br>Volume</th>
         <th style="width: 80px;">Satuan</th>
         <th style="width: 150px;">Harga</th>
         <th style="width: 20px">PPN</th>
@@ -328,11 +333,115 @@
   </table>
 
   <!-- Tabel 3 -->
-  <table style="width: 100%;">
+  <table style="width: 100%;" class="tabel3">
     <tbody>
       <tr>
-        <td colspan="2">Rencana Realisasi Belanja per Bulan *) <br> (Rp)</td>
-        <td rowspan="14"></td>
+        <td style="text-align: center;" colspan="2">Rencana Realisasi Belanja per Bulan *) <br> (Rp)</td>
+        <td rowspan="14">
+          <div style="text-align: center;">
+            <p>Palembang, {{ $data['sptjm']['tgl_sptjm'] }}</p>
+            <p style="padding: 0; margin: 0; margin-top: -10px;">Kepala SKPD</p>
+            <br><br><br><br><br><br>
+            <div>
+              <p style="text-decoration: underline;">
+                <strong>{{ $data['surat_permohonan']['nama_kb'] }}</strong>
+              </p>
+              <br>
+              <p style="padding: 0; margin: 0; margin-top: -25px;">
+                NIP {{ $data['surat_permohonan']['nip_kb'] }}
+              </p>
+            </div>
+
+            <br><br><br>
+
+            <p>Mengesahkan,</p><br>
+            <p>PPKD</p>
+            <br><br><br><br><br><br>
+            <div>
+              <p style="text-decoration: underline;">
+                <strong>{{ $data['surat_permohonan']['nama_kb'] }}</strong>
+              </p>
+              <br>
+              <p style="padding: 0; margin-bottom: 10px; margin-top: -25px;">
+                NIP {{ $data['surat_permohonan']['nip_kb'] }}
+              </p>
+            </div>
+        </td>
+      </tr>
+      <tr>
+        <td style="width: 200px;">Januari</td>
+        <td style="width: 30%;"></td>
+      </tr>
+      <tr>
+        <td style="width: 200px;">Februari</td>
+        <td style="width: 30%;"></td>
+      </tr>
+      <tr>
+        <td style="width: 200px;">Maret</td>
+        <td style="width: 30%;"></td>
+      </tr>
+      <tr>
+        <td style="width: 200px;">April</td>
+        <td style="width: 30%;"></td>
+      </tr>
+      <tr>
+        <td style="width: 200px;">Mei</td>
+        <td style="width: 30%;"></td>
+      </tr>
+      <tr>
+        <td style="width: 200px;">Juni</td>
+        <td style="width: 30%;"></td>
+      </tr>
+      <tr>
+        <td style="width: 200px;">Juli</td>
+        <td style="width: 30%;"></td>
+      </tr>
+      <tr>
+        <td style="width: 200px;">Agustus</td>
+        <td style="width: 30%;"></td>
+      </tr>
+      <tr>
+        <td style="width: 200px;">September</td>
+        <td style="width: 30%;"></td>
+      </tr>
+      <tr>
+        <td style="width: 200px;">Oktober</td>
+        <td style="width: 30%;"></td>
+      </tr>
+      <tr>
+        <td style="width: 200px;">November</td>
+        <td style="width: 30%;"></td>
+      </tr>
+      <tr>
+        <td style="width: 200px;">Desember</td>
+        <td style="width: 30%;"></td>
+      </tr>
+      <tr>
+        <td style="width: 200px;"><strong>Jumlah</strong></td>
+        <td style="width: 30%;"><strong></strong></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- Tabel 4 -->
+  <table style="width: 100%;" class="tabel3">
+    <tbody>
+      <tr>
+        <th colspan="5" style="text-align: center;">Tim Anggaran Pemerintah Daerah</th>
+      </tr>
+      <tr>
+        <th style="width: 50px;">No.</th>
+        <th>Nama</th>
+        <th>NIP</th>
+        <th>Jabatan</th>
+        <th>Tanda Tangan</th>
+      </tr>
+      <tr style="height: 40px;">
+        <td style="text-align: center;">1</td>
+        <td>{{ $data['tim']['nama_1'] }}</td>
+        <td>{{ $data['tim']['nip_1'] }}</td>
+        <td>{{ $data['tim']['jabatan_1'] }}</td>
+        <td style="width: 30%;"></td>
       </tr>
     </tbody>
   </table>

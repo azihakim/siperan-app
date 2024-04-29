@@ -353,8 +353,8 @@
 																																<span class="text-danger">{{ $message }}</span>
 																												@enderror
 																												<div class="form-group">
-																																<label>Tahun Anggaran</label>
-																																<input type="text" class="form-control" wire:model="dokPel_tahun">
+																																<label>Tanggal Dokumen</label>
+																																<input type="date" class="form-control" wire:model="dokPel_tahun">
 																												</div>
 																								</div>
 																								<div class="col-4">
@@ -449,7 +449,7 @@
 																												<div class="form-group">
 																																<label>Alokasi Tahun +1</label>
 																																<input type="text" class="form-control" wire:model="dokPel_alokasiP1"
-																																				placeholder="pp">
+																																				placeholder="">
 																												</div>
 																								</div>
 																				</div>
@@ -479,19 +479,19 @@
 																																				</td>
 																																				<td>
 																																								<input type="text" class="form-control" wire:model="dokPel_ck_tuk_sbm"
-																																												placeholder="">
+																																												placeholder">
 																																				</td>
 																																				<td>
 																																								<input type="text" class="form-control" wire:model="dokPel_ck_tk_sbm"
-																																												placeholder="">
+																																												placeholder">
 																																				</td>
 																																				<td>
 																																								<input type="text" class="form-control" wire:model="dokPel_ck_tuk_sth"
-																																												placeholder="">
+																																												placeholder">
 																																				</td>
 																																				<td>
 																																								<input type="text" class="form-control" wire:model="dokPel_ck_tk_sth"
-																																												placeholder="">
+																																												placeholder">
 																																				</td>
 																																</tr>
 																																<tr>
@@ -636,109 +636,113 @@
 																																</tr>
 																												</thead>
 																												<tbody>
-																																@foreach ($inputs_dokPel as $i => $value)
-																																				<tr>
-																																								<td>
-																																												@error('inputs_dokPel.' . $i . '.kodeRekening')
-																																																<span class="text-danger">{{ $message }}</span>
-																																												@enderror
-																																												<textarea type="text" class="form-control" wire:model="inputs_dokPel.{{ $i }}.kodeRekening"
-																																												    placeholder="Rekening"></textarea>
+																																@if ($inputs_dokPel != null)
+																																				@foreach ($inputs_dokPel as $i => $value)
+																																								<tr>
+																																												<td>
+																																																@error('inputs_dokPel.' . $i . '.kodeRekening')
+																																																				<span class="text-danger">{{ $message }}</span>
+																																																@enderror
+																																																<textarea type="text" class="form-control" wire:model="inputs_dokPel.{{ $i }}.kodeRekening"
+																																																    placeholder="Rekening"></textarea>
 
-																																								</td>
-																																								<td>
-																																												@error('inputs_dokPel.' . $i . '.uraian')
-																																																<span class="text-danger">{{ $message }}</span>
-																																												@enderror
-																																												<textarea type="text" class="form-control" wire:model="inputs_dokPel.{{ $i }}.uraian"
-																																												    placeholder="Uraian"></textarea>
-																																								</td>
-																																								<td>
-																																												@error('inputs_dokPel.' . $i . '.volume_sbm')
-																																																<span class="text-danger">{{ $message }}</span>
-																																												@enderror
-																																												<textarea type="text" class="form-control" wire:model="inputs_dokPel.{{ $i }}.volume_sbm"
-																																												    placeholder="Volume Sebelum"></textarea>
-																																								</td>
-																																								<td>
-																																												@error('inputs_dokPel.' . $i . '.satuan_sbm')
-																																																<span class="text-danger">{{ $message }}</span>
-																																												@enderror
-																																												<textarea type="text" class="form-control" wire:model="inputs_dokPel.{{ $i }}.satuan_sbm"
-																																												    placeholder="Satuan Sebelum"></textarea>
-																																								</td>
-																																								<td>
-																																												@error('inputs_dokPel.' . $i . '.harga_sbm')
-																																																<span class="text-danger">{{ $message }}</span>
-																																												@enderror
-																																												<textarea type="text" class="form-control" wire:model="inputs_dokPel.{{ $i }}.harga_sbm"
-																																												    placeholder="Harga Sebelum"></textarea>
-																																								</td>
-																																								<td>
-																																												@error('inputs_dokPel.' . $i . '.ppn_sbm')
-																																																<span class="text-danger">{{ $message }}</span>
-																																												@enderror
-																																												<textarea type="text" class="form-control" wire:model="inputs_dokPel.{{ $i }}.ppn_sbm"
-																																												    placeholder="PPN Sebelum"></textarea>
-																																								</td>
-																																								<td>
-																																												@error('inputs_dokPel.' . $i . '.jumlah_sbm')
-																																																<span class="text-danger">{{ $message }}</span>
-																																												@enderror
-																																												<textarea type="text" class="form-control" wire:model="inputs_dokPel.{{ $i }}.jumlah_sbm"
-																																												    placeholder="Jumlah Sebelum"></textarea>
-																																								</td>
+																																												</td>
+																																												<td>
+																																																@error('inputs_dokPel.' . $i . '.uraian')
+																																																				<span class="text-danger">{{ $message }}</span>
+																																																@enderror
+																																																<textarea type="text" class="form-control" wire:model="inputs_dokPel.{{ $i }}.uraian"
+																																																    placeholder="Uraian"></textarea>
+																																												</td>
+																																												<td>
+																																																@error('inputs_dokPel.' . $i . '.volume_sbm')
+																																																				<span class="text-danger">{{ $message }}</span>
+																																																@enderror
+																																																<textarea type="text" class="form-control" wire:model="inputs_dokPel.{{ $i }}.volume_sbm"
+																																																    placeholder="Volume Sebelum"></textarea>
+																																												</td>
+																																												<td>
+																																																@error('inputs_dokPel.' . $i . '.satuan_sbm')
+																																																				<span class="text-danger">{{ $message }}</span>
+																																																@enderror
+																																																<textarea type="text" class="form-control" wire:model="inputs_dokPel.{{ $i }}.satuan_sbm"
+																																																    placeholder="Satuan Sebelum"></textarea>
+																																												</td>
+																																												<td>
+																																																@error('inputs_dokPel.' . $i . '.harga_sbm')
+																																																				<span class="text-danger">{{ $message }}</span>
+																																																@enderror
+																																																<textarea type="text" class="form-control" wire:model="inputs_dokPel.{{ $i }}.harga_sbm"
+																																																    placeholder="Harga Sebelum"></textarea>
+																																												</td>
+																																												<td>
+																																																@error('inputs_dokPel.' . $i . '.ppn_sbm')
+																																																				<span class="text-danger">{{ $message }}</span>
+																																																@enderror
+																																																<textarea type="text" class="form-control" wire:model="inputs_dokPel.{{ $i }}.ppn_sbm"
+																																																    placeholder="PPN Sebelum"></textarea>
+																																												</td>
+																																												<td>
+																																																@error('inputs_dokPel.' . $i . '.jumlah_sbm')
+																																																				<span class="text-danger">{{ $message }}</span>
+																																																@enderror
+																																																<textarea type="text" class="form-control" wire:model="inputs_dokPel.{{ $i }}.jumlah_sbm"
+																																																    placeholder="Jumlah Sebelum"></textarea>
+																																												</td>
 
-																																								<td>
-																																												@error('inputs_dokPel.' . $i . '.volume_sth')
-																																																<span class="text-danger">{{ $message }}</span>
-																																												@enderror
-																																												<textarea type="text" class="form-control" wire:model="inputs_dokPel.{{ $i }}.volume_sth"
-																																												    placeholder="Volume Setelah"></textarea>
-																																								</td>
-																																								<td>
-																																												@error('inputs_dokPel.' . $i . '.satuan_sth')
-																																																<span class="text-danger">{{ $message }}</span>
-																																												@enderror
-																																												<textarea type="text" class="form-control" wire:model="inputs_dokPel.{{ $i }}.satuan_sth"
-																																												    placeholder="Satuan Setelah"></textarea>
-																																								</td>
-																																								<td>
-																																												@error('inputs_dokPel.' . $i . '.harga_sth')
-																																																<span class="text-danger">{{ $message }}</span>
-																																												@enderror
-																																												<textarea type="text" class="form-control" wire:model="inputs_dokPel.{{ $i }}.harga_sth"
-																																												    placeholder="Harga Setelah"></textarea>
-																																								</td>
-																																								<td>
-																																												@error('inputs_dokPel.' . $i . '.ppn_sth')
-																																																<span class="text-danger">{{ $message }}</span>
-																																												@enderror
-																																												<textarea type="text" class="form-control" wire:model="inputs_dokPel.{{ $i }}.ppn_sth"
-																																												    placeholder="PPN Setelah"></textarea>
-																																								</td>
-																																								<td>
-																																												@error('inputs_dokPel.' . $i . '.jumlah_sth')
-																																																<span class="text-danger">{{ $message }}</span>
-																																												@enderror
-																																												<textarea type="text" class="form-control" wire:model="inputs_dokPel.{{ $i }}.jumlah_sth"
-																																												    placeholder="Jumlah Setelah"></textarea>
-																																								</td>
+																																												<td>
+																																																@error('inputs_dokPel.' . $i . '.volume_sth')
+																																																				<span class="text-danger">{{ $message }}</span>
+																																																@enderror
+																																																<textarea type="text" class="form-control" wire:model="inputs_dokPel.{{ $i }}.volume_sth"
+																																																    placeholder="Volume Setelah"></textarea>
+																																												</td>
+																																												<td>
+																																																@error('inputs_dokPel.' . $i . '.satuan_sth')
+																																																				<span class="text-danger">{{ $message }}</span>
+																																																@enderror
+																																																<textarea type="text" class="form-control" wire:model="inputs_dokPel.{{ $i }}.satuan_sth"
+																																																    placeholder="Satuan Setelah"></textarea>
+																																												</td>
+																																												<td>
+																																																@error('inputs_dokPel.' . $i . '.harga_sth')
+																																																				<span class="text-danger">{{ $message }}</span>
+																																																@enderror
+																																																<textarea type="text" class="form-control" wire:model="inputs_dokPel.{{ $i }}.harga_sth"
+																																																    placeholder="Harga Setelah"></textarea>
+																																												</td>
+																																												<td>
+																																																@error('inputs_dokPel.' . $i . '.ppn_sth')
+																																																				<span class="text-danger">{{ $message }}</span>
+																																																@enderror
+																																																<textarea type="text" class="form-control" wire:model="inputs_dokPel.{{ $i }}.ppn_sth"
+																																																    placeholder="PPN Setelah"></textarea>
+																																												</td>
+																																												<td>
+																																																@error('inputs_dokPel.' . $i . '.jumlah_sth')
+																																																				<span class="text-danger">{{ $message }}</span>
+																																																@enderror
+																																																<textarea type="text" class="form-control" wire:model="inputs_dokPel.{{ $i }}.jumlah_sth"
+																																																    placeholder="Jumlah Setelah"></textarea>
+																																												</td>
 
-																																								<td>
-																																												@error('inputs_dokPel.' . $i . '.bertambah_berkurang')
-																																																<span class="text-danger">{{ $message }}</span>
-																																												@enderror
-																																												<textarea type="text" class="form-control" wire:model="inputs_dokPel.{{ $i }}.bertambah_berkurang"
-																																												    placeholder="Bertambah/Berkurang"></textarea>
-																																								</td>
+																																												<td>
+																																																@error('inputs_dokPel.' . $i . '.bertambah_berkurang')
+																																																				<span class="text-danger">{{ $message }}</span>
+																																																@enderror
+																																																<textarea type="text" class="form-control" wire:model="inputs_dokPel.{{ $i }}.bertambah_berkurang"
+																																																    placeholder="Bertambah/Berkurang"></textarea>
+																																												</td>
 
-																																				</tr>
-																																@endforeach
+																																								</tr>
+																																				@endforeach
+
+																																@endif
 																												</tbody>
 																								</table>
 
 																				</div>
+
 																				<div class="row">
 																								@if ($i > 0)
 																												<div class="col-2">
@@ -752,8 +756,127 @@
 																												<button wire:click="addInputDokPel({{ $i }})"
 																																class="btn btn-block btn-outline-primary"><i class="fa fa-plus"></i></button>
 																								</div>
-
 																				</div>
+
+																				<br>
+																				<hr>
+																				<div class="row">
+																								<div class="col-2">
+																												<div class="form-group">
+																																<label>Januari</label>
+																																<input type="text" class="form-control" wire:model="dokPel_jan">
+																												</div>
+																								</div>
+																								<div class="col-2">
+																												<div class="form-group">
+																																<label>Februari</label>
+																																<input type="text" class="form-control" wire:model="dokPel_feb">
+																												</div>
+																								</div>
+																								<div class="col-2">
+																												<div class="form-group">
+																																<label>Maret</label>
+																																<input type="text" class="form-control" wire:model="dokPel_mar">
+																												</div>
+																								</div>
+																								<div class="col-2">
+																												<div class="form-group">
+																																<label>April</label>
+																																<input type="text" class="form-control" wire:model="dokPel_apr">
+																												</div>
+																								</div>
+																								<div class="col-2">
+																												<div class="form-group">
+																																<label>Mei</label>
+																																<input type="text" class="form-control" wire:model="dokPel_mei">
+																												</div>
+																								</div>
+																								<div class="col-2">
+																												<div class="form-group">
+																																<label>Juni</label>
+																																<input type="text" class="form-control" wire:model="dokPel_jun">
+																												</div>
+																								</div>
+																								<div class="col-2">
+																												<div class="form-group">
+																																<label>Juli</label>
+																																<input type="text" class="form-control" wire:model="dokPel_jul">
+																												</div>
+																								</div>
+																								<div class="col-2">
+																												<div class="form-group">
+																																<label>Agustus</label>
+																																<input type="text" class="form-control" wire:model="dokPel_agt">
+																												</div>
+																								</div>
+																								<div class="col-2">
+																												<div class="form-group">
+																																<label>September</label>
+																																<input type="text" class="form-control" wire:model="dokPel_sep">
+																												</div>
+																								</div>
+																								<div class="col-2">
+																												<div class="form-group">
+																																<label>Oktober</label>
+																																<input type="text" class="form-control" wire:model="dokPel_okt">
+																												</div>
+																								</div>
+																								<div class="col-2">
+																												<div class="form-group">
+																																<label>November</label>
+																																<input type="text" class="form-control" wire:model="dokPel_nov">
+																												</div>
+																								</div>
+																								<div class="col-2">
+																												<div class="form-group">
+																																<label>Desember</label>
+																																<input type="text" class="form-control" wire:model="dokPel_des">
+																												</div>
+																								</div>
+																				</div>
+																				<br><br>
+																				<h5>Tim Anggaran Pemerintah Daerah</h5>
+																				@foreach ($inputs_dokPel_tim as $index => $value)
+																								<div class="row">
+																												<div class="col-4">
+																																<div class="form-group">
+																																				<label>Nama</label>
+																																				<input type="text" class="form-control"
+																																								wire:model="inputs_dokPel_tim.{{ $index }}.nama">
+																																</div>
+																												</div>
+																												<div class="col-4">
+																																<div class="form-group">
+																																				<label>NIP</label>
+																																				<input type="text" class="form-control"
+																																								wire:model="inputs_dokPel_tim.{{ $index }}.nip">
+																																</div>
+																												</div>
+																												<div class="col-4">
+																																<div class="form-group">
+																																				<label>Jabatan</label>
+																																				<input type="text" class="form-control"
+																																								wire:model="inputs_dokPel_tim.{{ $index }}.jabatan">
+																																</div>
+																												</div>
+																								</div>
+																				@endforeach
+																				<div class="row">
+																								@if ($index > 0)
+																												<div class="col-2">
+																																<button class="form-control btn-block btn-outline-danger"
+																																				wire:click.prevent="remove_dokPel_tim({{ $index }})">
+																																				<i class="fa fa-times"></i>
+																																</button>
+																												</div>
+																								@endif
+
+																								<div class="col-2">
+																												<button wire:click="addInputDokPelTim" class="btn btn-block btn-outline-primary"><i
+																																				class="fa fa-plus"></i></button>
+																								</div>
+																				</div>
+
 																@endif
 												</div>
 								</div>

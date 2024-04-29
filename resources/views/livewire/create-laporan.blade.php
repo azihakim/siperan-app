@@ -353,8 +353,8 @@
 																																<span class="text-danger">{{ $message }}</span>
 																												@enderror
 																												<div class="form-group">
-																																<label>Tahun Anggaran</label>
-																																<input type="text" class="form-control" wire:model="dokPel_tahun">
+																																<label>Tanggal Dokumen</label>
+																																<input type="date" class="form-control" wire:model="dokPel_tahun">
 																												</div>
 																								</div>
 																								<div class="col-4">
@@ -739,6 +739,7 @@
 																								</table>
 
 																				</div>
+
 																				<div class="row">
 																								@if ($i > 0)
 																												<div class="col-2">
@@ -752,8 +753,144 @@
 																												<button wire:click="addInputDokPel({{ $i }})"
 																																class="btn btn-block btn-outline-primary"><i class="fa fa-plus"></i></button>
 																								</div>
-
 																				</div>
+
+																				<br>
+																				<hr>
+																				<div class="row">
+																								<div class="col-2">
+																												<div class="form-group">
+																																<label>Januari</label>
+																																<input type="text" class="form-control" wire:model="dokPel_jan">
+																												</div>
+																								</div>
+																								<div class="col-2">
+																												<div class="form-group">
+																																<label>Februari</label>
+																																<input type="text" class="form-control" wire:model="dokPel_feb">
+																												</div>
+																								</div>
+																								<div class="col-2">
+																												<div class="form-group">
+																																<label>Maret</label>
+																																<input type="text" class="form-control" wire:model="dokPel_mar">
+																												</div>
+																								</div>
+																								<div class="col-2">
+																												<div class="form-group">
+																																<label>April</label>
+																																<input type="text" class="form-control" wire:model="dokPel_apr">
+																												</div>
+																								</div>
+																								<div class="col-2">
+																												<div class="form-group">
+																																<label>Mei</label>
+																																<input type="text" class="form-control" wire:model="dokPel_mei">
+																												</div>
+																								</div>
+																								<div class="col-2">
+																												<div class="form-group">
+																																<label>Juni</label>
+																																<input type="text" class="form-control" wire:model="dokPel_jun">
+																												</div>
+																								</div>
+																								<div class="col-2">
+																												<div class="form-group">
+																																<label>Juli</label>
+																																<input type="text" class="form-control" wire:model="dokPel_jul">
+																												</div>
+																								</div>
+																								<div class="col-2">
+																												<div class="form-group">
+																																<label>Agustus</label>
+																																<input type="text" class="form-control" wire:model="dokPel_agt">
+																												</div>
+																								</div>
+																								<div class="col-2">
+																												<div class="form-group">
+																																<label>September</label>
+																																<input type="text" class="form-control" wire:model="dokPel_sep">
+																												</div>
+																								</div>
+																								<div class="col-2">
+																												<div class="form-group">
+																																<label>Oktober</label>
+																																<input type="text" class="form-control" wire:model="dokPel_okt">
+																												</div>
+																								</div>
+																								<div class="col-2">
+																												<div class="form-group">
+																																<label>November</label>
+																																<input type="text" class="form-control" wire:model="dokPel_nov">
+																												</div>
+																								</div>
+																								<div class="col-2">
+																												<div class="form-group">
+																																<label>Desember</label>
+																																<input type="text" class="form-control" wire:model="dokPel_des">
+																												</div>
+																								</div>
+																				</div>
+																				<br><br>
+																				<hr>
+																				<h5>PPKD</h5>
+																				<div class="row">
+																								<div class="col-4">
+																												<div class="form-group">
+																																<label>Nama</label>
+																																<input type="text" class="form-control" wire:model="dokPel_pkkd_nama">
+																												</div>
+																								</div>
+																								<div class="col-4">
+																												<div class="form-group">
+																																<label>NIP</label>
+																																<input type="text" class="form-control" wire:model="dokPel_pkkd_nip">
+																												</div>
+																								</div>
+																				</div>
+																				<br><br>
+																				<h5>Tim Anggaran Pemerintah Daerah</h5>
+																				@foreach ($inputs_tim as $index => $value)
+																								<div class="row">
+																												<div class="col-4">
+																																<div class="form-group">
+																																				<label>Nama</label>
+																																				<input type="text" class="form-control"
+																																								wire:model="inputs_tim.{{ $index }}.tim_nama">
+																																</div>
+																												</div>
+																												<div class="col-4">
+																																<div class="form-group">
+																																				<label>NIP</label>
+																																				<input type="text" class="form-control"
+																																								wire:model="inputs_tim.{{ $index }}.tim_nip">
+																																</div>
+																												</div>
+																												<div class="col-4">
+																																<div class="form-group">
+																																				<label>Jabatan</label>
+																																				<input type="text" class="form-control"
+																																								wire:model="inputs_tim.{{ $index }}.tim_jabatan">
+																																</div>
+																												</div>
+																								</div>
+																				@endforeach
+																				<div class="row">
+																								@if ($index > 0)
+																												<div class="col-2">
+																																<button class="form-control btn-block btn-outline-danger"
+																																				wire:click.prevent="remove_dokPel_tim({{ $index }})">
+																																				<i class="fa fa-times"></i>
+																																</button>
+																												</div>
+																								@endif
+
+																								<div class="col-2">
+																												<button wire:click="addInputDokPelTim" class="btn btn-block btn-outline-primary"><i
+																																				class="fa fa-plus"></i></button>
+																								</div>
+																				</div>
+
 																@endif
 												</div>
 								</div>

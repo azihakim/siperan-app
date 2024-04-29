@@ -15,7 +15,7 @@ use Illuminate\Http\Request;
 
 class EditLaporan extends Component
 {
-    public $currentStep = 1;
+    public $currentStep = 4;
     public $options = [];
     public $itemId;
     public $surat_permohonan;
@@ -28,9 +28,17 @@ class EditLaporan extends Component
     public $dokPel_ck_tuk_sbm, $dokPel_ck_tk_sbm, $dokPel_ck_tuk_sth, $dokPel_ck_tk_sth, $dokPel_m_tuk_sbm, $dokPel_m_tk_sbm, $dokPel_m_tuk_sth, $dokPel_m_tk_sth, $dokPel_k_tuk_sbm, $dokPel_k_tk_sbm, $dokPel_k_tuk_sth, $dokPel_k_tk_sth, $dokPel_h_tuk_sbm, $dokPel_h_tk_sbm, $dokPel_h_tuk_sth, $dokPel_h_tk_sth;
     public $dokPel_tahun, $dokPel_noDppa, $dokPel_UrusanPemerintahan, $dokPel_bidangUrusan, $dokPel_program, $dokPel_kegiatan, $dokPel_organisasi, $dokPel_unit, $dokPel_alokasiM1, $dokPel_alokasiTahun, $dokPel_alokasiP1;
     public $dokPel_sk, $dokPel_sp, $dokPel_lokasi, $dokPel_ksk, $dokPel_waktu, $dokPel_keterangan;
+    public $dokPel_jan, $dokPel_feb, $dokPel_mar, $dokPel_apr, $dokPel_mei, $dokPel_jun, $dokPel_jul, $dokPel_agu, $dokPel_sep, $dokPel_okt, $dokPel_nov, $dokPel_des; 
+    public $dokPel_tim_nama, $dokPel_tim_nip, $dokPel_tim_jabatan;
+    public $dokPel_pkkd_nama, $dokPel_pkkd_nip; 
+    
     public $inputs = [];
     public $inputs_dokPel = [];
+    public $inputs_dokPel_tim = [];
+    
     public $i = 1;
+    public $index = 1;
+
     public $sppa, $matriks, $sptjm, $dokPel;
 
 
@@ -66,97 +74,128 @@ class EditLaporan extends Component
         // Mengambil nilai dari matriks_pergeseran\
         $this->matriks = $this->matriks_pergeseran;
         $this->tgl_matriks = $this->matriks['tgl_matriks'] ?? null;
-        foreach ($this->matriks['matriks_pergeseran'] as $key => $value) {
+        if (!is_null($this->matriks['matriks_pergeseran'])) {
+            foreach ($this->matriks['matriks_pergeseran'] as $key => $value) {
+                $this->inputs[] = [
+                    'no_rekening' => $value['no_rekening'] ?? null,
+                    'uraian' => $value['uraian'] ?? null,
+                    'sebelum' => $value['sebelum'] ?? null,
+                    'sesudah' => $value['sesudah'] ?? null,
+                    'bertambah_berkurang' => $value['bertambah_berkurang'] ?? null
+                ];
+            }
+        } else {
+            // Jika matriks_pergeseran adalah null, tambahkan value null ke inputs
             $this->inputs[] = [
-                'no_rekening' => $value['no_rekening'] ?? null,
-                'uraian' => $value['uraian'] ?? null,
-                'sebelum' => $value['sebelum'] ?? null,
-                'sesudah' => $value['sesudah'] ?? null,
-                'bertambah_berkurang' => $value['bertambah_berkurang'] ?? null
+                'no_rekening' => null,
+                'uraian' => null,
+                'sebelum' => null,
+                'sesudah' => null,
+                'bertambah_berkurang' => null
             ];
         }
 
         // Mengambil nilai dari sptjm
-        $this->no_sptjm = $this->sptjm['no_sptjm'];
-        $this->tgl_sptjm = $this->sptjm['tgl_sptjm'];
+        $this->no_sptjm = $this->sptjm['no_sptjm'] ?? null;
+        $this->tgl_sptjm = $this->sptjm['tgl_sptjm'] ?? null;
 
         // Mengambil nilai dari dokumen_pelaksanaan
         $this->dokPel_tahun = $this->dokumen_pelaksanaan
-        ['detail_surat']['tahun_anggaran'];
+        ['detail_surat']['tahun_anggaran'] ?? null;
         $this->dokPel_noDppa = $this->dokumen_pelaksanaan
-        ['detail_surat']['nomor_dppa'];
+        ['detail_surat']['nomor_dppa'] ?? null;
         $this->dokPel_UrusanPemerintahan = $this->dokumen_pelaksanaan
-        ['detail_surat']['urusan_pemerintahan'];
+        ['detail_surat']['urusan_pemerintahan'] ?? null;
         $this->dokPel_bidangUrusan = $this->dokumen_pelaksanaan
-        ['detail_surat']['bidang_urusan'];
+        ['detail_surat']['bidang_urusan'] ?? null;
         $this->dokPel_program = $this->dokumen_pelaksanaan
-        ['detail_surat']['program'];
+        ['detail_surat']['program'] ?? null;
         $this->dokPel_kegiatan = $this->dokumen_pelaksanaan
-        ['detail_surat']['kegiatan'];
+        ['detail_surat']['kegiatan'] ?? null;
         $this->dokPel_organisasi = $this->dokumen_pelaksanaan
-        ['detail_surat']['organisasi'];
+        ['detail_surat']['organisasi'] ?? null;
         $this->dokPel_unit = $this->dokumen_pelaksanaan
-        ['detail_surat']['unit'];
+        ['detail_surat']['unit'] ?? null;
         $this->dokPel_alokasiM1 = $this->dokumen_pelaksanaan
-        ['detail_surat']['alokasi_m1'];
+        ['detail_surat']['alokasi_m1'] ?? null;
         $this->dokPel_alokasiTahun = $this->dokumen_pelaksanaan
-        ['detail_surat']['alokasi_tahun'];
+        ['detail_surat']['alokasi_tahun'] ?? null;
         $this->dokPel_alokasiP1 = $this->dokumen_pelaksanaan
-        ['detail_surat']['alokasi_p1'];
+        ['detail_surat']['alokasi_p1'] ?? null;
         $this->dokPel_sk = $this->dokumen_pelaksanaan
-        ['indikator']['sk'];
+        ['indikator']['sk'] ?? null;
         $this->dokPel_sp = $this->dokumen_pelaksanaan
-        ['indikator']['sp'];
+        ['indikator']['sp'] ?? null;
         $this->dokPel_lokasi = $this->dokumen_pelaksanaan
-        ['indikator']['lokasi'];
+        ['indikator']['lokasi'] ?? null;
         $this->dokPel_ksk = $this->dokumen_pelaksanaan
-        ['indikator']['ksk'];
+        ['indikator']['ksk'] ?? null;
         $this->dokPel_waktu = $this->dokumen_pelaksanaan
-        ['indikator']['waktu'];
+        ['indikator']['waktu'] ?? null;
         $this->dokPel_keterangan = $this->dokumen_pelaksanaan
-        ['indikator']['keterangan'];
+        ['indikator']['keterangan'] ?? null;
         
 
-
         $this->dokPel_ck_tuk_sbm = $this->dokumen_pelaksanaan
-        ['indikator']['ck_tuk_sbm'];
+        ['indikator']['ck_tuk_sbm'] ?? null;
         $this->dokPel_ck_tk_sbm = $this->dokumen_pelaksanaan
-        ['indikator']['ck_tk_sbm'];
+        ['indikator']['ck_tk_sbm'] ?? null;
         $this->dokPel_ck_tuk_sth = $this->dokumen_pelaksanaan
-        ['indikator']['ck_tuk_sth'];
+        ['indikator']['ck_tuk_sth'] ?? null;
         $this->dokPel_ck_tk_sth = $this->dokumen_pelaksanaan
-        ['indikator']['ck_tk_sth'];
+        ['indikator']['ck_tk_sth'] ?? null;
         $this->dokPel_m_tuk_sbm = $this->dokumen_pelaksanaan
-        ['indikator']['m_tuk_sbm'];
+        ['indikator']['m_tuk_sbm'] ?? null;
         $this->dokPel_m_tk_sbm = $this->dokumen_pelaksanaan
-        ['indikator']['m_tk_sbm'];
+        ['indikator']['m_tk_sbm'] ?? null;
         $this->dokPel_m_tuk_sth = $this->dokumen_pelaksanaan
-        ['indikator']['m_tuk_sth'];
+        ['indikator']['m_tuk_sth'] ?? null;
         $this->dokPel_m_tk_sth = $this->dokumen_pelaksanaan
-        ['indikator']['m_tk_sth'];
+        ['indikator']['m_tk_sth'] ?? null;
         $this->dokPel_k_tuk_sbm = $this->dokumen_pelaksanaan
-        ['indikator']['k_tuk_sbm'];
+        ['indikator']['k_tuk_sbm'] ?? null;
         $this->dokPel_k_tk_sbm = $this->dokumen_pelaksanaan
-        ['indikator']['k_tk_sbm'];
+        ['indikator']['k_tk_sbm'] ?? null;
         $this->dokPel_k_tuk_sth = $this->dokumen_pelaksanaan
-        ['indikator']['k_tuk_sth'];
+        ['indikator']['k_tuk_sth'] ?? null;
         $this->dokPel_k_tk_sth = $this->dokumen_pelaksanaan
-        ['indikator']['k_tk_sth'];
+        ['indikator']['k_tk_sth'] ?? null;
         $this->dokPel_h_tuk_sbm = $this->dokumen_pelaksanaan
-        ['indikator']['h_tuk_sbm'];
+        ['indikator']['h_tuk_sbm'] ?? null;
         $this->dokPel_h_tk_sbm = $this->dokumen_pelaksanaan
-        ['indikator']['h_tk_sbm'];
+        ['indikator']['h_tk_sbm'] ?? null;
         $this->dokPel_h_tuk_sth = $this->dokumen_pelaksanaan
-        ['indikator']['h_tuk_sth'];
+        ['indikator']['h_tuk_sth'] ?? null;
         $this->dokPel_h_tk_sth = $this->dokumen_pelaksanaan
-        ['indikator']['h_tk_sth'];
-
+        ['indikator']['h_tk_sth'] ?? null;
 
 
         $this->inputs_dokPel = $this->dokumen_pelaksanaan
-        ['rincian_perhitungan'];
+        ['rincian_perhitungan'] ?? null;
         
-    
+        
+        $this->dokPel_jan = $this->dokumen_pelaksanaan['rencana']['dokPel_jan'] ?? null;
+        $this->dokPel_feb = $this->dokumen_pelaksanaan['rencana']['dokPel_feb'] ?? null;
+        $this->dokPel_mar = $this->dokumen_pelaksanaan['rencana']['dokPel_mar'] ?? null;
+        $this->dokPel_apr = $this->dokumen_pelaksanaan['rencana']['dokPel_apr'] ?? null;
+        $this->dokPel_mei = $this->dokumen_pelaksanaan['rencana']['dokPel_mei'] ?? null;
+        $this->dokPel_jun = $this->dokumen_pelaksanaan['rencana']['dokPel_jun'] ?? null;
+        $this->dokPel_jul = $this->dokumen_pelaksanaan['rencana']['dokPel_jul'] ?? null;
+        $this->dokPel_agu = $this->dokumen_pelaksanaan['rencana']['dokPel_agu'] ?? null;
+        $this->dokPel_sep = $this->dokumen_pelaksanaan['rencana']['dokPel_sep'] ?? null;
+        $this->dokPel_okt = $this->dokumen_pelaksanaan['rencana']['dokPel_okt'] ?? null;
+        $this->dokPel_nov = $this->dokumen_pelaksanaan['rencana']['dokPel_nov'] ?? null;
+        $this->dokPel_des = $this->dokumen_pelaksanaan['rencana']['dokPel_des'] ?? null;
+
+        $this->dokPel_tim_nama = $this->dokumen_pelaksanaan['tim']['dokPel_tim_nama'] ?? null;
+        $this->dokPel_tim_nip = $this->dokumen_pelaksanaan['tim']['dokPel_tim_nip'] ?? null;
+        $this->dokPel_tim_jabatan = $this->dokumen_pelaksanaan['tim']['dokPel_tim_jabatan'] ?? null;
+        dd($laporan);
+        dd($this->dokumen_pelaksanaan['tim']);
+
+        $this->dokPel_pkkd_nama = $this->dokumen_pelaksanaan['ppkd']['ppkd_nama'] ?? null;
+        $this->dokPel_pkkd_nip = $this->dokumen_pelaksanaan['ppkd']['ppkd_nip'] ?? null;
+
     }
 
 
@@ -259,6 +298,15 @@ class EditLaporan extends Component
         ];
     }
 
+    public function addInputDokPelTim()
+    {
+        $this->index++;
+        $this->inputs_dokPel_tim[] = [
+            'dokPel_tim_nama' => '', 
+            'dokPel_tim_nip' => '', 
+            'dokPel_tim_jabatan' => ''];
+    }
+
     public function remove($key)
     {
         unset($this->inputs[$key]);
@@ -269,6 +317,12 @@ class EditLaporan extends Component
     {
         unset($this->inputs_dokPel[$i]);
         $this->inputs_dokPel = array_values($this->inputs_dokPel); // Reset array keys
+    }
+
+    public function remove_dokPel_tim($index)
+    {
+        unset($this->inputs_dokPel_tim[$index]);
+        $this->inputs_dokPel_tim = array_values($this->inputs_dokPel_tim); // Reset array keys
     }
 
     protected $messages = [
