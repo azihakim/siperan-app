@@ -29,12 +29,13 @@ class EditLaporan extends Component
     public $dokPel_tahun, $dokPel_noDppa, $dokPel_UrusanPemerintahan, $dokPel_bidangUrusan, $dokPel_program, $dokPel_kegiatan, $dokPel_organisasi, $dokPel_unit, $dokPel_alokasiM1, $dokPel_alokasiTahun, $dokPel_alokasiP1;
     public $dokPel_sk, $dokPel_sp, $dokPel_lokasi, $dokPel_ksk, $dokPel_waktu, $dokPel_keterangan;
     public $dokPel_jan, $dokPel_feb, $dokPel_mar, $dokPel_apr, $dokPel_mei, $dokPel_jun, $dokPel_jul, $dokPel_agu, $dokPel_sep, $dokPel_okt, $dokPel_nov, $dokPel_des; 
-    public $dokPel_tim_nama, $dokPel_tim_nip, $dokPel_tim_jabatan;
+    public $tim_nama, $tim_nip, $tim_jabatan;
     public $dokPel_pkkd_nama, $dokPel_pkkd_nip; 
     
     public $inputs = [];
     public $inputs_dokPel = [];
-    public $inputs_dokPel_tim = [];
+    public $inputs_tim = [];
+    public $tim = [];
     
     public $i = 1;
     public $index = 1;
@@ -187,14 +188,35 @@ class EditLaporan extends Component
         $this->dokPel_nov = $this->dokumen_pelaksanaan['rencana']['dokPel_nov'] ?? null;
         $this->dokPel_des = $this->dokumen_pelaksanaan['rencana']['dokPel_des'] ?? null;
 
-        $this->dokPel_tim_nama = $this->dokumen_pelaksanaan['tim']['dokPel_tim_nama'] ?? null;
-        $this->dokPel_tim_nip = $this->dokumen_pelaksanaan['tim']['dokPel_tim_nip'] ?? null;
-        $this->dokPel_tim_jabatan = $this->dokumen_pelaksanaan['tim']['dokPel_tim_jabatan'] ?? null;
-        dd($laporan);
-        dd($this->dokumen_pelaksanaan['tim']);
-
+        // $this->tim_nama = $this->dokumen_pelaksanaan['tim']['tim_nama'] ?? null;
+        // $this->tim_nip = $this->dokumen_pelaksanaan['tim']['tim_nip'] ?? null;
+        // $this->tim_jabatan = $this->dokumen_pelaksanaan['tim']['tim_jabatan'] ?? null;
+        // dd($laporan);
+        // dd($this->dokumen_pelaksanaan['tim']);
+        // Inisialisasi array 'tim' jika belum ada
+        $this->tim = $this->dokumen_pelaksanaan;
+        if (!is_null($this->dokumen_pelaksanaan['tim'])) {
+            $this->inputs_tim = [];
+            foreach ($this->dokumen_pelaksanaan['tim'] as $key => $value) {
+                $this->inputs_tim[] = [
+                    'tim_nama' => $value['tim_nama'] ?? null,
+                    'tim_nip' => $value['tim_nip'] ?? null,
+                    'tim_jabatan' => $value['tim_jabatan'] ?? null
+                ];
+            }
+        } else {
+            // Jika tim adalah null, tambahkan nilai null ke inputs_tim
+            $this->inputs_tim[] = [
+                'tim_nama' => null,
+                'tim_nip' => null,
+                'tim_jabatan' => null
+            ]; 
+        }
+        // dd($this->inputs_tim);
+        // dd($this->dokumen_pelaksanaan['ppkd']);
         $this->dokPel_pkkd_nama = $this->dokumen_pelaksanaan['ppkd']['ppkd_nama'] ?? null;
         $this->dokPel_pkkd_nip = $this->dokumen_pelaksanaan['ppkd']['ppkd_nip'] ?? null;
+        // dd($this->dokPel_pkkd_nip);
 
     }
 
@@ -301,10 +323,11 @@ class EditLaporan extends Component
     public function addInputDokPelTim()
     {
         $this->index++;
-        $this->inputs_dokPel_tim[] = [
-            'dokPel_tim_nama' => '', 
-            'dokPel_tim_nip' => '', 
-            'dokPel_tim_jabatan' => ''];
+        $this->inputs_tim[] = [
+            'tim_nama' => '', 
+            'tim_nip' => '', 
+            'tim_jabatan' => ''
+        ];
     }
 
     public function remove($key)
@@ -321,8 +344,8 @@ class EditLaporan extends Component
 
     public function remove_dokPel_tim($index)
     {
-        unset($this->inputs_dokPel_tim[$index]);
-        $this->inputs_dokPel_tim = array_values($this->inputs_dokPel_tim); // Reset array keys
+        unset($this->inputs_tim[$index]);
+        $this->inputs_tim = array_values($this->inputs_tim); // Reset array keys
     }
 
     protected $messages = [
@@ -429,25 +452,6 @@ class EditLaporan extends Component
             'pangkat_kb' => $this->pangkat_kb
         ];
 
-        // Validasi setiap elemen array secara manual
-        // foreach ($this->inputs_dokPel as $i => $value) {
-        //     $this->validate([
-        //         'inputs_dokPel.'.$i.'.kodeRekening' => 'required',
-        //         'inputs_dokPel.'.$i.'.uraian' => 'required',
-        //         'inputs_dokPel.'.$i.'.volume_sbm' => 'required',
-        //         'inputs_dokPel.'.$i.'.satuan_sbm' => 'required',
-        //         'inputs_dokPel.'.$i.'.ppn_sbm' => 'required',
-        //         'inputs_dokPel.'.$i.'.harga_sbm' => 'required',
-        //         'inputs_dokPel.'.$i.'.jumlah_sbm' => 'required',
-        //         'inputs_dokPel.'.$i.'.ppn_sth' => 'required',
-        //         'inputs_dokPel.'.$i.'.volume_sth' => 'required',
-        //         'inputs_dokPel.'.$i.'.satuan_sth' => 'required',
-        //         'inputs_dokPel.'.$i.'.harga_sth' => 'required',
-        //         'inputs_dokPel.'.$i.'.jumlah_sth' => 'required',
-        //         'inputs_dokPel.'.$i.'.bertambah_berkurang' => 'required'
-        //     ], $this->messages_dokPel); // Gunakan variable messages_dokPel untuk menampilkan pesan error
-        // }
-
         $detailSurat = [
             'tahun_anggaran' => $this->dokPel_tahun,
             'nomor_dppa' => $this->dokPel_noDppa,
@@ -487,13 +491,38 @@ class EditLaporan extends Component
             'h_tk_sth' => $this->dokPel_h_tk_sth,
         ];
     
+        $dokPel_rencana = [
+            'dokPel_jan' => $this->dokPel_jan,
+            'dokPel_feb' => $this->dokPel_feb,
+            'dokPel_mar' => $this->dokPel_mar,
+            'dokPel_apr' => $this->dokPel_apr,
+            'dokPel_mei' => $this->dokPel_mei,
+            'dokPel_jun' => $this->dokPel_jun,
+            'dokPel_jul' => $this->dokPel_jul,
+            'dokPel_agu' => $this->dokPel_agu,
+            'dokPel_sep' => $this->dokPel_sep,
+            'dokPel_okt' => $this->dokPel_okt,
+            'dokPel_nov' => $this->dokPel_nov,
+            'dokPel_des' => $this->dokPel_des,
+        ];
+        
+        $ppkd = [
+            'ppkd_nama' => $this->dokPel_pkkd_nama,
+            'ppkd_nip' => $this->dokPel_pkkd_nip,
+        ];
+        // dd($ppkd);
+
+
         $dokumen_pelaksanaan = [
             'detail_surat' => $detailSurat,
             'indikator' => $indikator,
             'rincian_perhitungan' => $this->inputs_dokPel,
+            'ppkd' => $ppkd,
+            'rencana' => $dokPel_rencana,
+            'tim' => $this->inputs_tim
         ];
-        // dd($dokumen_pelaksanaan);
 
+        
         $laporan = Laporan::findOrFail($this->itemId);
         $laporan-> surat_permohonan = json_encode($surat);
         $laporan-> matriks_pergeseran = json_encode($this->matriks);

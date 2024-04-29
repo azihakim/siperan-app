@@ -414,7 +414,7 @@ class CreateLaporan extends Component
             'ppkd_nama' => $this->dokPel_pkkd_nama,
             'ppkd_nip' => $this->dokPel_pkkd_nip,
         ];
-        dd($ppkd);
+        // dd($ppkd);
 
         $dokumen_pelaksanaan = [
             'detail_surat' => $detailSurat,
@@ -430,6 +430,7 @@ class CreateLaporan extends Component
         $laporan-> matriks_pergeseran = json_encode($matrik);
         $laporan-> sptjm = json_encode($this->sptjm);
         $laporan-> dokumen_pelaksanaan = json_encode($dokumen_pelaksanaan);
+        // dd($laporan);
         $laporan->save();
 
         return redirect('/');

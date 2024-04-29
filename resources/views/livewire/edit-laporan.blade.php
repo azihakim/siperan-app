@@ -835,28 +835,47 @@
 																								</div>
 																				</div>
 																				<br><br>
+																				<hr>
+																				<h5>PPKD</h5>
+																				<div class="row">
+																								<div class="col-4">
+																												<div class="form-group">
+																																<label>Nama</label>
+																																<input type="text" class="form-control" wire:model="dokPel_pkkd_nama">
+																												</div>
+																								</div>
+																								<div class="col-4">
+																												<div class="form-group">
+																																<label>NIP</label>
+																																<input type="text" class="form-control" wire:model="dokPel_pkkd_nip">
+																												</div>
+																								</div>
+																				</div>
+																				@php
+																								$index = 0; // Atau nilai lainnya sesuai kebutuhan
+																				@endphp
 																				<h5>Tim Anggaran Pemerintah Daerah</h5>
-																				@foreach ($inputs_dokPel_tim as $index => $value)
+																				@foreach ($inputs_tim as $index => $value)
 																								<div class="row">
 																												<div class="col-4">
 																																<div class="form-group">
 																																				<label>Nama</label>
 																																				<input type="text" class="form-control"
-																																								wire:model="inputs_dokPel_tim.{{ $index }}.nama">
+																																								wire:model="inputs_tim.{{ $index }}.tim_nama">
 																																</div>
 																												</div>
 																												<div class="col-4">
 																																<div class="form-group">
 																																				<label>NIP</label>
 																																				<input type="text" class="form-control"
-																																								wire:model="inputs_dokPel_tim.{{ $index }}.nip">
+																																								wire:model="inputs_tim.{{ $index }}.tim_nip">
 																																</div>
 																												</div>
 																												<div class="col-4">
 																																<div class="form-group">
 																																				<label>Jabatan</label>
 																																				<input type="text" class="form-control"
-																																								wire:model="inputs_dokPel_tim.{{ $index }}.jabatan">
+																																								wire:model="inputs_tim.{{ $index }}.tim_jabatan">
 																																</div>
 																												</div>
 																								</div>
