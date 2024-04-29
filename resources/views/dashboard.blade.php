@@ -42,7 +42,8 @@
 																																																								Pergeseran</strong></a>
 																																																<a class="dropdown-item"
 																																																				href="{{ url('print-matriks/' . $item['id']) }}">PDF</a>
-																																																<a class="dropdown-item" href="#">EXCEL</a>
+																																																<a class="dropdown-item"
+																																																				href="{{ url('export-matriks/' . $item['id']) }}">EXCEL</a>
 																																																<div class="dropdown-divider"></div>
 																																																<a class="dropdown-item"><strong>Dokumen
 																																																								Pelaksanaan</strong></a>

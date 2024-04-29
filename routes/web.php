@@ -31,6 +31,7 @@ Route::get('/edit-laporan/{id}', [Laporan::class, 'edit'])->name('edit-laporan')
 Route::get('/print-sppa/{id}', [PrintController::class, 'printPermohonan'])->name('print-sppa');
 Route::get('/print-sptjm/{id}', [PrintController::class, 'printSptjm'])->name('print-sptjm');
 Route::get('/print-matriks/{id}', [PrintController::class, 'printMatriks'])->name('print-matriks');
+Route::get('/export-matriks/{id}', [PrintController::class, 'exportMatriks'])->name('export-matriks');
 
 
 

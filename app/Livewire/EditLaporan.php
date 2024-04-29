@@ -65,7 +65,7 @@ class EditLaporan extends Component
 
         // Mengambil nilai dari matriks_pergeseran\
         $this->matriks = $this->matriks_pergeseran;
-        $this->tgl_matriks = $this->matriks['tgl_matriks'];
+        $this->tgl_matriks = $this->matriks['tgl_matriks'] ?? null;
         foreach ($this->matriks['matriks_pergeseran'] as $key => $value) {
             $this->inputs[] = [
                 'no_rekening' => $value['no_rekening'] ?? null,
@@ -477,9 +477,6 @@ class EditLaporan extends Component
         }, 'sptjm.pdf');
     }
 
-    public function exportExcel()
-    {
-        return Excel::download(new TabelExport(), 'table.xlsx');
-    }
+    
 
 }

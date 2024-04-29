@@ -158,6 +158,38 @@
 																												<td>{{ $item['bertambah_berkurang'] }}</td>
 																								</tr>
 																				@endforeach
+
+																				<tr>
+																								<td colspan="2">Total</td>
+																								<td>
+																												<?php
+																												$total_sebelum = 0;
+																												foreach ($data_m as $item) {
+																												    $total_sebelum += $item['sebelum'];
+																												}
+																												echo $total_sebelum;
+																												?>
+																								</td>
+																								<td>
+																												<?php
+																												$total_sesudah = 0;
+																												foreach ($data_m as $item) {
+																												    $total_sesudah += $item['sesudah'];
+																												}
+																												echo $total_sesudah;
+																												?>
+																								</td>
+																								<td>
+																												<?php
+																												$total_bb = 0;
+																												foreach ($data_m as $item) {
+																												    $total_bb += $item['bertambah_berkurang'];
+																												}
+																												echo $total_bb;
+																												?>
+																								</td>
+																				</tr>
+
 																</tbody>
 												</table>
 

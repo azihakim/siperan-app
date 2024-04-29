@@ -410,10 +410,7 @@ class CreateLaporan extends Component
         }, 'sptjm.pdf');
     }
 
-    public function exportExcel()
-    {
-        return Excel::download(new TabelExport(), 'table.xlsx');
-    }
+    
     
 }
 

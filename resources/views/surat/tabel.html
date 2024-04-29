@@ -27,6 +27,34 @@
       margin: -10px;
     }
   </style>
+  <style>
+    table.dppa {
+      width: 100%;
+      border-collapse: collapse;
+      /* Menggabungkan garis tepi sel */
+    }
+
+    .dppa th,
+    .dppa td {
+      border-top: 1px solid black;
+      /* Tambahkan border-top pada sel */
+    }
+
+    .dppa td:first-child {
+      border-left: none;
+      /* Hapus border kiri untuk sel pertama dalam baris */
+    }
+
+    .dppa td:last-child {
+      border-right: none;
+      /* Hapus border kanan untuk sel terakhir dalam baris */
+    }
+
+    table.table2 {
+      /* Atur properti untuk memulai Tabel 2 di halaman baru saat mencetak */
+      page-break-before: always;
+    }
+  </style>
 </head>
 
 <body>
@@ -34,13 +62,69 @@
   <h2>Cell that spans two rows</h2>
   <p>To make a cell span more than one row, use the rowspan attribute.</p>
 
+  <!-- Tabel 1 -->
+  <table style="width: 100%;">
+    <thead style="text-align: center">
+      <tr>
+        <th><strong>DOKUMEN PELAKSANAAN ANGGARAN <br> SATUAN KERJA PERANGKAT DAERAH</strong></th>
+        <td rowspan="2">FORMULIR <br> DPPA RINCIAN BELANJA SKPD</td>
+      </tr>
+      <tr>
+        <td>Provinsi Sumatera Selatan <br> TAHUN ANGGARAN 2024</td>
+      </tr>
+    </thead>
+  </table>
+  <table style="width: 100%;" class="dppa">
+    <tbody>
+      <tr>
+        <td style="width: 250px;">Nomor DPPA</td>
+        <td>: </td>
+      </tr>
+      <tr>
+        <td>Urusan Pemerintahan</td>
+        <td>: </td>
+      </tr>
+      <tr>
+        <td>Bidang Urusan</td>
+        <td>: </td>
+      </tr>
+      <tr>
+        <td>Program</td>
+        <td>: </td>
+      </tr>
+      <tr>
+        <td>Kegiatan</td>
+        <td>: </td>
+      </tr>
+      <tr>
+        <td>Organisasi</td>
+        <td>: </td>
+      </tr>
+      <tr>
+        <td>Unit</td>
+        <td>: </td>
+      </tr>
+      <tr>
+        <td>Alokasi Tahun -1</td>
+        <td>: </td>
+      </tr>
+      <tr>
+        <td>Alokasi Tahun</td>
+        <td>: </td>
+      </tr>
+      <tr>
+        <td>Alokasi tahun +1</td>
+        <td>: </td>
+      </tr>
+    </tbody>
+  </table>
   <table style="width: 100%;">
     <thead style="text-align: center">
       <tr>
         <th colspan="5">Indikator dan Tolak Ukur Kinerja Kegiatan</th>
       </tr>
       <tr>
-        <th rowspan="2" style="width: 10px; vertical-align: middle;">Indikator</th>
+        <th rowspan="2" style="width: 140px; vertical-align: middle;">Indikator</th>
         <th colspan="2">Sebelum</th>
         <th colspan="2">Sesudah</th>
       </tr>
@@ -163,42 +247,87 @@
       </tr>
     </tbody>
   </table>
-  <!-- <table style="width:100%">
-    <tr>
-      <td rowspan="2" style="width:60%; text-align:center;">Phone</td>
-      <td colspan="7">Nomor DPPA</td>
-      <td rowspan="2">Formulir</td>
-    </tr>
-    <tr>
-      <td>555-8745</td>
-      <td>555-8745</td>
-      <td>555-8745</td>
-      <td>555-8745</td>
-      <td>555-8745</td>
-      <td>555-8745</td>
-      <td>555-8745</td>
-    </tr>
-    <tr>
-      <td colspan="9" style="text-align:center;"><strong>PEMERINTAH PROVINSI SUMATERA SELATAN</strong><br> Tahun
-        Anggaran</td>
-    </tr>
-    <tr>
-      <td colspan="9" style="text-align:center;">
-        <table class="custom-table">
-          <tbody>
-            <tr style="margin:1px;">
-              <td style="width:150px;">Urusan Pemerintahan</td>
-              <td>: Lorem ipsum dolor sit amet, consectetur adipiscing elit.</td>
-            </tr>
-            <tr>
-              <td style="width:150px;">Bidang Pemerintahan</td>
-              <td>: Lorem ipsum dolor sit amet, consectetur adipiscing elit.</td>
-            </tr>
-          </tbody>
-        </table>
-      </td>
-    </tr>
-  </table> -->
+
+  <!-- Tabel 2 -->
+  <table style="width: 100%;" class="table2">
+    <thead style="text-align: center">
+      <tr>
+        <th rowspan="3" style="width: 130px; vertical-align: middle;">Kode Rekening
+        </th>
+        <th rowspan="3" style="width: 500px; vertical-align: middle;">Uraian</th>
+        <th colspan="10">Rincian Perhitungan</th>
+        <th rowspan="3" style="max-width: 150px; vertical-align: middle;">
+          Bertambah / Berkurang</th>
+
+      </tr>
+      <tr>
+        <th colspan="5">Sebelum</th>
+        <th colspan="5">Sesudah</th>
+      </tr>
+      <tr>
+        <th style="width: 50px;">Koefisien/<br>Volume</th>
+        <th style="width: 80px;">Satuan</th>
+        <th style="width: 150px;">Harga</th>
+        <th style="width: 20px">PPN</th>
+        <th style="width: 150px">Jumlah</th>
+
+        <th style="width: 50px;">Koefisien/<br>Volume</th>
+        <th style="width: 80px;">Satuan</th>
+        <th style="width: 150px;">Harga</th>
+        <th style="width: 20px">PPN</th>
+        <th style="width: 150px">Jumlah</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>
+          <strong>Rekening</strong>
+        </td>
+        <td>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Temporibus animi praesentium dolorem, in aliquid
+          dolore similique possimus hic maxime suscipit quam, incidunt eveniet minima quisquam numquam ipsum
+          consequuntur sed unde!
+        </td>
+        <td>
+          SBM V
+        </td>
+        <td>
+          SBM S
+        </td>
+        <td>
+          SBM H
+        </td>
+        <td>
+          100%
+        </td>
+        <td>
+          Rp. 100.000.000
+        </td>
+
+        <td>
+        </td>
+        <td>
+        </td>
+        <td>
+        </td>
+        <td>
+        </td>
+        <td>
+        </td>
+
+        <td>
+        </td>
+      </tr>
+    </tbody>
+    <tfoot>
+      <tr>
+        <td colspan="6" style="text-align: right;">Jumlah Anggaran Sub Kegiatan &nbsp;</td>
+        <td>Jumlah</td>
+        <td colspan="4" style="text-align: right;">Jumlah Anggaran Sub Kegiatan &nbsp;</td>
+        <td>Jumlah</td>
+      </tr>
+    </tfoot>
+  </table>
 </body>
 
 </html>
