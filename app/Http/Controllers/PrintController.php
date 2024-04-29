@@ -113,6 +113,80 @@ class PrintController extends Controller
         }, 'sptjm.pdf');
     }
 
+    public function printMatriks($id)
+    {
+        $laporan = Laporan::find($id);
+        // Decode the JSON string in the "surat_permohonan" field
+        $suratPermohonan = json_decode($laporan->surat_permohonan, true);
+        $matrikPegeseran = json_decode($laporan->matriks_pergeseran, true);
+
+        // Parse the date string
+        $date = Carbon::parse($matrikPegeseran['tgl_matriks']);
+        
+        // Format the date as "30 April 2018"
+        $formattedDate = $date->format('j F Y');
+        $inputs = [];
+
+        $data = [
+            "id" => $laporan->id,
+            "surat_permohonan" => [
+                "biro" => $suratPermohonan['biro'] ?? null,
+                "no_sppa" => $suratPermohonan['no_sppa'],
+                "sifat_sppa" => $suratPermohonan['sifat_sppa'] ?? null,
+                "lampiran_sppa" => $suratPermohonan['lampiran_sppa'] ?? null,
+                "hal_sppa" => $suratPermohonan['hal_sppa'] ?? null,
+                "nama_kb" => $suratPermohonan['nama_kb'] ?? null,
+                "jabatan_kb" => $suratPermohonan['jabatan_kb'] ?? null,
+                "nip_kb" => $suratPermohonan['nip_kb'] ?? null,
+                "pangkat_kb" => $suratPermohonan['pangkat_kb'] ?? null
+            ],
+            "matriks_pergeseran" => [
+                "tgl_matriks" => $formattedDate ?? null,
+                "matriks_pergeseran" => $matrikPegeseran['matriks_pergeseran'] ?? null
+            ]
+        ];
+        // Mengakses data matriks_pergeseran
+        $matriks_pergeseran = $data['matriks_pergeseran']['matriks_pergeseran'];
+
+        // Mengakses tgl_matriks
+        $tgl_matriks = $data['matriks_pergeseran']['tgl_matriks'];
+
+        // Melakukan foreach untuk matriks_pergeseran
+        foreach ($matriks_pergeseran as $matriks) {
+            $no_rekening = $matriks['no_rekening'];
+            $uraian = $matriks['uraian'];
+            $sebelum = $matriks['sebelum'];
+            $sesudah = $matriks['sesudah'];
+            $bertambah_berkurang = $matriks['bertambah_berkurang'];
+
+            // Lakukan sesuatu dengan data ini, misalnya tambahkan ke dalam array atau lakukan operasi lainnya
+            // Contoh:
+            $data_m[] = [
+                'tgl_matriks' => $tgl_matriks,
+                'no_rekening' => $no_rekening,
+                'uraian' => $uraian,
+                'sebelum' => $sebelum,
+                'sesudah' => $sesudah,
+                'bertambah_berkurang' => $bertambah_berkurang
+            ];
+        }
+        $options = new Options();
+        $options->set('chroot', public_path());
+
+        $dompdf = new Dompdf($options);
+        $html = view('matrik', compact('data_m', 'data', 'tgl_matriks'))->render();
+        $dompdf->loadHtml($html);
+        $dompdf->setPaper('A4', 'landscape');
+        $dompdf->render();
+        
+        $pdfContent = $dompdf->output();
+        
+        $biro = $data['surat_permohonan']['biro'];
+        return response()->streamDownload(function () use ($pdfContent) {
+            echo $pdfContent;
+        }, 'Matriks Pergeseran-'.$biro.'.pdf');
+    }
+
     public function exportExcel()
     {
         return Excel::download(new TabelExport(), 'table.xlsx');

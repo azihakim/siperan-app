@@ -185,6 +185,18 @@
 																@endif
 
 																@if ($currentStep == 2)
+																				<div class="row">
+																								<div class="col-2">
+																												@error('')
+																																<span class="text-danger">{{ $message }}</span>
+																												@enderror
+																												<div class="form-group">
+																																<label>Tanggal</label>
+																																<input class="form-control" type="date" wire:model="tgl_matriks"
+																																				placeholder="No. Rekening">
+																												</div>
+																								</div>
+																				</div>
 																				<!-- Tampilan Input Dinamis -->
 																				@foreach ($inputs as $key => $value)
 																								<div class="row">

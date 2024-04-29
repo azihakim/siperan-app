@@ -24,6 +24,7 @@ class EditLaporan extends Component
 
     public $biro, $tgl, $no_sppa, $sifat_sppa, $lampiran_sppa, $hal_sppa, $nama_kb, $jabatan_kb, $nip_kb, $pangkat_kb;
     public $tgl_sptjm, $no_sptjm;
+    public $tgl_matriks;
     public $dokPel_ck_tuk_sbm, $dokPel_ck_tk_sbm, $dokPel_ck_tuk_sth, $dokPel_ck_tk_sth, $dokPel_m_tuk_sbm, $dokPel_m_tk_sbm, $dokPel_m_tuk_sth, $dokPel_m_tk_sth, $dokPel_k_tuk_sbm, $dokPel_k_tk_sbm, $dokPel_k_tuk_sth, $dokPel_k_tk_sth, $dokPel_h_tuk_sbm, $dokPel_h_tk_sbm, $dokPel_h_tuk_sth, $dokPel_h_tk_sth;
     public $dokPel_tahun, $dokPel_noDppa, $dokPel_UrusanPemerintahan, $dokPel_bidangUrusan, $dokPel_program, $dokPel_kegiatan, $dokPel_organisasi, $dokPel_unit, $dokPel_alokasiM1, $dokPel_alokasiTahun, $dokPel_alokasiP1;
     public $dokPel_sk, $dokPel_sp, $dokPel_lokasi, $dokPel_ksk, $dokPel_waktu, $dokPel_keterangan;
@@ -64,14 +65,14 @@ class EditLaporan extends Component
 
         // Mengambil nilai dari matriks_pergeseran\
         $this->matriks = $this->matriks_pergeseran;
-        
-        foreach ($this->matriks as $key => $value) {
+        $this->tgl_matriks = $this->matriks['tgl_matriks'];
+        foreach ($this->matriks['matriks_pergeseran'] as $key => $value) {
             $this->inputs[] = [
-                'no_rekening' => $value['no_rekening'],
-                'uraian' => $value['uraian'],
-                'sebelum' => $value['sebelum'],
-                'sesudah' => $value['sesudah'],
-                'bertambah_berkurang' => $value['bertambah_berkurang']
+                'no_rekening' => $value['no_rekening'] ?? null,
+                'uraian' => $value['uraian'] ?? null,
+                'sebelum' => $value['sebelum'] ?? null,
+                'sesudah' => $value['sesudah'] ?? null,
+                'bertambah_berkurang' => $value['bertambah_berkurang'] ?? null
             ];
         }
 

@@ -15,8 +15,9 @@ use Illuminate\Http\Request;
 
 class CreateLaporan extends Component
 {
-    public $currentStep = 1;
+    public $currentStep = 2;
     public $biro, $tgl, $no_sppa, $sifat_sppa, $lampiran_sppa, $hal_sppa, $nama_kb, $jabatan_kb, $nip_kb, $pangkat_kb;
+    public $tgl_matriks;
     public $tgl_sptjm, $no_sptjm;
     public $dokPel_ck_tuk_sbm, $dokPel_ck_tk_sbm, $dokPel_ck_tuk_sth, $dokPel_ck_tk_sth, $dokPel_m_tuk_sbm, $dokPel_m_tk_sbm, $dokPel_m_tuk_sth, $dokPel_m_tk_sth, $dokPel_k_tuk_sbm, $dokPel_k_tk_sbm, $dokPel_k_tuk_sth, $dokPel_k_tk_sth, $dokPel_h_tuk_sbm, $dokPel_h_tk_sbm, $dokPel_h_tuk_sth, $dokPel_h_tk_sth;
     public $dokPel_tahun, $dokPel_noDppa, $dokPel_UrusanPemerintahan, $dokPel_bidangUrusan, $dokPel_program, $dokPel_kegiatan, $dokPel_organisasi, $dokPel_unit, $dokPel_alokasiM1, $dokPel_alokasiTahun, $dokPel_alokasiP1;
@@ -366,11 +367,16 @@ class CreateLaporan extends Component
             'indikator' => $indikator,
             'rincian_perhitungan' => $this->inputs_dokPel,
         ];
+
+        $matrik = [
+            'tgl_matriks' => $this->tgl_matriks,
+            'matriks_pergeseran' => $this->matriks,
+        ];
         // dd($dokumen_pelaksanaan);
 
         $laporan = new Laporan();
         $laporan-> surat_permohonan = json_encode($this->sppa);
-        $laporan-> matriks_pergeseran = json_encode($this->matriks);
+        $laporan-> matriks_pergeseran = json_encode($matrik);
         $laporan-> sptjm = json_encode($this->sptjm);
         $laporan-> dokumen_pelaksanaan = json_encode($dokumen_pelaksanaan);
         $laporan->save();
