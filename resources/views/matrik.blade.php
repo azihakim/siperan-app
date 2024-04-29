@@ -167,7 +167,6 @@
 																				<p>Plh. {{ $data['surat_permohonan']['biro'] }}</p>
 																				<br><br><br><br><br><br>
 																				<div><strong>{{ $data['surat_permohonan']['nama_kb'] }}</strong><br>
-																								{{ $data['surat_permohonan']['pangkat_kb'] }}<br>
 																								NIP {{ $data['surat_permohonan']['nip_kb'] }}</div>
 																</div>
 												</div>
