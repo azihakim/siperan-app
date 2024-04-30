@@ -685,7 +685,7 @@
 																																												@error('inputs_dokPel.' . $i . '.jumlah_sbm')
 																																																<span class="text-danger">{{ $message }}</span>
 																																												@enderror
-																																												<textarea type="text" class="form-control" wire:model="inputs_dokPel.{{ $i }}.jumlah_sbm"
+																																												<textarea type="number" class="form-control" wire:model="inputs_dokPel.{{ $i }}.jumlah_sbm"
 																																												    placeholder="Jumlah Sebelum"></textarea>
 																																								</td>
 
@@ -721,7 +721,7 @@
 																																												@error('inputs_dokPel.' . $i . '.jumlah_sth')
 																																																<span class="text-danger">{{ $message }}</span>
 																																												@enderror
-																																												<textarea type="text" class="form-control" wire:model="inputs_dokPel.{{ $i }}.jumlah_sth"
+																																												<textarea type="number" class="form-control" wire:model="inputs_dokPel.{{ $i }}.jumlah_sth"
 																																												    placeholder="Jumlah Setelah"></textarea>
 																																								</td>
 
@@ -729,7 +729,7 @@
 																																												@error('inputs_dokPel.' . $i . '.bertambah_berkurang')
 																																																<span class="text-danger">{{ $message }}</span>
 																																												@enderror
-																																												<textarea type="text" class="form-control" wire:model="inputs_dokPel.{{ $i }}.bertambah_berkurang"
+																																												<textarea type="number" class="form-control" wire:model="inputs_dokPel.{{ $i }}.bertambah_berkurang"
 																																												    placeholder="Bertambah/Berkurang"></textarea>
 																																								</td>
 

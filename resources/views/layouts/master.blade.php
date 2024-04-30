@@ -71,10 +71,19 @@
 												<!-- Right navbar links -->
 												<ul class="navbar-nav ml-auto">
 																<li class="nav-item">
-																				<a class="nav-link" data-widget="control-sidebar" data-controlsidebar-slide="true" href="#"
+																				{{-- <a class="nav-link" data-widget="control-sidebar" data-controlsidebar-slide="true" href="#"
 																								role="button">
 																								<i class="fas fa-th-large"></i>
-																				</a>
+																				</a> --}}
+																				<form method="POST" action="{{ route('logout') }}">
+																								@csrf
+
+																								<x-dropdown-link class="nav-link" :href="route('logout')"
+																												onclick="event.preventDefault();
+                                    this.closest('form').submit();">
+																												<button type="button" class="btn btn-block btn-outline-danger">Log Out</button>
+																								</x-dropdown-link>
+																				</form>
 																</li>
 												</ul>
 								</nav>
@@ -107,6 +116,15 @@
 																																<p>Laporan</p>
 																												</a>
 																								</li>
+																								@if (auth()->user()->name == 'admin')
+																												<li class="nav-item">
+																																<a href="{{ url('/pengguna') }}" class="nav-link">
+																																				<i class="nav-icon fas fa-user-plus"></i>
+																																				<p>Pengguna</p>
+																																</a>
+																												</li>
+																								@endif
+
 																				</ul>
 																</nav>
 																<!-- /.sidebar-menu -->

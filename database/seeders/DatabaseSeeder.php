@@ -6,7 +6,9 @@ namespace Database\Seeders;
 
 use App\Models\Laporan;
 use App\Models\Pegawai;
+use App\Models\User;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Hash;
 
 class DatabaseSeeder extends Seeder
 {
@@ -15,28 +17,11 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // // Daftar nama-nama biro
-        // $biros = [
-        //     'Sekrekaris Daerah',
-        //     'Biro Pemerintahan dan Otonomi Daerah',
-        //     'Biro Hukum Setda Provinsi Sumsel',
-        //     'Biro Perekonomian Setda Provinsi Sumsel',
-        //     'Biro Administrasi Pembangunan Setda Provinsi Sumsel',
-        //     'Biro Kesehjahteraan Rakyat Setda Provinsi Sumsel',
-        //     'Biro Umum dan Perlengkapan Setda Provinsi Sumsel',
-        //     'Biro Humas dan Protokol Setda Provinsi Sumsel',
-        //     // Tambahkan nama biro lainnya sesuai kebutuhan
-        // ];
-
-        // // Memasukkan data biro ke dalam tabel
-        // foreach ($biros as $biro) {
-        //     Pegawai::create([
-        //         'biro' => $biro,
-        //         'nama' => 'Nama ' . $biro,
-        //         'nip' => 'NIP ' . $biro,
-        //         'jabatan' => 'Jabatan ' . $biro,
-        //     ]);
-        // }
+        User::create([
+            'name' => 'admin',
+            'username' => 'admin',
+            'password' => Hash::make('123')
+        ]);
 
         $pegawai = [
             [

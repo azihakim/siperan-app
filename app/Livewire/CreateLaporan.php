@@ -15,7 +15,7 @@ use Illuminate\Http\Request;
 
 class CreateLaporan extends Component
 {
-    public $currentStep = 4;
+    public $currentStep = 1;
     public $biro, $tgl, $no_sppa, $sifat_sppa, $lampiran_sppa, $hal_sppa, $nama_kb, $jabatan_kb, $nip_kb, $pangkat_kb;
     public $tgl_matriks;
     public $tgl_sptjm, $no_sptjm;

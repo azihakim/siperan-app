@@ -59,9 +59,10 @@ class PrintController extends Controller
         
         $pdfContent = $dompdf->output();
 
+        $biro = $data['surat_permohonan']['biro'];
         return response()->streamDownload(function () use ($pdfContent) {
             echo $pdfContent;
-        }, 'surat.pdf');
+        },  'Surat Permohonan-'.$biro.'.pdf');
     }
 
     public function printSptjm($id)
@@ -108,10 +109,11 @@ class PrintController extends Controller
         
         $pdfContent = $dompdf->output();
         
+        $biro = $data['surat_permohonan']['biro'];
 
         return response()->streamDownload(function () use ($pdfContent) {
             echo $pdfContent;
-        }, 'sptjm.pdf');
+        },  'SPTJM-'.$biro.'.pdf');
     }
 
     public function printMatriks($id)
@@ -342,7 +344,7 @@ class PrintController extends Controller
         $biro = $data['surat_permohonan']['biro'];
         return response()->streamDownload(function () use ($pdfContent) {
             echo $pdfContent;
-        }, 'Matriks Pergeseran-'.$biro.'.pdf');
+        }, 'DPA-'.$biro.'.pdf');
     }
 
     public function exportDpa($id)
