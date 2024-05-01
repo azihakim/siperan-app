@@ -227,7 +227,7 @@
 												<div class="row2" style="margin-left: 60%;">
 																<div style="text-align: left;">
 																				<p>Palembang, {{ $data['sptjm']['tgl_sptjm'] }}</p>
-																				<p>Plh. Kepala {{ $data['surat_permohonan']['biro'] }}</p>
+																				<p>Kepala {{ $data['surat_permohonan']['biro'] }}</p>
 																				<br><br><br><br><br><br>
 																				<div><strong>{{ $data['surat_permohonan']['nama_kb'] }}</strong><br>
 																								{{ $data['surat_permohonan']['pangkat_kb'] }}<br>

@@ -196,7 +196,7 @@
 												<div class="row2" style="margin-left: 60%;">
 																<div style="text-align: left;">
 																				<p>Palembang, {{ $tgl_matriks }}</p>
-																				<p>Plh. {{ $data['surat_permohonan']['biro'] }}</p>
+																				<p>Kepala {{ $data['surat_permohonan']['biro'] }}</p>
 																				<br><br><br><br><br><br>
 																				<div><strong>{{ $data['surat_permohonan']['nama_kb'] }}</strong><br>
 																								NIP {{ $data['surat_permohonan']['nip_kb'] }}</div>

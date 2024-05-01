@@ -200,7 +200,7 @@
 
 												<div class="row2" style="margin-left: 60%;">
 																<div>
-																				<p id="camat">Plh. Kepala {{ $data['surat_permohonan']['biro'] }}</p>
+																				<p id="camat">Kepala {{ $data['surat_permohonan']['biro'] }}</p>
 																				<div id="nama-camat">
 																								<strong>{{ $data['surat_permohonan']['nama_kb'] }}</strong><br>
 																								{{ $data['surat_permohonan']['jabatan_kb'] }}<br>

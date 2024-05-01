@@ -15,7 +15,7 @@ use Illuminate\Http\Request;
 
 class CreateLaporan extends Component
 {
-    public $currentStep = 1;
+    public $currentStep = 4;
     public $biro, $tgl, $no_sppa, $sifat_sppa, $lampiran_sppa, $hal_sppa, $nama_kb, $jabatan_kb, $nip_kb, $pangkat_kb;
     public $tgl_matriks;
     public $tgl_sptjm, $no_sptjm;
@@ -108,10 +108,26 @@ class CreateLaporan extends Component
         ];
 
         $this->inputs_tim[] = [
-            'tim_nama' => '', 
-            'tim_nip' => '', 
-            'tim_jabatan' => ''
+            'tim_nama' => 'REGINA ARIYANTI, ST', 
+            'tim_nip' => '196712042002122003', 
+            'tim_jabatan' => 'KEPALA BAPPEDA'
         ];
+
+        $this->inputs_tim[] = [
+            'tim_nama' => 'H. AKHMAD MUKHLIS, S.E., M.SI', 
+            'tim_nip' => '196406211993031004', 
+            'tim_jabatan' => 'KEPALA BPKAD'
+        ];
+
+        $this->inputs_tim[] = [
+            'tim_nama' => 'H. ACHMAD RIZWAN S.STP., M.M', 
+            'tim_nip' => '198109232000121001', 
+            'tim_jabatan' => 'KEPALA BAPENDA'
+        ];
+
+        $this->dokPel_pkkd_nama = 'H. AKHMAD MUKHLIS, S.E., M.SI';
+        $this->dokPel_pkkd_nip = '196406211993031004';
+
 
     }
 
