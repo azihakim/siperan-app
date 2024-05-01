@@ -12,7 +12,7 @@
 																<div class="bs-stepper-header" role="tablist">
 																				<!-- your steps here -->
 																				<div class="step">
-																								<button type="button" class="step-trigger">
+																								<button type="button" class="step-trigger" wire:click="Submit1">
 																												<span class="bs-stepper-circle"
 																																style="background-color:{{ $currentStep != 1 ? '' : '#3c8dbc' }}">1</span>
 																												<span class="bs-stepper-label" style="color:{{ $currentStep != 1 ? '' : '#3c8dbc' }}">Surat
@@ -21,7 +21,7 @@
 																				</div>
 																				<div class="line"></div>
 																				<div class="step">
-																								<button type="button" class="step-trigger">
+																								<button type="button" class="step-trigger" wire:click="Submit2">
 																												<span class="bs-stepper-circle"
 																																style="background-color:{{ $currentStep != 2 ? '' : '#3c8dbc' }}">2</span>
 																												<span class="bs-stepper-label"
@@ -30,7 +30,7 @@
 																				</div>
 																				<div class="line"></div>
 																				<div class="step">
-																								<button type="button" class="step-trigger">
+																								<button type="button" class="step-trigger" wire:click="Submit3">
 																												<span class="bs-stepper-circle"
 																																style="background-color:{{ $currentStep != 3 ? '' : '#3c8dbc' }}">3</span>
 																												<span class="bs-stepper-label"
@@ -39,7 +39,7 @@
 																				</div>
 																				<div class="line"></div>
 																				<div class="step">
-																								<button type="button" class="step-trigger">
+																								<button type="button" class="step-trigger" wire:click="Submit4">
 																												<span class="bs-stepper-circle"
 																																style="background-color:{{ $currentStep != 4 ? '' : '#3c8dbc' }}">4</span>
 																												<span class="bs-stepper-label"
@@ -387,7 +387,7 @@
 																																<input type="text" class="form-control" wire:model="dokPel_bidangUrusan">
 																												</div>
 																								</div>
-																								<div class="col-4">
+																								{{-- <div class="col-4">
 																												@error('dokPel_program')
 																																<span class="text-danger">{{ $message }}</span>
 																												@enderror
@@ -395,7 +395,23 @@
 																																<label>Program</label>
 																																<input type="text" class="form-control" wire:model="dokPel_program">
 																												</div>
+																								</div> --}}
+																								<div class="col-4">
+																												@error('dokPel_program')
+																																<span class="text-danger">{{ $message }}</span>
+																												@enderror
+																												<div class="form-group">
+																																<label for="Program">Pilih Program</label>
+																																<select class="form-control" style="width: 100%;" id="dokPel_program"
+																																				wire:model="dokPel_program" wire:change="fillSubprograms">
+																																				<option value="">Pilih Program</option>
+																																				@foreach ($program_options as $option)
+																																								<option value="{{ $option }}">{{ $option }}</option>
+																																				@endforeach
+																																</select>
+																												</div>
 																								</div>
+
 																								<div class="col-4">
 																												@error('dokPel_kegiatan')
 																																<span class="text-danger">{{ $message }}</span>
@@ -565,8 +581,12 @@
 																																<tr>
 																																				<td colspan="2">Sub Kegiatan</td>
 																																				<td colspan="3">
-																																								<input type="text" class="form-control" wire:model="dokPel_sk"
-																																												placeholder="Sub Kegiatan">
+																																								<select class="form-control" style="width: 100%;" wire:model="dokPel_sk">
+																																												<option value="">Pilih Program</option>
+																																												@foreach ($sub_program_options as $option)
+																																																<option value="{{ $option }}">{{ $option }}</option>
+																																												@endforeach
+																																								</select>
 																																				</td>
 																																</tr>
 																																<tr>

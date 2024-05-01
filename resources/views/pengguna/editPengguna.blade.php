@@ -33,6 +33,17 @@
 																												</div>
 																												<div class="col-sm-6">
 																																<div class="form-group">
+																																				<label for="biro">Biro</label>
+																																				<select class="form-control" style="width: 100%;" id="biro" name="biro">
+																																								<option value="{{ $data->biro }}">{{ $data->biro }}</option>
+																																								@foreach ($biro as $option)
+																																												<option value="{{ $option }}">{{ $option }}</option>
+																																								@endforeach
+																																				</select>
+																																</div>
+																												</div>
+																												<div class="col-sm-6">
+																																<div class="form-group">
 																																				<label>Username</label>
 																																				<input type="text" name="username"
 																																								class="form-control @error('username') is-invalid @enderror"

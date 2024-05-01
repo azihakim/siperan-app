@@ -3,15 +3,15 @@
 namespace App\Livewire;
 
 use App\Models\Laporan;
-use App\Models\Pegawai;
 use Livewire\Component;
 
 use Dompdf\Dompdf;
 use Dompdf\Options;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Exports\TabelExport;
+use App\Models\Biro;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\Auth;
 
 class EditLaporan extends Component
 {
@@ -41,6 +41,9 @@ class EditLaporan extends Component
     public $index = 1;
 
     public $sppa, $matriks, $sptjm, $dokPel;
+    public $sub_program_options = [];
+    public $programs;
+    public $program_options = [];
 
 
 
@@ -52,13 +55,19 @@ class EditLaporan extends Component
     public function mount($id)
     {
         $this->itemId = $id;
+        $userRole = Auth::user()->biro;
+        if ($userRole == 'admin') {
+            $this->options = Biro::select('biro')->distinct()->pluck('biro')->toArray();
+        } else {
+            $this->options = Biro::select('biro')->distinct()->where('biro', Auth::user()->biro)->pluck('biro')->toArray();
+        }
+
 
         $laporan = Laporan::findOrFail($id);
         $this->surat_permohonan = json_decode($laporan->surat_permohonan, true) ?? [];
         $this->matriks_pergeseran = json_decode($laporan->matriks_pergeseran, true) ?? [];
         $this->sptjm = json_decode($laporan->sptjm, true) ?? [];
         $this->dokumen_pelaksanaan = json_decode($laporan->dokumen_pelaksanaan, true) ?? [];
-        $this->options = Pegawai::select('biro')->distinct()->pluck('biro')->toArray();
         // dd($laporan);
         // Mengambil nilai dari surat_permohonan
         $this->biro = $this->surat_permohonan['biro'];
@@ -218,14 +227,58 @@ class EditLaporan extends Component
         $this->dokPel_pkkd_nip = $this->dokumen_pelaksanaan['ppkd']['ppkd_nip'] ?? null;
         // dd($this->dokPel_pkkd_nip);
 
+        $this->fillPrograms();
+        $this->fillSubprograms();
+
     }
 
+    public function fillPrograms()
+    {
+        $this->programs = []; // Bersihkan data program sebelum mengisi ulang
 
+        $biro = $this->biro;
+        $data = Biro::where('biro', $biro)->get();
+
+        foreach ($data as $biro) {
+            $programs = json_decode($biro->programs, true) ?? [];
+            foreach ($programs as $program) {
+                $sub_programs = array_column($program['sub_program'], 'name'); // Ambil hanya nama sub program
+                $this->programs[] = [
+                    'program' => $program['program'],
+                    'sub_program' => $sub_programs
+                ];
+            }
+        }
+
+        // Mengisi opsi program
+        $this->program_options = array_column($this->programs, 'program');
+    }
+    public function fillSubprograms()
+    {
+        // dd($this->selectedProgram);
+        $this->sub_program_options = []; // Bersihkan data sub program sebelum mengisi ulang
+
+        $biro = $this->biro;
+        $data = Biro::where('biro', $biro)->get();
+
+        foreach ($data as $biro) {
+            $programs = json_decode($biro->programs, true) ?? [];
+            foreach ($programs as $program) {
+                // Periksa apakah program saat ini cocok dengan program yang dipilih
+                if ($program['program'] === $this->dokPel_program) {
+                    // Simpan sub program ke dalam properti Livewire
+                    $this->sub_program_options = $program['sub_program'];
+                    // Keluar dari loop karena program yang cocok sudah ditemukan
+                    break 2;
+                }
+            }
+        }
+    }
 
     public function fillEmployeeData()
     {
         // Retrieve employee data from the database based on selected department
-        $pegawai = Pegawai::where('biro', $this->biro)->first();
+        $pegawai = Biro::where('biro', $this->biro)->first();
 
         // If employee data is found, fill in the name, NIP, and position properties
         if ($pegawai) {
@@ -238,6 +291,9 @@ class EditLaporan extends Component
             $this->nip_kb = null;
             $this->jabatan_kb = null;
         }
+        $this->fillPrograms();
+        $this->fillSubprograms();
+        
     }
 
 
@@ -560,6 +616,21 @@ class EditLaporan extends Component
         }, 'sptjm.pdf');
     }
 
-    
+    public function Submit1()
+    {
+        $this->currentStep = 1;
+    }
+    public function Submit2()
+    {
+        $this->currentStep = 2;
+    }
+    public function Submit3()
+    {
+        $this->currentStep = 3;
+    }
+    public function Submit4()
+    {
+        $this->currentStep = 4;
+    }
 
 }

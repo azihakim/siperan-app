@@ -2,8 +2,8 @@
 @section('title', 'Tambah Pengguna')
 @section('content')
 				<div class="row">
-								<div class="col-2"></div>
-								<div class="col-8">
+								<div class="col-4"></div>
+								<div class="col-4">
 												<div class="card card-info">
 																@if (session('error'))
 																				<div class="alert alert-danger">
@@ -25,6 +25,16 @@
 																												@error('name')
 																																<div class="invalid-feedback">{{ $message }}</div>
 																												@enderror
+																								</div>
+
+																								<div class="form-group">
+																												<label for="biro">Biro</label>
+																												<select class="form-control" style="width: 100%;" id="biro" name="biro">
+																																<option value="">Pilih Biro</option>
+																																@foreach ($biro as $option)
+																																				<option value="{{ $option }}">{{ $option }}</option>
+																																@endforeach
+																												</select>
 																								</div>
 
 																								<div class="form-group">
@@ -52,7 +62,7 @@
 																</div>
 												</div>
 								</div>
-								<div class="col-2"></div>
+								<div class="col-4"></div>
 				</div>
 
 @endsection

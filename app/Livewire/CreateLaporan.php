@@ -9,9 +9,10 @@ use Carbon\Carbon;
 use Dompdf\Options;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Exports\TabelExport;
+use App\Models\Biro;
 use App\Models\Laporan;
-use App\Models\Pegawai;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class CreateLaporan extends Component
 {
@@ -31,9 +32,18 @@ class CreateLaporan extends Component
     public $i = 1;
     public $index = 1;
     public $options = [];
-
+    
+    public $dataProgram;
+    public $program_options = [];
+    public $pilihanProgram;
+    public $programs;
+    public $program;
+    public $sub_program = [];
+    public $sub_program_options = [];
 
     public $sppa, $matriks, $sptjm, $dokPel;
+    public $selectedProgram; // Properti untuk menyimpan program yang dipilih
+    public $selectedSubProgram = ''; // Properti untuk menyimpan sub program yang dipilih
 
     public function render()
     {
@@ -78,11 +88,25 @@ class CreateLaporan extends Component
         // $this->dokPel_waktu = 'dokPel_waktu';
         // $this->dokPel_keterangan = 'dokPel_keterangan';
 
+        // $this->fillPrograms();
+        // $this->selectedProgram = $this->program_options[0] ?? null;
+        
+        
+        $userRole = Auth::user()->biro;
+        if ($userRole == 'admin') {
+            $this->options = Biro::select('biro')->distinct()->pluck('biro')->toArray();
+        } else {
+            $this->options = Biro::select('biro')->distinct()->where('biro', Auth::user()->biro)->pluck('biro')->toArray();
+        }
+        
+        $bb = Biro::all();
 
-
-
-
-        $this->options = Pegawai::select('biro')->distinct()->pluck('biro')->toArray();
+        $userRole = Auth::user()->role;
+        if ($userRole == 'admin') {
+            $this->programs = Biro::select('programs')->distinct()->pluck('biro')->toArray();
+        } else {
+            $this->programs = Biro::select('programs')->distinct()->where('biro', Auth::user()->biro)->pluck('biro')->toArray();
+        }
 
         // Initialize first input when component is loaded
         $this->inputs[] = [
@@ -131,10 +155,63 @@ class CreateLaporan extends Component
 
     }
 
+    // Ketika program dipilih, atur opsi sub program sesuai dengan program yang dipilih
+//    public function updatedSelectedProgram($selectedProgram)
+// {
+//     // Fungsi ini akan dipanggil setiap kali ada perubahan pada dropdown program
+
+//     $selectedProgramData = collect($this->programs)->where('program', $selectedProgram)->first();
+//     $this->sub_program_options = $selectedProgramData ? $selectedProgramData['sub_program'] : [];
+// }
+    public function fillPrograms()
+    {
+        $this->programs = []; // Bersihkan data program sebelum mengisi ulang
+
+        $biro = $this->biro;
+        $data = Biro::where('biro', $biro)->get();
+
+        foreach ($data as $biro) {
+            $programs = json_decode($biro->programs, true) ?? [];
+            foreach ($programs as $program) {
+                $sub_programs = array_column($program['sub_program'], 'name'); // Ambil hanya nama sub program
+                $this->programs[] = [
+                    'program' => $program['program'],
+                    'sub_program' => $sub_programs
+                ];
+            }
+        }
+
+        // Mengisi opsi program
+        $this->program_options = array_column($this->programs, 'program');
+    }
+
+    public function fillSubprograms()
+    {
+        // dd($this->selectedProgram);
+        $this->sub_program_options = []; // Bersihkan data sub program sebelum mengisi ulang
+
+        $biro = $this->biro;
+        $data = Biro::where('biro', $biro)->get();
+
+        foreach ($data as $biro) {
+            $programs = json_decode($biro->programs, true) ?? [];
+            foreach ($programs as $program) {
+                // Periksa apakah program saat ini cocok dengan program yang dipilih
+                if ($program['program'] === $this->dokPel_program) {
+                    // Simpan sub program ke dalam properti Livewire
+                    $this->sub_program_options = $program['sub_program'];
+                    // Keluar dari loop karena program yang cocok sudah ditemukan
+                    break 2;
+                }
+            }
+        }
+    }
+
+
     public function fillEmployeeData()
     {
         // Retrieve employee data from the database based on selected department
-        $pegawai = Pegawai::where('biro', $this->biro)->first();
+        $pegawai = Biro::where('biro', $this->biro)->first();
 
         // If employee data is found, fill in the name, NIP, and position properties
         if ($pegawai) {
@@ -147,7 +224,12 @@ class CreateLaporan extends Component
             $this->nip_kb = null;
             $this->jabatan_kb = null;
         }
+        $this->fillPrograms();
+        $this->fillSubprograms();
+        
     }
+
+    
 
 
     public function firstStepSubmit()
@@ -367,6 +449,19 @@ class CreateLaporan extends Component
             //     ], $this->messages_dokPel); // Gunakan variable messages_dokPel untuk menampilkan pesan error
             // }
 
+        $this->sppa = [
+            'biro' => $this->biro,
+            'tgl' => $this->tgl,
+            'no_sppa' => $this->no_sppa,
+            'sifat_sppa' => $this->sifat_sppa,
+            'lampiran_sppa' => $this->lampiran_sppa,
+            'hal_sppa' => $this->hal_sppa,
+            'nama_kb' => $this->nama_kb,
+            'jabatan_kb' => $this->jabatan_kb,
+            'nip_kb' => $this->nip_kb,
+            'pangkat_kb' => $this->pangkat_kb
+        ];
+
         $detailSurat = [
             'tahun_anggaran' => $this->dokPel_tahun,
             'nomor_dppa' => $this->dokPel_noDppa,
@@ -440,7 +535,6 @@ class CreateLaporan extends Component
             'rencana' => $dokPel_rencana,
             'tim' => $this->inputs_tim
         ];
-
         $laporan = new Laporan();
         $laporan-> surat_permohonan = json_encode($this->sppa);
         $laporan-> matriks_pergeseran = json_encode($matrik);
@@ -478,7 +572,22 @@ class CreateLaporan extends Component
         }, 'sptjm.pdf');
     }
 
-    
+    public function Submit1()
+    {
+        $this->currentStep = 1;
+    }
+    public function Submit2()
+    {
+        $this->currentStep = 2;
+    }
+    public function Submit3()
+    {
+        $this->currentStep = 3;
+    }
+    public function Submit4()
+    {
+        $this->currentStep = 4;
+    }
     
 }
 

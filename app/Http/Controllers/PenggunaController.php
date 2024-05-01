@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Biro;
+use App\Models\Pegawai;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -14,7 +16,9 @@ class PenggunaController extends Controller
     public function index()
     {
         $data = User::all();
-        return view('pengguna.pengguna', compact('data'));
+        $biro = Biro::select('biro')->distinct()->pluck('biro')->toArray();
+
+        return view('pengguna.pengguna', compact('data', 'biro'));
     }
 
     /**
@@ -22,7 +26,8 @@ class PenggunaController extends Controller
      */
     public function create()
     {
-        return view('pengguna.tambahPengguna');
+        $biro = Biro::select('biro')->distinct()->pluck('biro')->toArray();
+        return view('pengguna.tambahPengguna', compact('biro'));
     }
 
     /**
@@ -35,11 +40,13 @@ class PenggunaController extends Controller
             'name' => 'required|string|max:255',
             'username' => 'required|string|max:255|unique:users', // Username harus unik di dalam tabel users
             'password' => 'required|string',
+            'biro' => 'required|string',
         ]);
 
         $data = new User();
         $data->name = $request->name;
         $data->username = $request->username;
+        $data->biro = $request->biro;
         $data->password = Hash::make($request->password);
         $data->save();
 
@@ -52,7 +59,8 @@ class PenggunaController extends Controller
     public function edit(string $id)
     {
         $data = User::find($id);
-        return view('pengguna.editPengguna', compact('data'));
+        $biro = Biro::select('biro')->distinct()->pluck('biro')->toArray();
+        return view('pengguna.editPengguna', compact('data', 'biro'));
     }
 
     /**
@@ -67,11 +75,13 @@ class PenggunaController extends Controller
         $request->validate([
             'name' => 'required|string|max:255',
             'username' => 'required|string|max:255|unique:users,username,'.$id,
-            'password' => 'nullable|string', // Password tidak wajib diisi
+            'password' => 'nullable|string',
+            'biro' => 'required|string'
         ]);
 
         // Update data pengguna
         $user->name = $request->input('name');
+        $user->biro = $request->input('biro');
         $user->username = $request->input('username');
 
         // Periksa apakah ada input password baru

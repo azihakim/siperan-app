@@ -4,10 +4,11 @@ namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
+use App\Models\Biro;
 use App\Models\Laporan;
-use App\Models\Pegawai;
 use App\Models\User;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 
 class DatabaseSeeder extends Seeder
@@ -20,18 +21,49 @@ class DatabaseSeeder extends Seeder
         User::create([
             'name' => 'admin',
             'username' => 'admin',
+            'biro' => 'admin',
             'password' => Hash::make('123')
         ]);
 
-        $pegawai = [
+        $biroData = [
             [
                 'biro' => 'Sekrekaris Daerah',
+                'programs' => [
+                    [
+                        'program' => 'Kegiatan XXX',
+                        'sub_program' => [
+                            'Sub Kegiatan XXX',
+                        ],
+                    ],
+                ],
                 'nama' => 'Ir. S.A. Supriono',
                 'nip' => '196406071990031007',
                 'jabatan' => 'Pengguna Anggaran',
             ],
             [
                 'biro' => 'Biro Pemerintahan dan Otonomi Daerah',
+                'programs' => [
+                    [
+                        'program' => 'Kegiatan Pelaksanaan Tugas Pemerintahan',
+                        'sub_program' => [
+                            'Sub Kegiatan Fasilitasi Pelaksanaan Pemerintahan Umum',
+                            'Sub Kegiatan Fasilitasi Penataan Wilayah'
+                        ],
+                    ],
+                    [
+                        'program' => 'Kegiatan Pelaksanaan Otonomi Daerah',
+                        'sub_program' => [
+                            'Sub Kegiatan fasilitasi Kepala Daerah dan DPRD',
+                            'Sub Kegiatan Evaluasi dan Penyelenggaraan Pemerintahan',
+                        ],
+                    ],
+                    [
+                        'program' => 'Kegiatan Fasilitasi Kerja Sama Daerah',
+                        'sub_program' => [
+                            'Sub Kegiatan fasilitasi Kerja Sama Antar Pemerintah'
+                        ],
+                    ],
+                ],
                 'nama' => 'Dr. Sri Sulastri, SH, M.Si',
                 'nip' => '196602161995032001',
                 'jabatan' => 'Kuasa Pengguna Anggaran',
@@ -87,8 +119,14 @@ class DatabaseSeeder extends Seeder
 
         ];
 
-        foreach ($pegawai as $data) {
-            Pegawai::create($data);
+        foreach ($biroData as $data) {
+            // Jika ada programs, konversi menjadi JSON
+            if (isset($data['programs'])) {
+                $data['programs'] = json_encode($data['programs']);
+            }
+            
+            // Simpan data biro ke dalam database
+            Biro::create($data);
         }
 
         Laporan::create([
