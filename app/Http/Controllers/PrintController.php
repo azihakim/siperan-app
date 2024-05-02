@@ -73,7 +73,7 @@ class PrintController extends Controller
         $Esptjm = json_decode($laporan->sptjm, true);
 
         // Parse the date string
-        $date = Carbon::parse($Esptjm['tgl_sptjm']);
+        $date = Carbon::parse($Esptjm['tgl_sptjm'] ?? null);
         
         // Format the date as "30 April 2018"
         $formattedDate = $date->format('j F Y');
@@ -154,13 +154,14 @@ class PrintController extends Controller
         // Mengakses tgl_matriks
         $tgl_matriks = $data['matriks_pergeseran']['tgl_matriks'];
 
+        $data_m = [];
         // Melakukan foreach untuk matriks_pergeseran
-        foreach ($matriks_pergeseran as $matriks) {
-            $no_rekening = $matriks['no_rekening'];
-            $uraian = $matriks['uraian'];
-            $sebelum = $matriks['sebelum'];
-            $sesudah = $matriks['sesudah'];
-            $bertambah_berkurang = $matriks['bertambah_berkurang'];
+        foreach ($matriks_pergeseran ?? [] as $matriks) {
+            $no_rekening = $matriks['no_rekening'] ?? null;
+            $uraian = $matriks['uraian'] ?? null;
+            $sebelum = $matriks['sebelum'] ?? null;
+            $sesudah = $matriks['sesudah'] ?? null;
+            $bertambah_berkurang = $matriks['bertambah_berkurang'] ?? null;
 
             // Lakukan sesuatu dengan data ini, misalnya tambahkan ke dalam array atau lakukan operasi lainnya
             // Contoh:
@@ -218,7 +219,7 @@ class PrintController extends Controller
 
         $matriks_pergeseran = $matrikPegeseran['matriks_pergeseran'] ?? [];
 
-        foreach ($matriks_pergeseran as $matriks) {
+        foreach ($matriks_pergeseran  ?? null as $matriks) {
             $no_rekening = $matriks['no_rekening'];
             $uraian = $matriks['uraian'];
             $sebelum = $matriks['sebelum'];

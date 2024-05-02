@@ -99,6 +99,7 @@ class CreateLaporan extends Component
             $this->options = Biro::select('biro')->distinct()->where('biro', Auth::user()->biro)->pluck('biro')->toArray();
         }
         
+        
 
         $role = Auth::user()->role;
         // if ($role == 'admin') {
@@ -174,7 +175,7 @@ class CreateLaporan extends Component
             foreach ($programs as $program) {
                 $sub_programs = array_column($program['sub_program'], 'name'); // Ambil hanya nama sub program
                 $this->programs[] = [
-                    'program' => $program['program'],
+                    'program' => $program['program'] ?? null,
                     'sub_program' => $sub_programs
                 ];
             }
@@ -198,7 +199,7 @@ class CreateLaporan extends Component
                 // Periksa apakah program saat ini cocok dengan program yang dipilih
                 if ($program['program'] === $this->dokPel_program) {
                     // Simpan sub program ke dalam properti Livewire
-                    $this->sub_program_options = $program['sub_program'];
+                    $this->sub_program_options = $program['sub_program'] ?? [];
                     // Keluar dari loop karena program yang cocok sudah ditemukan
                     break 2;
                 }

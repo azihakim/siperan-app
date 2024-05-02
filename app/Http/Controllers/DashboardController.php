@@ -16,7 +16,7 @@ class DashboardController extends Controller
 
         foreach ($laporan as $item) {
             $surat_permohonan = json_decode($item->surat_permohonan, true);
-            
+
             // Menyesuaikan logika filterisasi berdasarkan peran pengguna
             if ($userRole == 'admin' || ($userRole !== 'admin' && isset($surat_permohonan['biro']) && $surat_permohonan['biro'] === $userRole)) {
                 $data[] = [
@@ -29,7 +29,6 @@ class DashboardController extends Controller
                 ];
             }
         }
-
         return view('dashboard', compact('data'));
     }
 
