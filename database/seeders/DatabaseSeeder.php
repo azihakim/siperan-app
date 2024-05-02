@@ -27,7 +27,7 @@ class DatabaseSeeder extends Seeder
 
         $biroData = [
             [
-                'biro' => 'Sekrekaris Daerah',
+                'biro' => 'Sekretaris Daerah',
                 'programs' => [
                     [
                         'program' => 'Kegiatan XXX',
@@ -70,48 +70,313 @@ class DatabaseSeeder extends Seeder
             ],
             [
                 'biro' => 'Biro Hukum',
+                'programs' => [
+                    [
+                        'program' => 'Kegiatan Fasilitasi Penyusunan Perundang-Undangan',
+                        'sub_program' => [
+                            'Sub kegiatan Fasilitasi Penyusunan Produk Hukum Pengaturan',
+                            'Sub Kegiatan Fasilitasi Penyusunan Produk Hukum Penetapan',
+                            'Sub Kegiatan Pendokumentasian Produk Hukum dan Naskah Hukum',
+                            'Sub Kegiatan Fasilitasi dan Evaluasi Produk Hukum Kabupaten/Kota',
+                        ],
+                    ],
+                    [
+                        'program' => 'Kegiatan Fasilitasi Bantuan Hukum ',
+                        'sub_program' => [
+                            'Sub Kegiatan Fasilitasi Penyelesaian Masalah Hukum',
+                            'Sub Kegiatan Fasilitasi Penyelesaian Masalah Non Litigasi dan HAM',
+                        ],
+                    ]
+                ],
                 'nama' => 'Windri Marlenny, SH, MM',
                 'nip' => '197603262005012006',
                 'jabatan' => 'Kuasa Pengguna Anggaran',
             ],
             [
                 'biro' => 'Biro Perekonomian',
+                'programs' => [
+                    [
+                        'program' => 'Pengelolaan Kebijakan Ekonomi Makro',
+                        'sub_program' => [
+                            'Fasilitasi Pengelolaan Kebijakan Ekonomi Makro',
+                            'Fasilitasi Pengelolaan Kebijakan Ekonomi Mikro',
+                        ],
+                        [
+                            'program' => 'Pengelolaan Kebijakan dan Koordinasi Sumber Daya Alam',
+                            'sub_program' => [
+                                'Koordinasi, Sinkronisasi dan Evaluasi Kebijakan Pertanian, Kehutanan, Kelautan dan Perikanan',
+                                'Koordinasi, Sinkronisasi dan Evaluasi Kebijakan Pertambangan dan Linkungan Hidup',
+                            ],
+                        ],
+                        [
+                            'program' => 'Pengelolaan Kebijakan dan Koordinasi BUMD dan BLUD',
+                            'sub_program' => [
+                                'Koordinasi, Sinkronisasi Monitoring dan Evaluasi Kebijakan Pengelolaan BUMD Jasa Keuangan dan Aneka Usaha',
+                                'Koordinasi, Sinkronisasi dan Evaluasi Kebijakan Pendirian BUMD',
+                                'Koordinasi, Sinkronisasi dan Evaluasi Kebijakan Pendirian BLUD'
+                            ],
+                        ],
+
+                    ],
+                ],
                 'nama' => 'Hengki Putrawan, S.Pt, M.Si',
                 'nip' => '197905162005011008',
                 'jabatan' => 'Kuasa Pengguna Anggaran',
             ],
             [
                 'biro' => 'Biro Administrasi Pembangunan',
+                'programs' => [
+                    [
+                        'program' => 'Pengendalian Administrasi Pelaksanaan Pembangunan Daerah',
+                        'sub_program' => [
+                            'Pengendalian Administrasi Pelaksanaan Pembangunan APBD',
+                            'Pengendalian Administrasi Pelaksanaan Pembangunan APBN',
+                            'Pengendalian Administrasi Pelaksanaan Pembangunan Wilayah'
+                        ],
+                    ],
+                    [
+                        'program' => 'Pelaporan Pelaksanaan Pembangunan Daerah',
+                        'sub_program' => [
+                            'Analisi Capaian Kinerja Pembangunan',
+                            'Pelaporan Pelaksanaan Pembangunan Daerah',
+                            'Fasilitasi Perumusan Kebijakan Teknis Pembangunan Daerah'
+                        ],
+                    ],
+                    
+                ],
                 'nama' => 'Ir. H. Iskandar Zulkarnain, M.Si',
                 'nip' => '196412081993031002',
                 'jabatan' => 'Kuasa Pengguna Anggaran',
             ],
             [
                 'biro' => 'Biro Kesehjahteraan Rakyat',
+                'programs' => [
+                    [
+                        'program' => 'Kegiatan Fasilitasi Pembinaan Mental Spiritual',
+                        'sub_program' => [
+                            'Sub Kegiatan Pengelolaan Sarana dan Prasarana Spiritual',
+                            'Sub Kegiatan Fasilitasi  Kelembagaan Bina Spiritual',
+                        ],
+                    ],
+                    [
+                        'program' => 'Kegiatan Fasilitasi Pengembanagan Kesejahteraan Rakyat Non Pelayanan Dasar',
+                        'sub_program' => [
+                            'Sub Kegiatan Koordinasi dan Sinkronisasi Kebijakan Kesejahteraan Rakyat Bidang Kepemudaan, Olahraga, Kebudayaan dan Pariwisata',
+                            'Sub Kegiatan Koordinasi dan Sinkronisasi Kebijakan Kesejahteraan Rakyat Bidang Pemberdayaan Perempuan dan Perlindungan Anak, Pengendalian Penduduk dan Keluarga Berencana, Administrasi Kependudukan dan Pencatatan Sipil, Pemberdayaan Masyarakat dan Desa, Transmigrasi dan Tenaga Kerja',
+                            'Sub Kegiatan Fasilitasi, Koordinasi dan Sinkronisasi, Evaluasi dan Capaian Kinerja di Bidang Kesehatan Rakyat Bidang Pendidikan'
+                        ],
+                    ],
+                    [
+                        'program' => 'Kegiatan Fasilitasi Pengembangan Kesejahteraan Rakyat Pelayanan Dasar',
+                        'sub_program' => [
+                            'Sub Kegiatan Fasilitasi, Koordinasi dan Sinkronisasi, Evaluasi dan Capaian Kinerja Kebijakan Kesejahteraan Rakyat Bidang Sosial',
+                            'Sub Kegiatan Fasilitasi, Koordinasi dan Sinkronisasi, Evaluasi dan Capaian Kinerja Kebijakan Kesejahteraan Rakyat di Bidang Kesehatan',
+                            'Sub Kegiatan Koordinasi dan Sinkronisasi Kesejahteraan Rakyat Bidang Komunikasi Informatika, Statistik, Persandian dan Perhubungan'
+                        ],
+                    ],
+                ],
                 'nama' => 'Dr. Drs. H. Sunarto, M.Si',
                 'nip' => '196906081990031006',
                 'jabatan' => 'Kuasa Pengguna Anggaran',
             ],
             [
                 'biro' => 'Biro Organisasi',
+                'programs' => [
+                    [
+                        'program' => 'Kegiatan Administrasi Kepegawaian Perangkat Daerah',
+                        'sub_program' => [
+                            'Sub Kegiatan Pendataan dan Pengelolaan Administrasi Kepegawaian',
+                        ],
+                    ],
+                    [
+                        'program' => 'Kegiatan Fasilitasi Kelembagaan dan Analisis Jabatan',
+                        'sub_program' => [
+                            'Sub Kegiatan Fasilitasi Penataan Kelembagaan Provinsi',
+                            'Sub Kegiatan Fasilitasi Penataan Kelembagaan Kab/Kota',
+                            'Sub Kegiatan Penataan Analisis Jabatan'
+                        ],
+                    ],
+                    [
+                        'program' => 'Kegiatan Fasilitasi Reformasi Birokrasi dan Akuntabilitas Kinerja',
+                        'sub_program' => [
+                            'Sub Kegiatan Pembinaan Pelaksanaan Reformasi Birokrasi',
+                            'Sub Kegiatan Monitoring dan Evaluasi Akuntanbilitas Kinerja',
+                            'Sub Kegiatan Pengelolaan Tatalaksana Pemerintahan',
+                            'Sub Kegiatan Fasilitasi Peningkatan Pelayanan Publik'
+                        ],
+                    ],
+                ],
                 'nama' => 'Muhammad Zaki Aslam, S.IP, M.Si',
                 'nip' => '197306261993111001',
                 'jabatan' => 'Kuasa Pengguna Anggaran',
             ],
             [
                 'biro' => 'Biro Umum dan Perlengkapan',
+                'programs' => [
+                    [
+                        'program' => 'Perencanaan, Penganggaran dan Evaluasi Kinerja Perangkat Daerah',
+                        'sub_program' => [
+                            'Penyusunan Dokumen Perencaan dan Perangkat Daerah',
+                            'Koordinasi dan Penyusunan Dokumen RKA-SKPD',
+                            'Koordinasi dan Penyusunan Dokumen Perubahan RKA-SKPD',
+                            'Koordinasi dan Penyusunan DPA-SKPD',
+                            'Koordinasi dan Penyusunan Perubahan DPA-SKPD',
+                            'Koordinasi dan Penyusunan Laporan Capaian Kinerja dan Ikhtisar Realisasi Kinerja SKPD',
+                            'Evaluasi Kinerja Perangkat Daerah',
+                        ],
+                    ],
+                    [
+                        'program' => 'Administrasi Keuangan Perangkat Daerah',
+                        'sub_program' => [
+                            'Penyediaan Gaji dan Tunjangan ASN',
+                            'Penyediaan Administrasi Pelaksanaan Tugas ASN',
+                            'Pelaksanaan Penatausahaan dan pengujian Keuangan Akhir tahun SKPD',
+                            'Koordinasi dan Penyusuan Laporan keuangan akhir Tahun SKPD',
+                            'Koordinasi dan Penyusuan Laporan Keuangan Bulanan/Triwulan/Semesteran SKPD',
+                        ],
+                    ],
+                    [
+                        'program' => 'Administrasi Barang Milik Daerah pada Perangkat Daerah',
+                        'sub_program' => [
+                            'Pengamanan Barang Milik Daerah SKPD',
+                            'Rekonsiliasi dan Penyusunan Laporan Barang Milik Daerah',
+                            'Penatausahaan Barang Milik Daerah pada SKPD'
+                        ],
+                    ],
+                    [
+                        'Program' => 'Administrasi Kepegawaian Perangkat Daerah',
+                        'sub_program' => [
+                            'Pengadaan Pakaian Dinas beserta Atribut Kelengkapannya',
+                            'Pendidikan dan Pelatihan Pegawai Berdasarkan Tugas dan Fungsi',
+                            'Sosisalisasi Peraturan dan Perundang-Undangan',
+                            'Bimbingan Teknis Implementasi Peraturan Perundang-Undangan'
+                        ],
+                    ],
+                    [
+                        'program' => 'Administrasi Umum Perangkat Daerah',
+                        'sub_program' => [
+                            'Penyediaan Komponen Instalasi Listrik/Penerangan Bangunan Kantor',
+                            'Penyediaan Bahan Logistik Kantor',
+                            'Penyediaan Barang Cetakan dan Penggandaan',
+                            'Penyediaan Peralatan dan Perlengkapan Kantor',
+                            'Fasilitasi Kunjungan Tamu: Belanja Makanan dan Minuman Jamuan Tamu (Sewa Mobilitas), Belanja Sewa Alat Angkutan Darat Bermotor Lainnya',
+                            'Penyelenggaraan Rapat Koordinasi dan Konsultasi SKPD',
+                            'Penatausahaan Arsip Dinamis pada SKPD'
+                        ],
+                    ],
+                    [
+                        'program' => 'Pengadaan Barang Milik Daerah Penunjang Urusan Pemerintahan Daerah',
+                        'sub_program' => [
+                            'Pengadaan Kendaraan Dinas Operasional atau Lapangan',
+                            'Pengadaan Alat Besar',
+                            'Pengadaan Mebel',
+                            'Pengadaan Sarana dan Prasarana Gedung Kantor atau Bangunan Lainnya',
+                            'Pengadaan Aset Tak Berwujud'
+                        ],
+                    ],
+                    [
+                        'program' => 'Penyediaan Jasa Penunjang Urusan Pemerintahan Daerah',
+                        'sub_program' => [
+                            'Penyediaan Jasa Surat Menyurat',
+                            'Penyediaan Jasa Komunikasi, Sumber Daya Air dan Listrik',
+                            'Penyediaan Jasa Peralatan dan Perlengkapan Kantor',
+                            'Penyediaan Jasa Pelayanan Umum Kantor'
+                        ],
+                    ],
+                    [
+                        'program' => 'Pemeliharaan Barang Milik Daerah Penunjang Urusan Pemerintahan Daerah',
+                        'sub_program' => [
+                            'Penyediaan Jasa Pemeliharaan, Biaya Pemeliharaan dan Pajak dan Perizinan Kendaraan Perorangan Dinas atau Kendaraan Dinas Jabatan',
+                            'Penyediaan Jasa Pemeliharaan, Biaya Pemeliharaan dan Pajak dan Perizinan Kendaraan Dinas Operasional atau Lapangan',
+                            'Pemeliharaan Mebel',
+                            'Pemeliharaan/Rehabilitasi Gedung Kantor atau Bangunan Lainnya',
+                            'Pemeliharaan/Rehabilitasi Sarana dan Prasarana Gedung Kantor atau Bangunan Lainnya',
+                            'Pemeliharaan Peralatan dan Mesin Lainnya',
+                            'Pemeliharaan Aset Tak Berwujud'
+                        ],
+                    ],
+                    [
+                        'program' => 'Administrasi Keunagan dan Operasional Kepala Daerah dan Wakil Kepala Daerah',
+                        'sub_program' => [
+                            'Penyediaan Gaji dan Tunjangan Kepala Daerah dan Wakil Kepala Daerah',
+                            'Penyediaan Pakaian Dinas dan Atribut Kelengkapan Kepala Daerah dan Wakil Kepala Daerah',
+                            'Pelaksanaan Medical Check Up Kepala Daerah dan Wakil Kepala Daerah',
+                            'Penyediaan Dana Penunjang Operasional Kepala Daerah dan Wakil Kepala Daerah',
+                        ],
+                    ],
+                    [
+                        'program' => 'Fasilitasi Kerumahtanggaan Sekretaris Daerah',
+                        'sub_program' => [
+                            'Penyediaan Kebutuhan Rumah Tangga Kepala Daerah',
+                            'Penyediaan Kebutuhan Rumah Tangga Wakil Kepala Daerah',
+                            'Penyediaan Kebutuhan Rumah Tangga Sekretaris Daerah'
+                        ]
+                    ]
+
+                    
+                ],
                 'nama' => 'Sandi Fahlepi, SP, M.Si',
                 'nip' => '198001152008031001',
                 'jabatan' => 'Kuasa Pengguna Anggaran',
             ],
             [
                 'biro' => 'Biro Humas dan Protokol',
+                'programs' => [
+                    [
+                        'program' => 'Kegiatan Administrasi Umum Perangkat Daerah',
+                        'sub_program' => [
+                            'Sub Penyediaan Bahan Bacaan dan Peraturan Perundang-Undangan',
+                        ],
+                    ],
+                    [
+                        'program' => 'Kegiatan Fasilitasi Materi dan Komunikasi Pimpinan',
+                        'sub_program' => [
+                            'Sub Penyiapan Materi Pimpinan',
+                            'Sub Fasilitasi Komunikasi Pimpinan',
+                            'Sub Pengelolaan Dokumentasi Pimpinan'
+                        ],
+                    ],
+                    [
+                        'program' => 'Kegiatan Fasilitasi Keprotokolan',
+                        'sub_program' => [
+                            'Sub Fasilitasi dan Koordinasi Pelaksa Acara',
+                            'Sub Fasilitasi Kunjungan Tamu Kepala Daerah dan Wakil Kepala Daerah',
+                            'Sub Pengelolaan Hubungan Keprotokolan'
+                        ],
+                    ],
+                ],
                 'nama' => 'Tony Kurniawan, S.S, MM',
                 'nip' => '198510082011011006',
                 'jabatan' => 'Kuasa Pengguna Anggaran',
             ],
             [
                 'biro' => 'Biro pengadaan Barang dan Jasa',
+                'programs' => [
+                    [
+                        'program' => 'Pengelolaan Pengadaan Barang dan Jasa',
+                        'sub_program' => [
+                            'Pengelolaan Strategi Pengadaan Barang dan Jasa',
+                            'Pelaksanaan Pengadaan Barang dan Jasa',
+                            'Pemantauan dan Evaluasi Pengadaan Barang dan Jasa',
+                        ],
+                    ],
+                    [
+                        'program' => 'Pengelolaan Layanan Pengadaan Secara Elektronik',
+                        'sub_program' => [
+                            'Pengelolaan Sistem Pengadaan Secara Elektronik',
+                            'Pengembangan Sistem Informasi Pengadaan Barang dan Jasa',
+                            'Pemantauan dan Evaluasi Pengadaan Barang dan Jasa'
+                        ],
+                    ],
+                    [
+                        'program' => 'Pembinaan Advokasi Pengadaan Barang dan Jasa',
+                        'sub_program' => [
+                            'Pembinaan Sumber Daya Manusia Pengadaan Barang dan Jasa',
+                            'Pembinaan Kelembagaan Pengadaan Barang dan Jasa',
+                            'Pendampingan Konsultasi dan/atau Bimbingan Teknis Pengadaan Barang dan Jasa'
+                        ],
+                    ]
+                ],
                 'nama' => 'Muzzakir, ST, MT',
                 'nip' => '196709291998031005',
                 'jabatan' => 'Kuasa Pengguna Anggaran',
