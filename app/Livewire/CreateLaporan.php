@@ -16,7 +16,7 @@ use Illuminate\Support\Facades\Auth;
 
 class CreateLaporan extends Component
 {
-    public $currentStep = 4;
+    public $currentStep = 1;
     public $biro, $tgl, $no_sppa, $sifat_sppa, $lampiran_sppa, $hal_sppa, $nama_kb, $jabatan_kb, $nip_kb, $pangkat_kb;
     public $tgl_matriks;
     public $tgl_sptjm, $no_sptjm;
@@ -99,14 +99,13 @@ class CreateLaporan extends Component
             $this->options = Biro::select('biro')->distinct()->where('biro', Auth::user()->biro)->pluck('biro')->toArray();
         }
         
-        $bb = Biro::all();
 
-        $userRole = Auth::user()->role;
-        if ($userRole == 'admin') {
-            $this->programs = Biro::select('programs')->distinct()->pluck('biro')->toArray();
-        } else {
-            $this->programs = Biro::select('programs')->distinct()->where('biro', Auth::user()->biro)->pluck('biro')->toArray();
-        }
+        $role = Auth::user()->role;
+        // if ($role == 'admin') {
+        //     $this->programs = Biro::select('programs')->distinct()->pluck('biro')->toArray();
+        // } else {
+        //     $this->programs = Biro::select('programs')->distinct()->where('biro', Auth::user()->biro)->pluck('biro')->toArray();
+        // }
 
         // Initialize first input when component is loaded
         $this->inputs[] = [
