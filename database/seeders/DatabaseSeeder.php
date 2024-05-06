@@ -26,14 +26,16 @@ class DatabaseSeeder extends Seeder
         ]);
 
         Laporan::create([
+            'pptk' => '',
+            'opd' => 'Ir. S.A. Supriono',
             'surat_permohonan' => json_encode([
-                "biro" => "Sekretaris Daerah",
+                "biro" => "Biro Pemerintahan dan Otonomi Daerah",
                 "tgl" => null,
                 "no_sppa" => null,
                 "sifat_sppa" => null,
                 "lampiran_sppa" => null,
                 "hal_sppa" => null,
-                "nama_kb" => "Ir. S.A. Supriono",
+                "nama_kb" => "Dr. Sri Sulastri, SH, M.Si",
                 "jabatan_kb" => "Pengguna Anggaran",
                 "nip_kb" => "196406071990031007",
                 "pangkat_kb" => "Pembina 1"
@@ -106,20 +108,6 @@ class DatabaseSeeder extends Seeder
         
         $biroData = [
             [
-                'biro' => 'Sekretaris Daerah',
-                'programs' => [
-                    [
-                        'program' => 'Kegiatan XXX',
-                        'sub_program' => [
-                            'Sub Kegiatan XXX',
-                        ],
-                    ],
-                ],
-                'nama' => 'Ir. S.A. Supriono',
-                'nip' => '196406071990031007',
-                'jabatan' => 'Pengguna Anggaran',
-            ],
-            [
                 'biro' => 'Biro Pemerintahan dan Otonomi Daerah',
                 'programs' => [
                     [
@@ -146,9 +134,10 @@ class DatabaseSeeder extends Seeder
                 'nama' => 'Dr. Sri Sulastri, SH, M.Si',
                 'nip' => '196602161995032001',
                 'jabatan' => 'Kuasa Pengguna Anggaran',
+                'pangkat' => 'Pembina Utama Muda (IV/C)'
             ],
             [
-                'biro' => 'Biro Hukum',
+                'biro' => 'Biro Hukum & Hak Asasi Manusia',
                 'programs' => [
                     [
                         'program' => 'Kegiatan Fasilitasi Penyusunan Perundang-Undangan',
@@ -170,6 +159,7 @@ class DatabaseSeeder extends Seeder
                 'nama' => 'Windri Marlenny, SH, MM',
                 'nip' => '197603262005012006',
                 'jabatan' => 'Kuasa Pengguna Anggaran',
+                'pangkat' => 'Pembina TK.I (IV/B)'
             ],
             [
                 'biro' => 'Biro Perekonomian',
@@ -201,6 +191,7 @@ class DatabaseSeeder extends Seeder
                 'nama' => 'Hengki Putrawan, S.Pt, M.Si',
                 'nip' => '197905162005011008',
                 'jabatan' => 'Kuasa Pengguna Anggaran',
+                'pangkat' => 'Pembina Utama Muda (IV/C)'
             ],
             [
                 'biro' => 'Biro Administrasi Pembangunan',
@@ -226,6 +217,7 @@ class DatabaseSeeder extends Seeder
                 'nama' => 'Ir. H. Iskandar Zulkarnain, M.Si',
                 'nip' => '196412081993031002',
                 'jabatan' => 'Kuasa Pengguna Anggaran',
+                'pangkat' => 'Pembina Utama Muda (IV/C)'
             ],
             [
                 'biro' => 'Biro Kesehjahteraan Rakyat',
@@ -257,6 +249,7 @@ class DatabaseSeeder extends Seeder
                 'nama' => 'Dr. Drs. H. Sunarto, M.Si',
                 'nip' => '196906081990031006',
                 'jabatan' => 'Kuasa Pengguna Anggaran',
+                'pangkat' => ''
             ],
             [
                 'biro' => 'Biro Organisasi',
@@ -395,6 +388,7 @@ class DatabaseSeeder extends Seeder
                 'nama' => 'Sandi Fahlepi, SP, M.Si',
                 'nip' => '198001152008031001',
                 'jabatan' => 'Kuasa Pengguna Anggaran',
+                'pangkat' => 'Pembina TK.I (IV/B)'
             ],
             [
                 'biro' => 'Biro Humas dan Protokol',

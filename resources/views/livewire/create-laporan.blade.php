@@ -55,6 +55,17 @@
 																@if ($currentStep == 1)
 																				<div class="row">
 																								<div class="col-4">
+																												@error('opd')
+																																<span class="text-danger">{{ $message }}</span>
+																												@enderror
+																												<div class="form-group">
+																																<label for="opd">Nama OPD</label>
+																																<input type="text" class="form-control" placeholder="" wire:model="opd">
+																												</div>
+																								</div>
+																				</div>
+																				<div class="row">
+																								<div class="col-4">
 																												@error('biro')
 																																<span class="text-danger">{{ $message }}</span>
 																												@enderror
@@ -135,8 +146,8 @@
 																																<label>Nomor Surat</label>
 																																<div class="row">
 																																				<div class="col-12">
-																																								<input type="text" class="form-control" name="no_sppa" wire:model="no_sppa"
-																																												placeholder="Masukkan Nomor Surat">
+																																								<input type="text" class="form-control" name="no_sppa"
+																																												wire:model="no_sppa" placeholder="Masukkan Nomor Surat">
 																																				</div>
 																																</div>
 																												</div>

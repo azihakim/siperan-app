@@ -17,7 +17,7 @@ use Illuminate\Support\Facades\Auth;
 class CreateLaporan extends Component
 {
     public $currentStep = 1;
-    public $biro, $tgl, $no_sppa, $sifat_sppa, $lampiran_sppa, $hal_sppa, $nama_kb, $jabatan_kb, $nip_kb, $pangkat_kb;
+    public $opd, $pangkat, $biro, $tgl, $no_sppa, $sifat_sppa, $lampiran_sppa, $hal_sppa, $nama_kb, $jabatan_kb, $nip_kb, $pangkat_kb;
     public $tgl_matriks;
     public $tgl_sptjm, $no_sptjm;
     public $dokPel_ck_tuk_sbm, $dokPel_ck_tk_sbm, $dokPel_ck_tuk_sth, $dokPel_ck_tk_sth, $dokPel_m_tuk_sbm, $dokPel_m_tk_sbm, $dokPel_m_tuk_sth, $dokPel_m_tk_sth, $dokPel_k_tuk_sbm, $dokPel_k_tk_sbm, $dokPel_k_tuk_sth, $dokPel_k_tk_sth, $dokPel_h_tuk_sbm, $dokPel_h_tk_sbm, $dokPel_h_tuk_sth, $dokPel_h_tk_sth;
@@ -99,7 +99,7 @@ class CreateLaporan extends Component
             $this->options = Biro::select('biro')->distinct()->where('biro', Auth::user()->biro)->pluck('biro')->toArray();
         }
         
-        
+        $this->opd = 'Ir S.A. Supriono';
 
         $role = Auth::user()->role;
         // if ($role == 'admin') {
@@ -218,11 +218,13 @@ class CreateLaporan extends Component
             $this->nama_kb = $pegawai->nama;
             $this->nip_kb = $pegawai->nip;
             $this->jabatan_kb = $pegawai->jabatan;
+            $this->pangkat_kb = $pegawai->pangkat;
         } else {
             // If employee data is not found, empty the name, NIP, and position properties
             $this->nama_kb = null;
             $this->nip_kb = null;
             $this->jabatan_kb = null;
+            $this->pangkat = null;
         }
         $this->fillPrograms();
         $this->fillSubprograms();
@@ -536,6 +538,8 @@ class CreateLaporan extends Component
             'tim' => $this->inputs_tim
         ];
         $laporan = new Laporan();
+        $laporan-> pptk = Auth::user()->name;
+        $laporan-> opd = $this->opd;
         $laporan-> surat_permohonan = json_encode($this->sppa);
         $laporan-> matriks_pergeseran = json_encode($matrik);
         $laporan-> sptjm = json_encode($this->sptjm);

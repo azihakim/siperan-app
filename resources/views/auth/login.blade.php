@@ -74,7 +74,10 @@
 				<div class="register-box">
 								<div class="card card-outline card-primary">
 												<div class="card-header text-center">
-																<a href="#" class="h1"><b>SIPERAN</b></a>
+																<img src="{{ asset('vendors/dist/img/Coat_of_arms_of_South_Sumatra.png') }}" alt=""
+																				style="width: 80px"><br>
+																<h2 style="margin-bottom: 1px"><strong>SIPERAN</strong></h2>
+																<p style="margin-top: 1px">Sistem Pergeseran Anggaran</p>
 												</div>
 												<div class="card-body">
 																<p class="login-box-msg">Login</p>
@@ -109,8 +112,7 @@
 																				</div>
 																</form>
 																<br>
-																{{-- <a href="{{ route('register') }}" class="text-center">
-        Klik untuk mendaftar calon karyawan!</a> --}}
+																{{-- <a href="{{ route('register') }}" class="text-center">Klik untuk mendaftar calon karyawan!</a> --}}
 
 																{{-- <a href="{{ url('/regist-calonkaryawan') }}" class="text-center">Klik untuk mendaftar calon
 																				karyawan!</a> --}}

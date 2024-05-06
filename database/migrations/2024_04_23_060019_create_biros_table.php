@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('nama');
             $table->string('nip');
             $table->string('jabatan');
+            $table->string('pangkat')->nullable();
             $table->timestamps();
         });
     }

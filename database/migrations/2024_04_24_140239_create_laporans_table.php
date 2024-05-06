@@ -13,6 +13,8 @@ return new class extends Migration
     {
         Schema::create('laporans', function (Blueprint $table) {
             $table->id();
+            $table->string('pptk');
+            $table->string('opd');
             $table->text('surat_permohonan');
             $table->text('matriks_pergeseran');
             $table->text('sptjm');
