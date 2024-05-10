@@ -54,6 +54,59 @@
 												<div class="bs-stepper-content">
 																@if ($currentStep == 1)
 																				<div class="row">
+																								<div class="col-3">
+																												@error('opd')
+																																<span class="text-danger">{{ $message }}</span>
+																												@enderror
+																												<div class="form-group">
+																																<label for="opd">OPD</label>
+																																<input type="text" class="form-control" placeholder="" wire:model="opd_text">
+																												</div>
+																								</div>
+																				</div>
+																				<div class="row">
+																								<div class="col-3">
+																												@error('opd')
+																																<span class="text-danger">{{ $message }}</span>
+																												@enderror
+																												<div class="form-group">
+																																<label for="opd">Nama Sekda</label>
+																																<input type="text" class="form-control" placeholder="" wire:model="opd">
+																												</div>
+																								</div>
+																								<div class="col-3">
+																												@error('nip_kb')
+																																<span class="text-danger">{{ $message }}</span>
+																												@enderror
+																												<div class="form-group">
+																																<label>NIP Sekda</label>
+																																<input type="text" class="form-control" wire:model="opd_nip"
+																																				placeholder="Masukkan Nama">
+																												</div>
+																								</div>
+
+																								<div class="col-3">
+																												@error('jabatan_kb')
+																																<span class="text-danger">{{ $message }}</span>
+																												@enderror
+																												<div class="form-group">
+																																<label>Jabatan Sekda</label>
+																																<input type="text" class="form-control" wire:model="opd_jabatan"
+																																				placeholder="Masukkan Jabatan">
+																												</div>
+																								</div>
+																								<div class="col-3">
+																												@error('pangkat_kb')
+																																<span class="text-danger">{{ $message }}</span>
+																												@enderror
+																												<div class="form-group">
+																																<label>Pangkat Sekda</label>
+																																<input type="text" class="form-control" wire:model="opd_pangkat"
+																																				placeholder="Masukkan Pangkat">
+																												</div>
+																								</div>
+																				</div>
+																				<div class="row">
 																								<div class="col-4">
 																												@error('biro')
 																																<span class="text-danger">{{ $message }}</span>
@@ -135,8 +188,8 @@
 																																<label>Nomor Surat</label>
 																																<div class="row">
 																																				<div class="col-12">
-																																								<input type="text" class="form-control" name="no_sppa" wire:model="no_sppa"
-																																												placeholder="Masukkan Nomor Surat">
+																																								<input type="text" class="form-control" name="no_sppa"
+																																												wire:model="no_sppa" placeholder="Masukkan Nomor Surat">
 																																				</div>
 																																</div>
 																												</div>

@@ -45,7 +45,10 @@ class EditLaporan extends Component
     public $programs;
     public $program_options = [];
 
-
+    public $opd_text;
+    public $opd_nip;
+    public $opd_jabatan;
+    public $opd_pangkat;
 
     public function render()
     {
@@ -54,6 +57,11 @@ class EditLaporan extends Component
     
     public function mount($id)
     {
+        $this->opd_text = 'Sekretariat Daerah';
+        $this->opd_nip = '196406071990031007';
+        $this->opd_jabatan = 'Pengguna Anggaran';
+        $this->opd_pangkat = 'Pembina Utama Madya(IV/D)';
+
         $this->itemId = $id;
         $userRole = Auth::user()->biro;
         if ($userRole == 'admin') {
