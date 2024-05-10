@@ -11,6 +11,7 @@ use Maatwebsite\Excel\Facades\Excel;
 use App\Exports\TabelExport;
 use App\Models\Biro;
 use App\Models\Laporan;
+use Dflydev\DotAccessData\Data;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -31,19 +32,28 @@ class CreateLaporan extends Component
     public $inputs_tim = [];
     public $i = 1;
     public $index = 1;
-    public $options = [];
     
     public $dataProgram;
-    public $program_options = [];
     public $pilihanProgram;
     public $programs;
     public $program;
-    public $sub_program = [];
-    public $sub_program_options = [];
+    public $sub_kegiatan = [];
 
     public $sppa, $matriks, $sptjm, $dokPel;
-    public $selectedProgram; // Properti untuk menyimpan program yang dipilih
     public $selectedSubProgram = ''; // Properti untuk menyimpan sub program yang dipilih
+
+    public $options = []; // Untuk opsi biro
+    public $program_options = []; // Untuk opsi program
+    public $kegiatan_options = []; // Untuk opsi kegiatan
+    public $sub_kegiatan_options = []; // Untuk opsi sub_kegiatan
+    public $selectedProgram = ''; // Untuk menyimpan program yang dipilih
+    public $selectedKegiatan = ''; // Untuk menyimpan kegiatan yang dipilih
+
+    public $opd_text;
+    public $opd_nip;
+    public $opd_jabatan;
+    public $opd_pangkat;
+
 
     public function render()
     {
@@ -102,11 +112,6 @@ class CreateLaporan extends Component
         $this->opd = 'Ir S.A. Supriono';
 
         $role = Auth::user()->role;
-        // if ($role == 'admin') {
-        //     $this->programs = Biro::select('programs')->distinct()->pluck('biro')->toArray();
-        // } else {
-        //     $this->programs = Biro::select('programs')->distinct()->where('biro', Auth::user()->biro)->pluck('biro')->toArray();
-        // }
 
         // Initialize first input when component is loaded
         $this->inputs[] = [
@@ -152,17 +157,13 @@ class CreateLaporan extends Component
         $this->dokPel_pkkd_nama = 'H. AKHMAD MUKHLIS, S.E., M.SI';
         $this->dokPel_pkkd_nip = '196406211993031004';
 
-
+        $this->opd_text = 'Sekretariat Daerah';
+        $this->opd_nip = '196406071990031007';
+        $this->opd_jabatan = 'Pengguna Anggaran';
+        $this->opd_pangkat = 'Pembina Utama Madya(IV/D)';
+        
     }
 
-    // Ketika program dipilih, atur opsi sub program sesuai dengan program yang dipilih
-//    public function updatedSelectedProgram($selectedProgram)
-// {
-//     // Fungsi ini akan dipanggil setiap kali ada perubahan pada dropdown program
-
-//     $selectedProgramData = collect($this->programs)->where('program', $selectedProgram)->first();
-//     $this->sub_program_options = $selectedProgramData ? $selectedProgramData['sub_program'] : [];
-// }
     public function fillPrograms()
     {
         $this->programs = []; // Bersihkan data program sebelum mengisi ulang
@@ -170,42 +171,80 @@ class CreateLaporan extends Component
         $biro = $this->biro;
         $data = Biro::where('biro', $biro)->get();
 
-        foreach ($data as $biro) {
-            $programs = json_decode($biro->programs, true) ?? [];
+        foreach ($data as $biroData) {
+            // Ubah string JSON menjadi array menggunakan json_decode
+            $programs = json_decode($biroData->programs, true) ?? [];
             foreach ($programs as $program) {
-                $sub_programs = array_column($program['sub_program'], 'name'); // Ambil hanya nama sub program
+                $kegiatan = $program['kegiatan'] ?? []; // Ambil kegiatan dari program
+                $kegiatanNames = array_column($kegiatan, 'kegiatan'); // Ambil hanya nama kegiatan
+
                 $this->programs[] = [
                     'program' => $program['program'] ?? null,
-                    'sub_program' => $sub_programs
+                    'kegiatan' => $kegiatanNames // Tambahkan nama kegiatan ke dalam data program
                 ];
             }
         }
 
         // Mengisi opsi program
         $this->program_options = array_column($this->programs, 'program');
+        $this->fillKegiatan(); // Panggil fillKegiatan setelah mengisi opsi program
     }
 
-    public function fillSubprograms()
+    public function fillKegiatan()
     {
-        // dd($this->selectedProgram);
-        $this->sub_program_options = []; // Bersihkan data sub program sebelum mengisi ulang
+        $this->kegiatan_options = []; // Bersihkan data kegiatan sebelum mengisi ulang
 
-        $biro = $this->biro;
-        $data = Biro::where('biro', $biro)->get();
+        $selectedProgram = $this->dokPel_program;
 
-        foreach ($data as $biro) {
-            $programs = json_decode($biro->programs, true) ?? [];
+        if (!empty($selectedProgram)) {
+            foreach ($this->programs as $program) {
+                if ($program['program'] === $selectedProgram) {
+                    // Mengisi opsi kegiatan berdasarkan program yang dipilih
+                    $this->kegiatan_options = $program['kegiatan'];
+                    break;
+                }
+            }
+        }
+
+        // Memanggil metode fillSubKegiatan untuk mengisi opsi sub kegiatan yang sesuai
+        $this->fillSubKegiatan();
+    }
+
+
+   public function fillSubKegiatan()
+    {
+        $this->sub_kegiatan_options = []; // Bersihkan data sub_kegiatan sebelum mengisi ulang
+
+        $selectedKegiatan = $this->dokPel_kegiatan;
+
+        // Ambil data Biro berdasarkan kegiatan yang dipilih
+        $biro = Biro::where('programs', 'like', '%"' . $selectedKegiatan . '"%')->first();
+
+        if ($biro) {
+            // Ubah data program menjadi array
+            $programs = json_decode($biro->programs, true);
+
             foreach ($programs as $program) {
-                // Periksa apakah program saat ini cocok dengan program yang dipilih
-                if ($program['program'] === $this->dokPel_program) {
-                    // Simpan sub program ke dalam properti Livewire
-                    $this->sub_program_options = $program['sub_program'] ?? [];
-                    // Keluar dari loop karena program yang cocok sudah ditemukan
-                    break 2;
+                // Cari kegiatan yang sesuai dengan kegiatan yang dipilih
+                foreach ($program['kegiatan'] as $kegiatan) {
+                    if ($kegiatan['kegiatan'] === $selectedKegiatan) {
+                        // Jika kegiatan ditemukan, tambahkan sub kegiatan ke dalam opsi
+                        $this->sub_kegiatan_options = $kegiatan['sub_kegiatan'] ?? [];
+                        return;
+                    }
                 }
             }
         }
     }
+
+
+
+
+
+
+
+
+
 
 
     public function fillEmployeeData()
@@ -227,8 +266,6 @@ class CreateLaporan extends Component
             $this->pangkat = null;
         }
         $this->fillPrograms();
-        $this->fillSubprograms();
-        
     }
 
     

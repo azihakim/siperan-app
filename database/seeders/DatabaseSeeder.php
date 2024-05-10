@@ -111,31 +111,61 @@ class DatabaseSeeder extends Seeder
                 'biro' => 'Biro Pemerintahan dan Otonomi Daerah',
                 'programs' => [
                     [
-                        'program' => 'Kegiatan Pelaksanaan Tugas Pemerintahan',
-                        'sub_program' => [
-                            'Sub Kegiatan Fasilitasi Pelaksanaan Pemerintahan Umum',
-                            'Sub Kegiatan Fasilitasi Penataan Wilayah'
+                        'program' => 'Program Penunjang Urusan Pemerintahan Daerah Provinsi',
+                        'kegiatan' => [
+                            [
+                                'kegiatan' => 'Administrasi Keuangan Perangkat Daerah',
+                                'sub_kegiatan' => [
+                                    'Penyediaan Administrasi Pelaksanaan Tugas ASN',
+                                ],
+                            ],
+                            [
+                                'kegiatan' => 'Administrasi Umum Perangkat Daerah',
+                                'sub_kegiatan' => [
+                                    'Penyediaan Bahan Logistik Kantor',
+                                    'Penyelenggaraan Rapat Koordinasi dan Konsultasi SKPD',
+                                ],
+                            ],
+                            [
+                                'kegiatan' => 'Penyediaan Jasa Penunjang Urusan Pemerintahan Daerah',
+                                'sub_kegiatan' => [
+                                    'Penyediaan Jasa Pelayanan Umum Kantor',
+                                ],
+                            ],
                         ],
                     ],
                     [
-                        'program' => 'Kegiatan Pelaksanaan Otonomi Daerah',
-                        'sub_program' => [
-                            'Sub Kegiatan fasilitasi Kepala Daerah dan DPRD',
-                            'Sub Kegiatan Evaluasi dan Penyelenggaraan Pemerintahan',
-                        ],
-                    ],
-                    [
-                        'program' => 'Kegiatan Fasilitasi Kerja Sama Daerah',
-                        'sub_program' => [
-                            'Sub Kegiatan fasilitasi Kerja Sama Antar Pemerintah'
+                        'program' => 'Program Pemerintahan dan Otonomi Daerah',
+                        'kegiatan' => [
+                            [
+                                'kegiatan' => 'Pelaksanaan Tugas Pemerintahan',
+                                'sub_kegiatan' => [
+                                    'Fasilitasi Pelaksanaan Pemerintahan Umum',
+                                    'Fasilitasi Penataan Wilayah',
+                                ],
+                            ],
+                            [
+                                'kegiatan' => 'Pelaksanaan Otonomi Daerah',
+                                'sub_kegiatan' => [
+                                    'Fasilitasi Administrasi Kepala Daerah dan DPRD',
+                                    'Evaluasi dan Penyelenggaraan Pemerintahan',
+                                ],
+                            ],
+                            [
+                                'kegiatan' => 'Fasilitasi Kerja Sama Daerah',
+                                'sub_kegiatan' => [
+                                    'Fasilitasi Kerja Sama Antar Pemerintah',
+                                ],
+                            ],
                         ],
                     ],
                 ],
                 'nama' => 'Dr. Sri Sulastri, SH, M.Si',
                 'nip' => '196602161995032001',
                 'jabatan' => 'Kuasa Pengguna Anggaran',
-                'pangkat' => 'Pembina Utama Muda (IV/C)'
+                'pangkat' => 'Pembina Utama Muda (IV/C)',
             ],
+
             [
                 'biro' => 'Biro Hukum & Hak Asasi Manusia',
                 'programs' => [

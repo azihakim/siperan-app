@@ -77,7 +77,8 @@
 																<img src="{{ asset('vendors/dist/img/Coat_of_arms_of_South_Sumatra.png') }}" alt=""
 																				style="width: 80px"><br>
 																<h2 style="margin-bottom: 1px"><strong>SIPERAN</strong></h2>
-																<p style="margin-top: 1px">Sistem Pergeseran Anggaran</p>
+																<p style="margin-top: 1px"><strong>Sistem Pergeseran Anggaran</strong></p>
+																<p style="margin-top: -1px">Lingkup Sekretariat Daerah Provinsi Sumatera Selatan</p>
 												</div>
 												<div class="card-body">
 																<p class="login-box-msg">Login</p>
