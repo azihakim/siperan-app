@@ -22,7 +22,7 @@ class CreateLaporan extends Component
     public $tgl_matriks;
     public $tgl_sptjm, $no_sptjm;
     public $dokPel_ck_tuk_sbm, $dokPel_ck_tk_sbm, $dokPel_ck_tuk_sth, $dokPel_ck_tk_sth, $dokPel_m_tuk_sbm, $dokPel_m_tk_sbm, $dokPel_m_tuk_sth, $dokPel_m_tk_sth, $dokPel_k_tuk_sbm, $dokPel_k_tk_sbm, $dokPel_k_tuk_sth, $dokPel_k_tk_sth, $dokPel_h_tuk_sbm, $dokPel_h_tk_sbm, $dokPel_h_tuk_sth, $dokPel_h_tk_sth;
-    public $dokPel_tahun, $dokPel_noDppa, $dokPel_UrusanPemerintahan, $dokPel_bidangUrusan, $dokPel_program, $dokPel_kegiatan, $dokPel_organisasi, $dokPel_unit, $dokPel_alokasiM1, $dokPel_alokasiTahun, $dokPel_alokasiP1;
+    public $dokPel_tahun, $dokPel_noDppa, $dokPel_UrusanPemerintahan, $dokPel_bidangUrusan, $dokPel_program, $dokPel_kegiatan, $dokPel_sub_kegiatan, $dokPel_organisasi, $dokPel_unit, $dokPel_alokasiM1, $dokPel_alokasiTahun, $dokPel_alokasiP1;
     public $dokPel_sk, $dokPel_sp, $dokPel_lokasi, $dokPel_ksk, $dokPel_waktu, $dokPel_keterangan;
     public $dokPel_jan, $dokPel_feb, $dokPel_mar, $dokPel_apr, $dokPel_mei, $dokPel_jun, $dokPel_jul, $dokPel_agu, $dokPel_sep, $dokPel_okt, $dokPel_nov, $dokPel_des; 
     public $dokPel_pkkd_nama, $dokPel_pkkd_nip; 
@@ -109,10 +109,9 @@ class CreateLaporan extends Component
             $this->options = Biro::select('biro')->distinct()->where('biro', Auth::user()->biro)->pluck('biro')->toArray();
         }
         
-        $this->opd = 'Ir S.A. Supriono';
-
+        
         $role = Auth::user()->role;
-
+        
         // Initialize first input when component is loaded
         $this->inputs[] = [
             'no_rekening' => '', 
@@ -121,7 +120,7 @@ class CreateLaporan extends Component
             'sesudah' => '', 
             'bertambah_berkurang' => ''
         ];
-
+        
         $this->inputs_dokPel[] = [
             'kodeRekening' => '', 
             'uraian' => '', 
@@ -129,31 +128,32 @@ class CreateLaporan extends Component
             'satuan_sbm' => '', 
             'harga_sbm' => '', 
             'jumlah_sbm' => '',
-
+            
             'volume_sth' => '', 
             'satuan_sth' => '', 
             'harga_sth' => '', 
             'jumlah_sth' => ''
         ];
-
+        
         $this->inputs_tim[] = [
             'tim_nama' => 'REGINA ARIYANTI, ST', 
             'tim_nip' => '196712042002122003', 
             'tim_jabatan' => 'KEPALA BAPPEDA'
         ];
-
+        
         $this->inputs_tim[] = [
             'tim_nama' => 'H. AKHMAD MUKHLIS, S.E., M.SI', 
             'tim_nip' => '196406211993031004', 
             'tim_jabatan' => 'KEPALA BPKAD'
         ];
-
+        
         $this->inputs_tim[] = [
             'tim_nama' => 'H. ACHMAD RIZWAN S.STP., M.M', 
             'tim_nip' => '198109232000121001', 
             'tim_jabatan' => 'KEPALA BAPENDA'
         ];
-
+        
+        $this->opd = 'Ir S.A. Supriono';
         $this->dokPel_pkkd_nama = 'H. AKHMAD MUKHLIS, S.E., M.SI';
         $this->dokPel_pkkd_nip = '196406211993031004';
 
@@ -161,7 +161,7 @@ class CreateLaporan extends Component
         $this->opd_nip = '196406071990031007';
         $this->opd_jabatan = 'Pengguna Anggaran';
         $this->opd_pangkat = 'Pembina Utama Madya(IV/D)';
-        
+
     }
 
     public function fillPrograms()
@@ -236,16 +236,6 @@ class CreateLaporan extends Component
             }
         }
     }
-
-
-
-
-
-
-
-
-
-
 
     public function fillEmployeeData()
     {
@@ -469,6 +459,7 @@ class CreateLaporan extends Component
     }
     public function fourthStepSubmit(Request $request)
     {
+        // dd($this->dokPel_sk);   
         // Validasi setiap elemen array secara manual
             // foreach ($this->inputs_dokPel as $i => $value) {
             //     $this->validate([

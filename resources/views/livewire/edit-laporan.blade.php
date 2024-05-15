@@ -447,7 +447,7 @@
 																												<div class="form-group">
 																																<label for="Program">Pilih Program</label>
 																																<select class="form-control" style="width: 100%;" id="dokPel_program"
-																																				wire:model="dokPel_program" wire:change="fillSubprograms">
+																																				wire:model="dokPel_program" wire:change="fillKegiatan">
 																																				<option value="">Pilih Program</option>
 																																				@foreach ($program_options as $option)
 																																								<option value="{{ $option }}">{{ $option }}</option>
@@ -461,7 +461,13 @@
 																												@enderror
 																												<div class="form-group">
 																																<label>Kegiatan</label>
-																																<input type="text" class="form-control" wire:model="dokPel_kegiatan">
+																																<select class="form-control" style="width: 100%;" wire:model="dokPel_kegiatan"
+																																				wire:change="fillSubKegiatan">
+																																				<option value="">Pilih Kegiatan</option>
+																																				@foreach ($kegiatan_options as $option)
+																																								<option value="{{ $option }}">{{ $option }}</option>
+																																				@endforeach
+																																</select>
 																												</div>
 																								</div>
 																								<div class="col-4">
@@ -621,12 +627,23 @@
 																																				<td colspan="5"></td>
 																																</tr>
 
-																																<tr>
+																																{{-- <tr>
 																																				<td colspan="2">Sub Kegiatan</td>
 																																				<td colspan="3">
 																																								<select class="form-control" style="width: 100%;" wire:model="dokPel_sk">
 																																												<option value="">Pilih Program</option>
 																																												@foreach ($sub_program_options as $option)
+																																																<option value="{{ $option }}">{{ $option }}</option>
+																																												@endforeach
+																																								</select>
+																																				</td>
+																																</tr> --}}
+																																<tr>
+																																				<td colspan="2">Sub Kegiatan</td>
+																																				<td colspan="3">
+																																								<select class="form-control" style="width: 100%;" wire:model="dokPel_sk">
+																																												<option value="">Pilih Sub Kegiatan</option>
+																																												@foreach ($sub_kegiatan_options as $option)
 																																																<option value="{{ $option }}">{{ $option }}</option>
 																																												@endforeach
 																																								</select>
