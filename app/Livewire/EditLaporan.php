@@ -254,7 +254,8 @@ class EditLaporan extends Component
         $this->fillPrograms();
         $this->fillKegiatan();
         $this->fillSubKegiatan();
-
+        
+        // dd($this->dokPel_sk );
     }
 
     public function fillPrograms()
@@ -347,7 +348,6 @@ class EditLaporan extends Component
             $this->jabatan_kb = null;
         }
         $this->fillPrograms();
-        $this->fillSubprograms();
         
     }
 

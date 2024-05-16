@@ -105,6 +105,98 @@ class DatabaseSeeder extends Seeder
             'updated_at' => now()
         ]);
 
+
+        Laporan::create([
+            'pptk' => '',
+            'opd' => 'Ir. S.A. Supriono',
+            'surat_permohonan' => json_encode([
+                "biro" => "Biro Umum dan Perlengkapan",
+                "tgl" => null,
+                "no_sppa" => null,
+                "sifat_sppa" => null,
+                "lampiran_sppa" => null,
+                "hal_sppa" => null,
+                "nama_kb" => "Sandi Fahlepi, SP, M.Si",
+                "jabatan_kb" => "Kuasa Pengguna Anggaran",
+                "nip_kb" => "198001152008031001",
+                "pangkat_kb" => "Pembina TK.I (IV/B)"
+            ]),
+            'matriks_pergeseran' => json_encode([
+                "tgl_matriks" => null,
+                "matriks_pergeseran" => [
+                    ["no_rekening" => "", "uraian" => "", "sebelum" => "", "sesudah" => "", "bertambah_berkurang" => ""],
+                ]
+            ]),
+            'sptjm' => json_encode(["no_sptjm" => "", "tgl_sptjm" => ""]),
+            'dokumen_pelaksanaan' => json_encode([
+                "detail_surat" => [
+                    "tahun_anggaran" => "2021-08-06",
+                    "nomor_dppa" => "DPA/A.1/4.01.0.00.0.00.06.0000/001/2024",
+                    "urusan_pemerintahan" => "4 - UNSUR PENDUKUNG URUSAN PEMERINTAHAN",
+                    "bidang_urusan" => "4.01 - SEKRETARIAT DAERAH",
+                    "program" => "PROGRAM PENUNJANG URUSAN PEMERINTAHAN DAERAH PROVINSI",
+                    "kegiatan" => "PERENCANAAN, PENGANGGARAN, DAN EVALUASI KINERJA PERANGKAT DAERAH",
+                    "organisasi" => "Sekretariat Daerah",
+                    "unit" => "Biro Umum",
+                    "alokasi_m1" => "0",
+                    "alokasi_tahun" => "93800000",
+                    "alokasi_p1" => "107180000",
+                ],
+                "indikator" => [
+                    "sk" => 'Penyusunan Dokumen Perencanaan Perangkat Daerah',
+                    "sp" => '',
+                    "lokasi" => 'Provinsi Sumatera Selatan, Semua Kecamatan, Semua Kelurahan',
+                    "ksk" => 'Jumlah Dokumen Perencanaan Perangkat Daerah',
+                    "waktu" => 'Mulai Januari Sampai Februari',
+                    "keterangan" => '',
+                    "ck_tuk_sbm" => '',
+                    "ck_tk_sbm" => '',
+                    "ck_tuk_sth" => '',
+                    "ck_tk_sth" => '',
+                    "m_tuk_sbm" => 'Dana Yang Dibutuhkan',
+                    "m_tk_sbm" => '',
+                    "m_tuk_sth" => '93800000',
+                    "m_tk_sth" => '',
+                    "k_tuk_sbm" => 'Jumlah Dokumen Perencanaan Perangkat Daerah',
+                    "k_tk_sbm" => '',
+                    "k_tuk_sth" => '1 Dokumen',
+                    "k_tk_sth" => '',
+                    "h_tuk_sbm" => '',
+                    "h_tk_sbm" => '',
+                    "h_tuk_sth" => '',
+                    "h_tk_sth" => '',
+                ],
+                "rincian_perhitungan" => [
+                    ["kodeRekening" => "5", "uraian" => "BELANJA DAERAH", "volume_sbm" => "", "satuan_sbm" => "", "harga_sbm" => "", "ppn_sbm" => "", "jumlah_sbm" => "", "volume_sth" => "", "satuan_sth" => "", "harga_sth" => "", "ppn_sth" => "", "jumlah_sth" => "", "bertambah_berkurang" => "93800000"],
+                    ["kodeRekening" => "5.1", "uraian" => "BELANJA OPERASI", "volume_sbm" => "", "satuan_sbm" => "", "harga_sbm" => "", "ppn_sbm" => "", "jumlah_sbm" => "", "volume_sth" => "", "satuan_sth" => "", "harga_sth" => "", "ppn_sth" => "", "jumlah_sth" => "", "bertambah_berkurang" => "93800000"],
+                    ["kodeRekening" => "5.1", "uraian" => "Belanja Barang dan Jasa", "volume_sbm" => "", "satuan_sbm" => "", "harga_sbm" => "", "ppn_sbm" => "", "jumlah_sbm" => "", "volume_sth" => "", "satuan_sth" => "", "harga_sth" => "", "ppn_sth" => "", "jumlah_sth" => "", "bertambah_berkurang" => "93800000"],
+                    ["kodeRekening" => "5.1.02", "uraian" => "Belanja Barang", "volume_sbm" => "", "satuan_sbm" => "", "harga_sbm" => "", "ppn_sbm" => "", "jumlah_sbm" => "", "volume_sth" => "", "satuan_sth" => "", "harga_sth" => "", "ppn_sth" => "", "jumlah_sth" => "", "bertambah_berkurang" => "18700000"],
+                    ["kodeRekening" => "5.1.02", "uraian" => "Belanja Barang Pakai Habis", "volume_sbm" => "", "satuan_sbm" => "", "harga_sbm" => "", "ppn_sbm" => "", "jumlah_sbm" => "", "volume_sth" => "", "satuan_sth" => "", "harga_sth" => "", "ppn_sth" => "", "jumlah_sth" => "", "bertambah_berkurang" => "18700000"],
+                    ["kodeRekening" => "5.1.02.01.01.0024", "uraian" => "Belanja Alat/Bahan untuk Kegiatan Kantor-Alat Tulis Kantor", "volume_sbm" => "", "satuan_sbm" => "", "harga_sbm" => "", "ppn_sbm" => "", "jumlah_sbm" => "", "volume_sth" => "", "satuan_sth" => "", "harga_sth" => "", "ppn_sth" => "", "jumlah_sth" => "", "bertambah_berkurang" => "10000000"],
+                    ["kodeRekening" => "", "uraian" => "[#] Alat Tulis Kantor Sumber Dana: PENDAPATAN ASLI DAERAH (PAD)", "volume_sbm" => "", "satuan_sbm" => "", "harga_sbm" => "", "ppn_sbm" => "", "jumlah_sbm" => "", "volume_sth" => "", "satuan_sth" => "", "harga_sth" => "", "ppn_sth" => "", "jumlah_sth" => "", "bertambah_berkurang" => "10000000"],
+                    ["kodeRekening" => "", "uraian" => "[-] Alat Tulis Kantor", "volume_sbm" => "", "satuan_sbm" => "", "harga_sbm" => "", "ppn_sbm" => "", "jumlah_sbm" => "", "volume_sth" => "", "satuan_sth" => "", "harga_sth" => "", "ppn_sth" => "", "jumlah_sth" => "", "bertambah_berkurang" => "10000000"],
+                    ["kodeRekening" => "", "uraian" => "Belanja Alat/Bahan untuk Kegiatan Kantor-Alat Tulis Kantor. Spesifikasi: Belanja Alat Tulis Kantor Kegiatan", "volume_sbm" => "", "satuan_sbm" => "", "harga_sbm" => "", "ppn_sbm" => "", "jumlah_sbm" => "", "volume_sth" => "1", "satuan_sth" => "Kegiatan", "harga_sth" => "10000000", "ppn_sth" => "10%", "jumlah_sth" => "", "bertambah_berkurang" => "10000000"],
+                    ["kodeRekening" => "5.1.02.01.01.0026", "uraian" => "Belanja Alat/Bahan Untuk Kegiatan Kantor-Bahan Cetak", "volume_sbm" => "", "satuan_sbm" => "", "harga_sbm" => "", "ppn_sbm" => "", "jumlah_sbm" => "", "volume_sth" => "", "satuan_sth" => "", "harga_sth" => "", "ppn_sth" => "", "jumlah_sth" => "", "bertambah_berkurang" => "8700000"],
+                    ["kodeRekening" => "", "uraian" => "[#] Belanja Cetak. Sumber Dana: PENDAPATAN ASLI DAERAH(PAD)", "volume_sbm" => "", "satuan_sbm" => "", "harga_sbm" => "", "ppn_sbm" => "", "jumlah_sbm" => "", "volume_sth" => "", "satuan_sth" => "", "harga_sth" => "", "ppn_sth" => "", "jumlah_sth" => "", "bertambah_berkurang" => "8700000"],
+                    ["kodeRekening" => "", "uraian" => "[-] Belanja Cetak", "volume_sbm" => "", "satuan_sbm" => "", "harga_sbm" => "", "ppn_sbm" => "", "jumlah_sbm" => "", "volume_sth" => "", "satuan_sth" => "", "harga_sth" => "", "ppn_sth" => "", "jumlah_sth" => "", "bertambah_berkurang" => "8700000"],
+                    ["kodeRekening" => "", "uraian" => "Belanja alat atau bahan untuk kegiatan kantor - Bahan Cetak. Spesifikasi: Bahan Cetak/Pengadaan", "volume_sbm" => "", "satuan_sbm" => "", "harga_sbm" => "", "ppn_sbm" => "", "jumlah_sbm" => "", "volume_sth" => "1", "satuan_sth" => "Kegiatan", "harga_sth" => "8700000", "ppn_sth" => "0%", "jumlah_sth" => "", "bertambah_berkurang" => "8700000"],
+                ],
+                "ppkd" => ["ppkd_nama" => "H. AKHMAD MUKHLIS, S.E., M.SI", "ppkd_nip" => "196406211993031004"],
+                "rencana" => [
+                    "dokPel_jan" => "", "dokPel_feb" => "", "dokPel_mar" => "", "dokPel_apr" => "",
+                    "dokPel_mei" => "", "dokPel_jun" => "", "dokPel_jul" => "", "dokPel_agu" => "",
+                    "dokPel_sep" => "", "dokPel_okt" => "", "dokPel_nov" => "", "dokPel_des" => ""
+                ],
+                "tim" => [
+                    ["tim_nama" => "REGINA ARIYANTI, ST", "tim_nip" => "196712042002122003", "tim_jabatan" => "KEPALA BAPPEDA"],
+                    ["tim_nama" => "H. AKHMAD MUKHLIS, S.E., M.SI", "tim_nip" => "196406211993031004", "tim_jabatan" => "KEPALA BPKAD"],
+                    ["tim_nama" => "H. ACHMAD RIZWAN S.STP., M.M", "tim_nip" => "198109232000121001", "tim_jabatan" => "KEPALA BAPENDA"]
+                ]
+            ]),
+            'created_at' => now(),
+            'updated_at' => now()
+        ]);
+
         
         $biroData = [
             [
@@ -316,104 +408,32 @@ class DatabaseSeeder extends Seeder
                 'biro' => 'Biro Umum dan Perlengkapan',
                 'programs' => [
                     [
-                        'program' => 'Perencanaan, Penganggaran dan Evaluasi Kinerja Perangkat Daerah',
-                        'sub_program' => [
-                            'Penyusunan Dokumen Perencaan dan Perangkat Daerah',
-                            'Koordinasi dan Penyusunan Dokumen RKA-SKPD',
-                            'Koordinasi dan Penyusunan Dokumen Perubahan RKA-SKPD',
-                            'Koordinasi dan Penyusunan DPA-SKPD',
-                            'Koordinasi dan Penyusunan Perubahan DPA-SKPD',
-                            'Koordinasi dan Penyusunan Laporan Capaian Kinerja dan Ikhtisar Realisasi Kinerja SKPD',
-                            'Evaluasi Kinerja Perangkat Daerah',
+                        'program' => 'Program Penunjang Urusan Pemerintahan Daerah Provinsi',
+                        'kegiatan' => [
+                            [
+                                'kegiatan' => 'Perencanaan, Penganggaran, dan Evaluasi Kinerja Perangkat Daerah',
+                                'sub_kegiatan' => [
+                                    'Penyusunan Dokumen Perencanaan Perangkat Daerah',
+                                    'Koordinasi dan Penyusunan Dokumen RKA-SKPD',
+                                    'Koordinasi dan Penyusunan Dokumen Perubahan RKA-SKPD',
+                                    'Koordinasi dan Penyusunan DPA-SKPD',
+                                    'Koordinasi dan Penyusunan Perubahan DPA-SKPD',
+                                    'Koordinasi dan Penyusunan Laporan Capaian Kinerja dan Ikhtisar Realisasi Kinerja SKPD',
+                                    'Evaluasi Kinerja Perangkat Daerah',
+                                    'Penyediaan Kebuutuhan Rumah Tangga Kepala Daerah',
+                                    'Penyediaan Kebutuhan Rumah Tangga Sekretariat Daerah'
+                                ],
+                            ],
+                            [
+                                'kegiatan' => 'Administrasi Keuangan Perangkat Daerah',
+                                'sub_kegiatan' => [
+                                    'Penyediaan Gaji dan Tunjangan ASN',
+                                    'Penyediaan Administrasi Pelaksanaan Tugas ASN',
+                                    'Pelaksanaan Penatausahaan dan Pengujian/Verifikasi Keuangan SKPD'
+                                ],
+                            ],
                         ],
                     ],
-                    [
-                        'program' => 'Administrasi Keuangan Perangkat Daerah',
-                        'sub_program' => [
-                            'Penyediaan Gaji dan Tunjangan ASN',
-                            'Penyediaan Administrasi Pelaksanaan Tugas ASN',
-                            'Pelaksanaan Penatausahaan dan pengujian Keuangan Akhir tahun SKPD',
-                            'Koordinasi dan Penyusuan Laporan keuangan akhir Tahun SKPD',
-                            'Koordinasi dan Penyusuan Laporan Keuangan Bulanan/Triwulan/Semesteran SKPD',
-                        ],
-                    ],
-                    [
-                        'program' => 'Administrasi Barang Milik Daerah pada Perangkat Daerah',
-                        'sub_program' => [
-                            'Pengamanan Barang Milik Daerah SKPD',
-                            'Rekonsiliasi dan Penyusunan Laporan Barang Milik Daerah',
-                            'Penatausahaan Barang Milik Daerah pada SKPD'
-                        ],
-                    ],
-                    [
-                        'program' => 'Administrasi Kepegawaian Perangkat Daerah',
-                        'sub_program' => [
-                            'Pengadaan Pakaian Dinas beserta Atribut Kelengkapannya',
-                            'Pendidikan dan Pelatihan Pegawai Berdasarkan Tugas dan Fungsi',
-                            'Sosisalisasi Peraturan dan Perundang-Undangan',
-                            'Bimbingan Teknis Implementasi Peraturan Perundang-Undangan'
-                        ],
-                    ],
-                    [
-                        'program' => 'Administrasi Umum Perangkat Daerah',
-                        'sub_program' => [
-                            'Penyediaan Komponen Instalasi Listrik/Penerangan Bangunan Kantor',
-                            'Penyediaan Bahan Logistik Kantor',
-                            'Penyediaan Barang Cetakan dan Penggandaan',
-                            'Penyediaan Peralatan dan Perlengkapan Kantor',
-                            'Fasilitasi Kunjungan Tamu: Belanja Makanan dan Minuman Jamuan Tamu (Sewa Mobilitas), Belanja Sewa Alat Angkutan Darat Bermotor Lainnya',
-                            'Penyelenggaraan Rapat Koordinasi dan Konsultasi SKPD',
-                            'Penatausahaan Arsip Dinamis pada SKPD'
-                        ],
-                    ],
-                    [
-                        'program' => 'Pengadaan Barang Milik Daerah Penunjang Urusan Pemerintahan Daerah',
-                        'sub_program' => [
-                            'Pengadaan Kendaraan Dinas Operasional atau Lapangan',
-                            'Pengadaan Alat Besar',
-                            'Pengadaan Mebel',
-                            'Pengadaan Sarana dan Prasarana Gedung Kantor atau Bangunan Lainnya',
-                            'Pengadaan Aset Tak Berwujud'
-                        ],
-                    ],
-                    [
-                        'program' => 'Penyediaan Jasa Penunjang Urusan Pemerintahan Daerah',
-                        'sub_program' => [
-                            'Penyediaan Jasa Surat Menyurat',
-                            'Penyediaan Jasa Komunikasi, Sumber Daya Air dan Listrik',
-                            'Penyediaan Jasa Peralatan dan Perlengkapan Kantor',
-                            'Penyediaan Jasa Pelayanan Umum Kantor'
-                        ],
-                    ],
-                    [
-                        'program' => 'Pemeliharaan Barang Milik Daerah Penunjang Urusan Pemerintahan Daerah',
-                        'sub_program' => [
-                            'Penyediaan Jasa Pemeliharaan, Biaya Pemeliharaan dan Pajak dan Perizinan Kendaraan Perorangan Dinas atau Kendaraan Dinas Jabatan',
-                            'Penyediaan Jasa Pemeliharaan, Biaya Pemeliharaan dan Pajak dan Perizinan Kendaraan Dinas Operasional atau Lapangan',
-                            'Pemeliharaan Mebel',
-                            'Pemeliharaan/Rehabilitasi Gedung Kantor atau Bangunan Lainnya',
-                            'Pemeliharaan/Rehabilitasi Sarana dan Prasarana Gedung Kantor atau Bangunan Lainnya',
-                            'Pemeliharaan Peralatan dan Mesin Lainnya',
-                            'Pemeliharaan Aset Tak Berwujud'
-                        ],
-                    ],
-                    [
-                        'program' => 'Administrasi Keunagan dan Operasional Kepala Daerah dan Wakil Kepala Daerah',
-                        'sub_program' => [
-                            'Penyediaan Gaji dan Tunjangan Kepala Daerah dan Wakil Kepala Daerah',
-                            'Penyediaan Pakaian Dinas dan Atribut Kelengkapan Kepala Daerah dan Wakil Kepala Daerah',
-                            'Pelaksanaan Medical Check Up Kepala Daerah dan Wakil Kepala Daerah',
-                            'Penyediaan Dana Penunjang Operasional Kepala Daerah dan Wakil Kepala Daerah',
-                        ],
-                    ],
-                    [
-                        'program' => 'Fasilitasi Kerumahtanggaan Sekretaris Daerah',
-                        'sub_program' => [
-                            'Penyediaan Kebutuhan Rumah Tangga Kepala Daerah',
-                            'Penyediaan Kebutuhan Rumah Tangga Wakil Kepala Daerah',
-                            'Penyediaan Kebutuhan Rumah Tangga Sekretaris Daerah'
-                        ]
-                    ]
                 ],
                 'nama' => 'Sandi Fahlepi, SP, M.Si',
                 'nip' => '198001152008031001',

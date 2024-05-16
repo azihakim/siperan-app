@@ -472,21 +472,35 @@
 																				$total = 0;
 																				$rencana = $data['dokumen_pelaksanaan']['rencana'];
 																@endphp
-																@php
-																				$total +=
-																				    $rencana['dokPel_jan'] +
-																				    $rencana['dokPel_feb'] +
-																				    $rencana['dokPel_mar'] +
-																				    $rencana['dokPel_apr'] +
-																				    $rencana['dokPel_mei'] +
-																				    $rencana['dokPel_jun'] +
-																				    $rencana['dokPel_jul'] +
-																				    $rencana['dokPel_agu'] +
-																				    $rencana['dokPel_sep'] +
-																				    $rencana['dokPel_okt'] +
-																				    $rencana['dokPel_nov'] +
-																				    $rencana['dokPel_des'];
-																@endphp
+																@if (
+																				$rencana['dokPel_jan'] != null &&
+																								$rencana['dokPel_feb'] != null &&
+																								$rencana['dokPel_mar'] != null &&
+																								$rencana['dokPel_apr'] != null &&
+																								$rencana['dokPel_mei'] != null &&
+																								$rencana['dokPel_jun'] != null &&
+																								$rencana['dokPel_jul'] != null &&
+																								$rencana['dokPel_agu'] != null &&
+																								$rencana['dokPel_sep'] != null &&
+																								$rencana['dokPel_okt'] != null &&
+																								$rencana['dokPel_nov'] != null &&
+																								$rencana['dokPel_des'] != null)
+																				@php
+																								$total +=
+																								    $rencana['dokPel_jan'] +
+																								    $rencana['dokPel_feb'] +
+																								    $rencana['dokPel_mar'] +
+																								    $rencana['dokPel_apr'] +
+																								    $rencana['dokPel_mei'] +
+																								    $rencana['dokPel_jun'] +
+																								    $rencana['dokPel_jul'] +
+																								    $rencana['dokPel_agu'] +
+																								    $rencana['dokPel_sep'] +
+																								    $rencana['dokPel_okt'] +
+																								    $rencana['dokPel_nov'] +
+																								    $rencana['dokPel_des'];
+																				@endphp
+																@endif
 																<td style="width: 200px;"><strong>Jumlah</strong></td>
 																<td style="width: 30%;"><strong>{{ $total }}</strong></td>
 												</tr>
