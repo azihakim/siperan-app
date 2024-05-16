@@ -122,7 +122,7 @@ class PrintController extends Controller
         // Decode the JSON string in the "surat_permohonan" field
         $suratPermohonan = json_decode($laporan->surat_permohonan, true);
         $matrikPegeseran = json_decode($laporan->matriks_pergeseran, true);
-
+        
         // Parse the date string
         $date = Carbon::parse($matrikPegeseran['tgl_matriks'] ?? null);
         
@@ -149,14 +149,14 @@ class PrintController extends Controller
             ]
         ];
         // Mengakses data matriks_pergeseran
-        $matriks_pergeseran = $data['matriks_pergeseran']['matriks_pergeseran'];
+        // $matriks_pergeseran = $data['matriks_pergeseran']['matriks_pergeseran'];
 
         // Mengakses tgl_matriks
         $tgl_matriks = $data['matriks_pergeseran']['tgl_matriks'];
 
         $data_m = [];
         // Melakukan foreach untuk matriks_pergeseran
-        foreach ($matriks_pergeseran ?? [] as $matriks) {
+        foreach ($matrikPegeseran ?? [] as $matriks) {
             $no_rekening = $matriks['no_rekening'] ?? null;
             $uraian = $matriks['uraian'] ?? null;
             $sebelum = $matriks['sebelum'] ?? null;
@@ -219,7 +219,7 @@ class PrintController extends Controller
 
         $matriks_pergeseran = $matrikPegeseran['matriks_pergeseran'] ?? [];
 
-        foreach ($matriks_pergeseran  ?? null as $matriks) {
+        foreach ($matrikPegeseran  ?? null as $matriks) {
             $no_rekening = $matriks['no_rekening'];
             $uraian = $matriks['uraian'];
             $sebelum = $matriks['sebelum'];

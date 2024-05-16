@@ -98,8 +98,8 @@ class EditLaporan extends Component
         // Mengambil nilai dari matriks_pergeseran\
         $this->matriks = $this->matriks_pergeseran;
         $this->tgl_matriks = $this->matriks['tgl_matriks'] ?? null;
-        if (!is_null($this->matriks['matriks_pergeseran'] ?? null)) {
-            foreach ($this->matriks['matriks_pergeseran'] as $key => $value) {
+        if (!empty($this->matriks)) {
+            foreach ($this->matriks as $key => $value) {
                 $this->inputs[] = [
                     'no_rekening' => $value['no_rekening'] ?? null,
                     'uraian' => $value['uraian'] ?? null,
@@ -109,7 +109,7 @@ class EditLaporan extends Component
                 ];
             }
         } else {
-            // Jika matriks_pergeseran adalah null, tambahkan value null ke inputs
+            // Jika matriks_pergeseran adalah null atau kosong, tambahkan value null ke inputs
             $this->inputs[] = [
                 'no_rekening' => null,
                 'uraian' => null,
