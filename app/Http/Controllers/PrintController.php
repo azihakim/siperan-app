@@ -218,15 +218,14 @@ class PrintController extends Controller
 
         $matriks_pergeseran = $matrikPegeseran['matriks_pergeseran'] ?? [];
 
-        foreach ($matrikPegeseran  ?? null as $matriks) {
-            $no_rekening = $matriks['no_rekening'];
-            $uraian = $matriks['uraian'];
-            $sebelum = $matriks['sebelum'];
-            $sesudah = $matriks['sesudah'];
-            $bertambah_berkurang = $matriks['bertambah_berkurang'];
+        foreach ($matrikPegeseran['matriks_pergeseran'] ?? [] as $matriks) {
+            $no_rekening = $matriks['no_rekening'] ?? null;
+            $uraian = $matriks['uraian'] ?? null;
+            $sebelum = $matriks['sebelum'] ?? null;
+            $sesudah = $matriks['sesudah'] ?? null;
+            $bertambah_berkurang = $matriks['bertambah_berkurang'] ?? null;
 
             $data_m[] = [
-                'tgl_matriks' => $formattedDate,
                 'no_rekening' => $no_rekening,
                 'uraian' => $uraian,
                 'sebelum' => $sebelum,
