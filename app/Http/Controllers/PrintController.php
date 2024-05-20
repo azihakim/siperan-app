@@ -13,7 +13,7 @@ use Carbon\Carbon;
 
 class PrintController extends Controller
 {
-    
+
 
     public function printPermohonan($id)
     {
@@ -46,7 +46,7 @@ class PrintController extends Controller
             "dokumen_pelaksanaan" => $laporan->dokumen_pelaksanaan,
             "created_at" => $laporan->created_at->format('d F Y'), // Format the date
         ];
-        
+
 
         $options = new Options();
         $options->set('chroot', public_path());
@@ -56,7 +56,7 @@ class PrintController extends Controller
         $dompdf->loadHtml($html);
         $dompdf->setPaper('A4', 'portrait');
         $dompdf->render();
-        
+
         $pdfContent = $dompdf->output();
 
         $biro = $data['surat_permohonan']['biro'];
@@ -74,7 +74,7 @@ class PrintController extends Controller
 
         // Parse the date string
         $date = Carbon::parse($Esptjm['tgl_sptjm'] ?? null);
-        
+
         // Format the date as "30 April 2018"
         $formattedDate = $date->format('j F Y');
 
@@ -106,9 +106,9 @@ class PrintController extends Controller
         $dompdf->loadHtml($html);
         $dompdf->setPaper('A4', 'portrait');
         $dompdf->render();
-        
+
         $pdfContent = $dompdf->output();
-        
+
         $biro = $data['surat_permohonan']['biro'];
 
         return response()->streamDownload(function () use ($pdfContent) {
@@ -119,13 +119,13 @@ class PrintController extends Controller
     public function printMatriks($id)
     {
         $laporan = Laporan::find($id);
+        // dd($laporan);
         // Decode the JSON string in the "surat_permohonan" field
         $suratPermohonan = json_decode($laporan->surat_permohonan, true);
         $matrikPegeseran = json_decode($laporan->matriks_pergeseran, true);
-        
         // Parse the date string
         $date = Carbon::parse($matrikPegeseran['tgl_matriks'] ?? null);
-        
+
         // Format the date as "30 April 2018"
         $formattedDate = $date->format('j F Y');
         $inputs = [];
@@ -156,15 +156,13 @@ class PrintController extends Controller
 
         $data_m = [];
         // Melakukan foreach untuk matriks_pergeseran
-        foreach ($matrikPegeseran ?? [] as $matriks) {
+        foreach ($matrikPegeseran['matriks_pergeseran'] ?? [] as $matriks) {
             $no_rekening = $matriks['no_rekening'] ?? null;
             $uraian = $matriks['uraian'] ?? null;
             $sebelum = $matriks['sebelum'] ?? null;
             $sesudah = $matriks['sesudah'] ?? null;
             $bertambah_berkurang = $matriks['bertambah_berkurang'] ?? null;
 
-            // Lakukan sesuatu dengan data ini, misalnya tambahkan ke dalam array atau lakukan operasi lainnya
-            // Contoh:
             $data_m[] = [
                 'tgl_matriks' => $tgl_matriks,
                 'no_rekening' => $no_rekening,
@@ -174,6 +172,7 @@ class PrintController extends Controller
                 'bertambah_berkurang' => $bertambah_berkurang
             ];
         }
+        // dd($data_m);
         $options = new Options();
         $options->set('chroot', public_path());
 
@@ -182,9 +181,9 @@ class PrintController extends Controller
         $dompdf->loadHtml($html);
         $dompdf->setPaper('A4', 'landscape');
         $dompdf->render();
-        
+
         $pdfContent = $dompdf->output();
-        
+
         $biro = $data['surat_permohonan']['biro'];
         return response()->streamDownload(function () use ($pdfContent) {
             echo $pdfContent;
@@ -246,7 +245,7 @@ class PrintController extends Controller
         // Decode the JSON string in the "surat_permohonan" field
         $suratPermohonan = json_decode($laporan->surat_permohonan, true);
         $dokumenPelaksanaan = json_decode($laporan->dokumen_pelaksanaan, true);
-        
+
         // Parse the date string
         $formattedDate = null;
         if (!empty($dokumenPelaksanaan['detail_surat']['tahun_anggaran'])) {
@@ -280,7 +279,7 @@ class PrintController extends Controller
                 "rencana" => $dokumenPelaksanaan['rencana'] ?? null,
                 "tim" => $dokumenPelaksanaan['tim'] ?? null,
             ]
-            
+
         ];
         // dd($data['surat_permohonan']);
         $rincian_perhitungan = $data['dokumen_pelaksanaan']['rincian_perhitungan'];
@@ -339,9 +338,9 @@ class PrintController extends Controller
         $dompdf->loadHtml($html);
         $dompdf->setPaper('legal', 'landscape');
         $dompdf->render();
-        
+
         $pdfContent = $dompdf->output();
-        
+
         $biro = $data['surat_permohonan']['biro'];
         return response()->streamDownload(function () use ($pdfContent) {
             echo $pdfContent;
@@ -354,7 +353,7 @@ class PrintController extends Controller
         // Decode the JSON string in the "surat_permohonan" field
         $suratPermohonan = json_decode($laporan->surat_permohonan, true);
         $dokumenPelaksanaan = json_decode($laporan->dokumen_pelaksanaan, true);
-        
+
         // Parse the date string
         $formattedDate = null;
         if (!empty($dokumenPelaksanaan['detail_surat']['tahun_anggaran'])) {
@@ -388,7 +387,7 @@ class PrintController extends Controller
                 "rencana" => $dokumenPelaksanaan['rencana'] ?? null,
                 "tim" => $dokumenPelaksanaan['tim'] ?? null,
             ]
-            
+
         ];
         // dd($data['surat_permohonan']);
         $rincian_perhitungan = $data['dokumen_pelaksanaan']['rincian_perhitungan'];
@@ -440,5 +439,5 @@ class PrintController extends Controller
         return Excel::download(new dokumenExport($data, $data_rp, $data_tim, $date, $year), 'DPA-'.$biro.'.xlsx');
     }
 
-    
+
 }

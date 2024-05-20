@@ -28,15 +28,15 @@ class EditLaporan extends Component
     public $dokPel_ck_tuk_sbm, $dokPel_ck_tk_sbm, $dokPel_ck_tuk_sth, $dokPel_ck_tk_sth, $dokPel_m_tuk_sbm, $dokPel_m_tk_sbm, $dokPel_m_tuk_sth, $dokPel_m_tk_sth, $dokPel_k_tuk_sbm, $dokPel_k_tk_sbm, $dokPel_k_tuk_sth, $dokPel_k_tk_sth, $dokPel_h_tuk_sbm, $dokPel_h_tk_sbm, $dokPel_h_tuk_sth, $dokPel_h_tk_sth;
     public $dokPel_tahun, $dokPel_noDppa, $dokPel_UrusanPemerintahan, $dokPel_bidangUrusan, $dokPel_program, $dokPel_kegiatan, $dokPel_organisasi, $dokPel_unit, $dokPel_alokasiM1, $dokPel_alokasiTahun, $dokPel_alokasiP1;
     public $dokPel_sk, $dokPel_sp, $dokPel_lokasi, $dokPel_ksk, $dokPel_waktu, $dokPel_keterangan;
-    public $dokPel_jan, $dokPel_feb, $dokPel_mar, $dokPel_apr, $dokPel_mei, $dokPel_jun, $dokPel_jul, $dokPel_agu, $dokPel_sep, $dokPel_okt, $dokPel_nov, $dokPel_des; 
+    public $dokPel_jan, $dokPel_feb, $dokPel_mar, $dokPel_apr, $dokPel_mei, $dokPel_jun, $dokPel_jul, $dokPel_agu, $dokPel_sep, $dokPel_okt, $dokPel_nov, $dokPel_des;
     public $tim_nama, $tim_nip, $tim_jabatan;
-    public $dokPel_pkkd_nama, $dokPel_pkkd_nip; 
-    
+    public $dokPel_pkkd_nama, $dokPel_pkkd_nip;
+
     public $inputs = [];
     public $inputs_dokPel = [];
     public $inputs_tim = [];
     public $tim = [];
-    
+
     public $i = 1;
     public $index = 1;
 
@@ -60,7 +60,7 @@ class EditLaporan extends Component
     {
         return view('livewire.edit-laporan');
     }
-    
+
     public function mount($id)
     {
         $this->opd_text = 'Sekretariat Daerah';
@@ -77,9 +77,10 @@ class EditLaporan extends Component
         }
 
 
-        $laporan = Laporan::findOrFail($id);
+        $laporan = Laporan::find($id);
         $this->surat_permohonan = json_decode($laporan->surat_permohonan, true) ?? [];
         $this->matriks_pergeseran = json_decode($laporan->matriks_pergeseran, true) ?? [];
+        // dd($this->matriks_pergeseran);
         $this->sptjm = json_decode($laporan->sptjm, true) ?? [];
         $this->dokumen_pelaksanaan = json_decode($laporan->dokumen_pelaksanaan, true) ?? [];
         // dd($laporan);
@@ -96,10 +97,11 @@ class EditLaporan extends Component
         $this->pangkat_kb = $this->surat_permohonan['pangkat_kb'];
 
         // Mengambil nilai dari matriks_pergeseran\
-        $this->matriks = $this->matriks_pergeseran;
-        $this->tgl_matriks = $this->matriks['tgl_matriks'] ?? null;
+        $this->matriks = $this->matriks_pergeseran['matriks_pergeseran'];
+        $this->tgl_matriks = $this->matriks_pergeseran['tgl_matriks'] ?? null;
+
         if (!empty($this->matriks)) {
-            foreach ($this->matriks as $key => $value) {
+            foreach ($this->matriks as $value) {
                 $this->inputs[] = [
                     'no_rekening' => $value['no_rekening'] ?? null,
                     'uraian' => $value['uraian'] ?? null,
@@ -109,7 +111,6 @@ class EditLaporan extends Component
                 ];
             }
         } else {
-            // Jika matriks_pergeseran adalah null atau kosong, tambahkan value null ke inputs
             $this->inputs[] = [
                 'no_rekening' => null,
                 'uraian' => null,
@@ -158,7 +159,7 @@ class EditLaporan extends Component
         ['indikator']['waktu'] ?? null;
         $this->dokPel_keterangan = $this->dokumen_pelaksanaan
         ['indikator']['keterangan'] ?? null;
-        
+
 
         $this->dokPel_ck_tuk_sbm = $this->dokumen_pelaksanaan
         ['indikator']['ck_tuk_sbm'] ?? null;
@@ -196,8 +197,8 @@ class EditLaporan extends Component
 
         $this->inputs_dokPel = $this->dokumen_pelaksanaan
         ['rincian_perhitungan'] ?? null;
-        
-        
+
+
         $this->dokPel_jan = $this->dokumen_pelaksanaan['rencana']['dokPel_jan'] ?? null;
         $this->dokPel_feb = $this->dokumen_pelaksanaan['rencana']['dokPel_feb'] ?? null;
         $this->dokPel_mar = $this->dokumen_pelaksanaan['rencana']['dokPel_mar'] ?? null;
@@ -233,7 +234,7 @@ class EditLaporan extends Component
                 'tim_nama' => null,
                 'tim_nip' => null,
                 'tim_jabatan' => null
-            ]; 
+            ];
         }
         // dd($this->inputs_tim);
         // dd($this->dokumen_pelaksanaan['ppkd']);
@@ -241,7 +242,7 @@ class EditLaporan extends Component
         $this->dokPel_pkkd_nip = $this->dokumen_pelaksanaan['ppkd']['ppkd_nip'] ?? null;
         // dd($this->dokPel_pkkd_nip);
 
-        
+
         $this->dokPel_pkkd_nama = 'H. AKHMAD MUKHLIS, S.E., M.SI';
         $this->dokPel_pkkd_nip = '196406211993031004';
 
@@ -254,13 +255,13 @@ class EditLaporan extends Component
         $this->fillPrograms();
         $this->fillKegiatan();
         $this->fillSubKegiatan();
-        
+
         // dd($this->dokPel_sk );
     }
 
     public function fillPrograms()
     {
-        $this->programs = []; 
+        $this->programs = [];
 
         $biro = $this->biro;
         $data = Biro::where('biro', $biro)->get();
@@ -348,7 +349,7 @@ class EditLaporan extends Component
             $this->jabatan_kb = null;
         }
         $this->fillPrograms();
-        
+
     }
 
 
@@ -395,20 +396,20 @@ class EditLaporan extends Component
         // Jika validasi berhasil, lanjut ke langkah berikutnya
         $this->currentStep = 2;
     }
-    
+
     public function back($step)
     {
-        $this->currentStep = $step;    
+        $this->currentStep = $step;
     }
-    
+
     public function addInput()
     {
         $this->i++;
         $this->inputs[] = [
-            'no_rekening' => '', 
-            'uraian' => '', 
-            'sebelum' => '', 
-            'sesudah' => '', 
+            'no_rekening' => '',
+            'uraian' => '',
+            'sebelum' => '',
+            'sesudah' => '',
             'bertambah_berkurang' => ''
         ];
     }
@@ -417,16 +418,16 @@ class EditLaporan extends Component
     {
         $this->i++;
         $this->inputs_dokPel[] = [
-            'kodeRekening' => '', 
-            'uraian' => '', 
-            'volume_sbm' => '', 
-            'satuan_sbm' => '', 
-            'harga_sbm' => '', 
+            'kodeRekening' => '',
+            'uraian' => '',
+            'volume_sbm' => '',
+            'satuan_sbm' => '',
+            'harga_sbm' => '',
             'jumlah_sbm' => '',
 
-            'volume_sth' => '', 
-            'satuan_sth' => '', 
-            'harga_sth' => '', 
+            'volume_sth' => '',
+            'satuan_sth' => '',
+            'harga_sth' => '',
             'jumlah_sth' => ''
         ];
     }
@@ -435,8 +436,8 @@ class EditLaporan extends Component
     {
         $this->index++;
         $this->inputs_tim[] = [
-            'tim_nama' => '', 
-            'tim_nip' => '', 
+            'tim_nama' => '',
+            'tim_nip' => '',
             'tim_jabatan' => ''
         ];
     }
@@ -504,7 +505,7 @@ class EditLaporan extends Component
 
     ];
 
-    
+
     public function thirdStepSubmit()
     {
         // $this->validate(
@@ -541,7 +542,7 @@ class EditLaporan extends Component
         $dompdf->loadHtml($html);
         $dompdf->setPaper('A4', 'portrait');
         $dompdf->render();
-        
+
         $pdfContent = $dompdf->output();
 
         return response()->streamDownload(function () use ($pdfContent) {
@@ -601,7 +602,7 @@ class EditLaporan extends Component
             'h_tuk_sth' => $this->dokPel_h_tuk_sth,
             'h_tk_sth' => $this->dokPel_h_tk_sth,
         ];
-    
+
         $dokPel_rencana = [
             'dokPel_jan' => $this->dokPel_jan,
             'dokPel_feb' => $this->dokPel_feb,
@@ -616,7 +617,7 @@ class EditLaporan extends Component
             'dokPel_nov' => $this->dokPel_nov,
             'dokPel_des' => $this->dokPel_des,
         ];
-        
+
         $ppkd = [
             'ppkd_nama' => $this->dokPel_pkkd_nama,
             'ppkd_nip' => $this->dokPel_pkkd_nip,
@@ -633,10 +634,15 @@ class EditLaporan extends Component
             'tim' => $this->inputs_tim
         ];
 
-        
-        $laporan = Laporan::findOrFail($this->itemId);
+        $matriks = [
+            'tgl_matriks' => $this->tgl_matriks,
+            'matriks_pergeseran' => $this->matriks,
+        ];
+        // dd($matrik);
+
+        $laporan = Laporan::find($this->itemId);
         $laporan-> surat_permohonan = json_encode($surat);
-        $laporan-> matriks_pergeseran = json_encode($this->matriks);
+        $laporan-> matriks_pergeseran = json_encode($matriks);
         $laporan-> sptjm = json_encode($this->sptjm);
         $laporan-> dokumen_pelaksanaan = json_encode($dokumen_pelaksanaan);
         // dd($laporan);
@@ -645,7 +651,7 @@ class EditLaporan extends Component
         return redirect('/');
     }
 
-    
+
 
     public function printSptjm()
     {
@@ -662,9 +668,9 @@ class EditLaporan extends Component
         $dompdf->loadHtml($html);
         $dompdf->setPaper('A4', 'portrait');
         $dompdf->render();
-        
+
         $pdfContent = $dompdf->output();
-        
+
 
         return response()->streamDownload(function () use ($pdfContent) {
             echo $pdfContent;
